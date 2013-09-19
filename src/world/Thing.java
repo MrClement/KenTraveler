@@ -1,5 +1,9 @@
 package world;
 
+/**
+ * @author King
+ *
+ */
 public abstract class Thing {
 
 	private boolean solid;

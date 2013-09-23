@@ -6,8 +6,11 @@ package world;
  */
 public class Weapon extends Thing {
 
-	public Weapon(boolean b) {
+	private LivingThing l;
+	
+	public Weapon(boolean b, LivingThing x) {
 		super(b);
+		l = x;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -30,7 +33,7 @@ public class Weapon extends Thing {
 		this.length = length;
 	}
 
-	public void doDamage(GridSpace c, Character d) {
+	public void doDamage(GridSpace c) {
 		int remainingHp;
 		int hpDamage;
 		hpDamage = this.getDamage().

@@ -16,6 +16,7 @@ public abstract class Thing {
 	 */
 	public Thing(boolean b) {
 		solid = b;
+		
 	}
 
 	/**

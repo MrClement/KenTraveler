@@ -17,11 +17,11 @@ public class GridSpace {
 	public ArrayList<Thing> returnThings(){
 		return thingsInSpace;
 	}
-	public ArrayList<Thing> returnLivingThings(){
-		ArrayList<Thing> toReturn = new ArrayList<Thing>();
+	public ArrayList<LivingThing> returnLivingThings(){
+		ArrayList<LivingThing> toReturn = new ArrayList<LivingThing>();
 		for (int i=0; i< thingsInSpace.size(); i++){
 			if (thingsInSpace.get(i) instanceof LivingThing){
-				toReturn.add(thingsInSpace.get(i));
+				toReturn.add((LivingThing) thingsInSpace.get(i));
 			}
 		}
 		return toReturn;

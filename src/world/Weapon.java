@@ -30,4 +30,26 @@ public class Weapon extends Thing {
 		this.length = length;
 	}
 
+	public void doDamage(GridSpace c, Character d) {
+		int remainingHp;
+		int hpDamage;
+		hpDamage = this.getDamage().
+		for(int i = 0; i <=c.returnLivingThings().size(); i++)
+		
+		{
+		remainingHp = c.returnLivingThings().get(i).getHp();
+		if(this.getDamage() >= remainingHp){
+		
+		c.returnLivingThings().get(i).getPosition.remove;
+		
+		}
+		
+		else{
+				
+		c.returnThings().get(i).setHP(remainingHp - this.getDamage());
+		}
+		
+		}
+		
+
 }

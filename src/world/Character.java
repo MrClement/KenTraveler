@@ -1,5 +1,9 @@
 package world;
 
+/**
+ * @author jpoley15 Creates a new character, allows for stat implementation 
+ *
+ */
 public class Character extends LivingThing {
 
 	private String name;

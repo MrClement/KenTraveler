@@ -14,10 +14,10 @@ public class GridSpace {
 		thingsInSpace = initialInGridSpace;
 	}
 	
-	private ArrayList<Thing> returnThings(){
+	public ArrayList<Thing> returnThings(){
 		return thingsInSpace;
 	}
-	private ArrayList<Thing> returnLivingThings(){
+	public ArrayList<Thing> returnLivingThings(){
 		ArrayList<Thing> toReturn = new ArrayList<Thing>();
 		for (int i=0; i< thingsInSpace.size(); i++){
 			if (thingsInSpace.get(i) instanceof LivingThing){
@@ -27,14 +27,14 @@ public class GridSpace {
 		return toReturn;
 	}
 	
-	private Thing remove(Thing toRemove){
+	public Thing remove(Thing toRemove){
 		if (thingsInSpace.remove(toRemove)==true){
 			return toRemove;
 		}
 		else return null;
 	}
 	
-	private void onTick(){
+	public void onTick(){
 		
 	}
 	

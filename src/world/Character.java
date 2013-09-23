@@ -13,7 +13,7 @@ public class Character extends LivingThing {
 	// Constructs a default character with name "name" and stats all set to 10
 
 	/**
-	 * @param solid this is a boolean indicating whether something is solid (true) or not (false)
+	 * @param solid is a boolean indicating whether something is solid (true) or not (false)
 	 */
 	public Character(boolean solid) {
 

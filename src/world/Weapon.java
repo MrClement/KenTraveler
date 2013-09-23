@@ -11,14 +11,14 @@ public class Weapon extends Thing {
 		// TODO Auto-generated constructor stub
 	}
 
-	private int damage;
+	private Damage damage;
 	private int length;
 
-	public int getDamage() {
+	public Damage getDamage() {
 		return damage;
 	}
 
-	public void setDamage(int damage) {
+	public void setDamage(Damage damage) {
 		this.damage = damage;
 	}
 

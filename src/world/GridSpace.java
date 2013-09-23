@@ -17,6 +17,15 @@ public class GridSpace {
 	private ArrayList<Thing> returnThings(){
 		return thingsInSpace;
 	}
+	private ArrayList<Thing> returnLivingThings(){
+		ArrayList<Thing> toReturn = new ArrayList<Thing>();
+		for (int i=0; i< thingsInSpace.size(); i++){
+			if (thingsInSpace.get(i) instanceof LivingThing){
+				toReturn.add(thingsInSpace.get(i));
+			}
+		}
+		return toReturn;
+	}
 	
 	private Thing remove(Thing toRemove){
 		if (thingsInSpace.remove(toRemove)==true){

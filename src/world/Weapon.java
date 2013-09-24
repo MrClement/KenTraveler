@@ -7,15 +7,15 @@ package world;
 public class Weapon extends Thing {
 
 	private LivingThing l;
+	private Damage damage;
+	private int length;
+
 	
 	public Weapon(boolean b, LivingThing x) {
 		super(b);
 		l = x;
 		// TODO Auto-generated constructor stub
 	}
-
-	private Damage damage;
-	private int length;
 
 	public Damage getDamage() {
 		return damage;
@@ -34,9 +34,26 @@ public class Weapon extends Thing {
 	}
 
 	public void doDamage(GridSpace c) {
-		int remainingHp;
 		int hpDamage;
-		hpDamage = this.getDamage().
+		int	strengthDamage;
+		int	intelligenceDamage;
+		int	dexterityDamage;
+		int	speedDamage;
+		int	manaDamage;
+		int baseXpDamage;
+		int remainingHp;
+		int remainingStrength;
+		int remainingIntelligence;
+		int remainingDexterity;
+		int remainingSpeed;
+		int remainingMana;
+		
+		hpDamage = this.getDamage().getBaseHpDamage();
+		strengthDamage = this.getDamage().getBaseStrengthDamage();
+		intelligenceDamage = this.getDamage().getBaseIntelligenceDamage();
+		dexterityDamage = this.getDamage().getBaseDexterityDamage();
+		speedDamage = this.getDamage().getBaseSpeedDamage();
+		manaDamage = this.getDamage().getBaseManaDamage();
 		for(int i = 0; i <=c.returnLivingThings().size(); i++)
 		
 		{

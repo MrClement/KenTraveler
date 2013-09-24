@@ -79,7 +79,13 @@ public class Weapon extends Thing {
 		remainingSpeed = oo.getSpeed() - speedDamage;
 		remainingMana = oo.getMana() - manaDamage;
 		
-		
+		//updates all stats of Character
+		oo.updateHp((int)remainingHp);
+		oo.updateStrength((int)remainingStrength);
+		oo.updateIntelligence((int)remainingIntelligence);
+		oo.updateDexterity((int)remainingIntelligence);
+		oo.updateSpeed((int)remainingSpeed);
+		oo.updateMana((int)remainingMana);
 		}
 		
 

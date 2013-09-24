@@ -38,6 +38,7 @@ public class Weapon extends Thing {
 		this.length = length;
 	}
 
+
 	public void doDamage(LivingThing oo) {
 		double hpDamage;
 		double	strengthDamage;

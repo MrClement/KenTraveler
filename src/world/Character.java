@@ -36,8 +36,8 @@ public class Character extends LivingThing {
 			updateDexterity(points);
 			updateIntelligence(points);
 			updateStrength(points);
-			updateSpeed();
-			updateMana();
+			updateSpeed(0);
+			updateMana(0);
 			updateHp(10);
 		}
 	}

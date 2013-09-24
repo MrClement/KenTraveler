@@ -7,9 +7,16 @@ package world;
 
 public class LivingThing extends Thing {
 
-	private int hp;
+	
+	private int MaxHp;
+	private int MaxStrength;
+	private int MaxIntelligence;
+	private int MaxDexterity;
+	private int MaxSpeed;
+	private int MaxMana;
 	
 	private String name;
+	private int hp;
 	private int strength;
 	private int intelligence;
 	private int dexterity;

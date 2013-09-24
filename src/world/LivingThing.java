@@ -1,5 +1,10 @@
 package world;
 
+/**
+ * @author jpoley15 Creates a new LivingThing, stores stats 
+ *
+ */
+
 public class LivingThing extends Thing {
 
 	private int hp;

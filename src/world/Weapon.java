@@ -9,6 +9,7 @@ public class Weapon extends Thing {
 	private LivingThing l;
 	private Damage damage;
 	private int length;
+	
 
 	
 	public Weapon(boolean b, LivingThing x) {
@@ -33,7 +34,7 @@ public class Weapon extends Thing {
 		this.length = length;
 	}
 
-	public void doDamage(GridSpace c) {
+	public void doDamage(LivingThing oo) {
 		int hpDamage;
 		int	strengthDamage;
 		int	intelligenceDamage;
@@ -49,14 +50,13 @@ public class Weapon extends Thing {
 		int remainingMana;
 		
 		hpDamage = this.getDamage().getBaseHpDamage();
-		
-		
-		//Needs Work on Past here Dont evaluate this yet
 		strengthDamage = this.getDamage().getBaseStrengthDamage();
 		intelligenceDamage = this.getDamage().getBaseIntelligenceDamage();
 		dexterityDamage = this.getDamage().getBaseDexterityDamage();
 		speedDamage = this.getDamage().getBaseSpeedDamage();
 		manaDamage = this.getDamage().getBaseManaDamage();
+		
+		//Needs Work on Past here Dont evaluate this yet
 		for(int i = 0; i <=c.returnLivingThings().size(); i++)
 		
 		{

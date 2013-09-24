@@ -25,7 +25,7 @@ public class LivingThing extends Thing {
 		this.strength = strength;
 		this.intelligence = intelligence;
 		this.dexterity = dexterity;
-		hp = (strength * 5) + 1;
+		hp = 20;
 		mana = (intelligence * 5) + 1;
 		speed = (dexterity * 5) + 1;
 		
@@ -88,7 +88,6 @@ public class LivingThing extends Thing {
 	}
 	public void updateStrength(int Strength){
 		strength += Strength;
-		updateHp();
 	}
 
 	public void updateIntelligence(int Intelligence){
@@ -112,8 +111,8 @@ public class LivingThing extends Thing {
 		mana = (intelligence * 5) + 1;
 	}
 	
-	public void updateHp(){
-		hp = (strength * 5) + 1;
+	public void updateHp(int increase){
+		hp += increase;
 	}
 
 }

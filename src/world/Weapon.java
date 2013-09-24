@@ -53,40 +53,32 @@ public class Weapon extends Thing {
 		double remainingSpeed;
 		double remainingMana;
 		
-		//calculates Total HP Damage
+		//calculates damages
 		hpDamage = this.getDamage().getBaseHpDamage();
 		if(strengthMultiplier > 1)
-			hpDamage = hpDamage * (l.getStrength() * strengthMultiplier);
+			hpDamage = hpDamage + (l.getStrength() * strengthMultiplier);
 		if(manaMultiplier > 1)
-			hpDamage = hpDamage * (l.getMana() * manaMultiplier);
+			hpDamage = hpDamage + (l.getMana() * manaMultiplier);
 		if(speedMultiplier > 1)
-			hpDamage = hpDamage * (l.getSpeed() * speedMultiplier);
+			hpDamage = hpDamage + (l.getSpeed() * speedMultiplier);
 		if(dexterityMultiplier > 1)
-			hpDamage = hpDamage * (l.getDexterity() * dexterityMultiplier);
+			hpDamage = hpDamage + (l.getDexterity() * dexterityMultiplier);
 		if(intelligenceMultiplier > 1)
-			hpDamage = hpDamage * (l.getIntelligence() * intelligenceMultiplier);
-		
+			hpDamage = hpDamage + (l.getIntelligence() * intelligenceMultiplier);
 		strengthDamage = this.getDamage().getBaseStrengthDamage();
 		intelligenceDamage = this.getDamage().getBaseIntelligenceDamage();
 		dexterityDamage = this.getDamage().getBaseDexterityDamage();
 		speedDamage = this.getDamage().getBaseSpeedDamage();
 		manaDamage = this.getDamage().getBaseManaDamage();
 		
-		//Needs Work on Past here Dont evaluate this yet
-		for(int i = 0; i <=c.returnLivingThings().size(); i++)
+		//Calculates remaining stats
+		remainingHp = oo.getHp() - hpDamage;
+		remainingStrength = oo.getStrength() - strengthDamage;
+		remainingIntelligence = oo.getIntelligence() - intelligenceDamage;
+		remainingDexterity = oo.getDexterity() - dexterityDamage;
+		remainingSpeed = oo.getSpeed() - speedDamage;
+		remainingMana = oo.getMana() - manaDamage;
 		
-		{
-		remainingHp = c.returnLivingThings().get(i).getHp();
-		if(this.getDamage() >= remainingHp){
-		
-		c.returnLivingThings().get(i).getPosition.remove;
-		
-		}
-		
-		else{
-				
-		c.returnThings().get(i).setHP(remainingHp - this.getDamage());
-		}
 		
 		}
 		

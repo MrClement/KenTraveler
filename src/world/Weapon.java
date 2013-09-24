@@ -53,6 +53,7 @@ public class Weapon extends Thing {
 		double remainingSpeed;
 		double remainingMana;
 		
+		//calculates Total HP Damage
 		hpDamage = this.getDamage().getBaseHpDamage();
 		if(strengthMultiplier > 1)
 			hpDamage = hpDamage * (l.getStrength() * strengthMultiplier);

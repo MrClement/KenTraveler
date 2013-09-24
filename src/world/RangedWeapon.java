@@ -3,12 +3,13 @@ package world;
 public class RangedWeapon extends Weapon {
 	private int range;
 	
-	public RangedWeapon(boolean b) {
-		super(b);
+	public RangedWeapon(boolean b, LivingThing l, int r) {
+		super(b,l);
+		range=r;
 		// TODO Auto-generated constructor stub
 	}
 
-	
+
 
 	public int getRange() {
 		return range;

@@ -9,7 +9,11 @@ public class Weapon extends Thing {
 	private LivingThing l;
 	private Damage damage;
 	private int length;
-	
+	private double strengthMultiplier;
+	private double dexterityMultiplier;
+	private double speedMultiplier;
+	private double intelligenceMultiplier;
+	private double manaMultiplier;
 
 	
 	public Weapon(boolean b, LivingThing x) {
@@ -35,21 +39,32 @@ public class Weapon extends Thing {
 	}
 
 	public void doDamage(LivingThing oo) {
-		int hpDamage;
-		int	strengthDamage;
-		int	intelligenceDamage;
-		int	dexterityDamage;
-		int	speedDamage;
-		int	manaDamage;
-		int baseXpDamage;
-		int remainingHp;
-		int remainingStrength;
-		int remainingIntelligence;
-		int remainingDexterity;
-		int remainingSpeed;
-		int remainingMana;
+		double hpDamage;
+		double	strengthDamage;
+		double	intelligenceDamage;
+		double	dexterityDamage;
+		double	speedDamage;
+		double manaDamage;
+		double baseXpDamage;
+		double remainingHp;
+		double remainingStrength;
+		double remainingIntelligence;
+		double remainingDexterity;
+		double remainingSpeed;
+		double remainingMana;
 		
 		hpDamage = this.getDamage().getBaseHpDamage();
+		if(strengthMultiplier > 1)
+			hpDamage = hpDamage * (l.getStrength() * strengthMultiplier);
+		if(manaMultiplier > 1)
+			hpDamage = hpDamage * (l.getMana() * manaMultiplier);
+		if(speedMultiplier > 1)
+			hpDamage = hpDamage * (l.getSpeed() * speedMultiplier);
+		if(dexterityMultiplier > 1)
+			hpDamage = hpDamage * (l.getDexterity() * dexterityMultiplier);
+		if(intelligenceMultiplier > 1)
+			hpDamage = hpDamage * (l.getIntelligence() * intelligenceMultiplier);
+		
 		strengthDamage = this.getDamage().getBaseStrengthDamage();
 		intelligenceDamage = this.getDamage().getBaseIntelligenceDamage();
 		dexterityDamage = this.getDamage().getBaseDexterityDamage();

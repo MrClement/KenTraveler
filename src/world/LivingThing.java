@@ -8,6 +8,7 @@ package world;
 public class LivingThing extends Thing {
 
 	private int hp;
+	
 	private String name;
 	private int strength;
 	private int intelligence;
@@ -92,23 +93,23 @@ public class LivingThing extends Thing {
 
 	public void updateIntelligence(int Intelligence){
 		intelligence += Intelligence;
-		updateMana();
+		updateMana(0);
 	}
 	
 
 	public void updateDexterity(int Dexterity){
 		dexterity += Dexterity;
-		updateSpeed();
+		updateSpeed(0);
 	}
 	
 
-	public void updateSpeed(){
-		speed = (dexterity * 5) + 1;
+	public void updateSpeed(int increase){
+		speed = (dexterity * 5) + increase + 1;
 	}
 	
 
-	public void updateMana(){
-		mana = (intelligence * 5) + 1;
+	public void updateMana(int increase){
+		mana = (intelligence * 5) + increase + 1;
 	}
 	
 	public void updateHp(int increase){

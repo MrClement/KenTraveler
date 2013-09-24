@@ -109,29 +109,47 @@ public class Character extends LivingThing {
 		this.xp = xp;
 	}
 	
+	/**
+	 * @param Strength how much you want to increment strength
+	 */
 	public void updateStrength(int Strength){
 		strength += Strength;
 		updateHp(0);
 	}
 	
+	/**
+	 * @param Intelligence how much you want to increment intelligence
+	 */
 	public void updateIntelligence(int Intelligence){
 		intelligence += Intelligence;
 		updateMana(0);
 	}
 	
+	/**
+	 * @param Dexterity how much you want to increment dexterity
+	 */
 	public void updateDexterity(int Dexterity){
 		dexterity += Dexterity;
 		updateSpeed(0);
 	}
 	
+	/**
+	 * @param Speed how much you want to increment speed
+	 */
 	public void updateSpeed(int Speed){
 		speed = (dexterity * 5) + Speed;
 	}
 	
+	/**
+	 * @param Intelligence how much you want to increment mana
+	 */
 	public void updateMana(int Intelligence){
 		mana = (intelligence * 5) + Intelligence;
 	}
 	
+	/**
+	 * @param HP how much you want to increment the LivingThing's hp
+	 */
 	public void updateHp(int HP){
 		setHp((strength * 5) + HP);
 	}

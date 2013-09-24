@@ -49,6 +49,9 @@ public class Weapon extends Thing {
 		int remainingMana;
 		
 		hpDamage = this.getDamage().getBaseHpDamage();
+		
+		
+		//Needs Work on Past here Dont evaluate this yet
 		strengthDamage = this.getDamage().getBaseStrengthDamage();
 		intelligenceDamage = this.getDamage().getBaseIntelligenceDamage();
 		dexterityDamage = this.getDamage().getBaseDexterityDamage();

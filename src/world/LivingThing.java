@@ -123,4 +123,82 @@ public class LivingThing extends Thing {
 		hp += increase;
 	}
 
+	public int getMaxHp() {
+		return MaxHp;
+	}
+
+	public void setMaxHp(int maxHp) {
+		MaxHp = maxHp;
+	}
+
+	public int getMaxStrength() {
+		return MaxStrength;
+	}
+
+	public void setMaxStrength(int maxStrength) {
+		MaxStrength = maxStrength;
+	}
+
+	public int getMaxIntelligence() {
+		return MaxIntelligence;
+	}
+
+	public void setMaxIntelligence(int maxIntelligence) {
+		MaxIntelligence = maxIntelligence;
+	}
+
+	public int getMaxDexterity() {
+		return MaxDexterity;
+	}
+
+	public void setMaxDexterity(int maxDexterity) {
+		MaxDexterity = maxDexterity;
+	}
+
+	public int getMaxSpeed() {
+		return MaxSpeed;
+	}
+
+	public void setMaxSpeed(int maxSpeed) {
+		MaxSpeed = maxSpeed;
+	}
+
+	public int getMaxMana() {
+		return MaxMana;
+	}
+
+	public void setMaxMana(int maxMana) {
+		MaxMana = maxMana;
+	}
+	
+	public void updateMaxStrength(int Strength){
+		MaxStrength += Strength;
+	}
+
+	public void updateMaxIntelligence(int Intelligence){
+		MaxIntelligence += Intelligence;
+		updateMaxMana(0);
+	}
+	
+
+	public void updateMaxDexterity(int Dexterity){
+		MaxDexterity += Dexterity;
+		updateMaxSpeed(0);
+	}
+	
+
+	public void updateMaxSpeed(int increase){
+		MaxSpeed = (dexterity * 5) + increase + 1;
+	}
+	
+
+	public void updateMaxMana(int increase){
+		MaxMana = (intelligence * 5) + increase + 1;
+	}
+	
+	public void updateMaxHp(int increase){
+		MaxHp += increase;
+	}
+
+
 }

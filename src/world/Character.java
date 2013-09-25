@@ -33,12 +33,12 @@ public class Character extends LivingThing {
 		} else {
 			level++;
 			int points = getIntelligence();
-			updateDexterity(points);
-			updateIntelligence(points);
-			updateStrength(points);
-			updateSpeed(0);
-			updateMana(0);
-			updateHp(10);
+			updateMaxDexterity(points);
+			updateMaxIntelligence(points);
+			updateMaxStrength(points);
+			updateMaxSpeed(0);
+			updateMaxMana(0);
+			updateMaxHp(10);
 		}
 	}
 

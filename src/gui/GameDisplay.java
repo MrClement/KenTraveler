@@ -84,4 +84,9 @@ public class GameDisplay implements KeyListener {
 		e.consume();
 	}
 
+	public JFrame getFrame() {
+		// TODO Auto-generated method stub
+		return frame;
+	}
+
 }

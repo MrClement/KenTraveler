@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -43,12 +44,12 @@ public class GameDisplay {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(25, 100, 0, 0));
 
-		JPanel test = new JPanel(true);
-		test.setBackground(new Color(0, 0, 255));
-		frame.add(test);
-		JPanel test2 = new JPanel(true);
-		test2.setBackground(new Color(255, 0, 255));
-		frame.add(test2);
+		Random r = new Random();
+		for (int i = 0; i< 2500; i++){
+			JPanel panel = new JPanel(true);
+			panel.setBackground(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
+			frame.add(panel);
+		}
 
 	}
 

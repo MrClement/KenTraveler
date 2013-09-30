@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
@@ -12,7 +13,7 @@ import javax.swing.JPanel;
 
 import world.Grid;
 
-public class GameDisplay implements KeyListener{
+public class GameDisplay implements KeyListener {
 
 	private JFrame frame;
 
@@ -37,6 +38,12 @@ public class GameDisplay implements KeyListener{
 	 */
 	public GameDisplay(Grid g) {
 		frame = new JFrame();
+		frame.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				System.out.println(e.getKeyCode());
+			}
+		});
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(25, 100, 0, 0));
@@ -53,7 +60,7 @@ public class GameDisplay implements KeyListener{
 		for (int i = 0; i < 2500; i++) {
 			JPanel panel = new JPanel(true);
 			panel.setBackground(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
-			frame.add(panel);
+			frame.getContentPane().add(panel);
 		}
 
 	}
@@ -64,16 +71,16 @@ public class GameDisplay implements KeyListener{
 		frame.getContentPane().validate();
 		frame.getContentPane().repaint();
 	}
-	
-	public void keyPressed(KeyEvent e){
+
+	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 	}
-	
-	public void keyReleased(KeyEvent e){
+
+	public void keyReleased(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 	}
-	
-	public void keyTyped(KeyEvent e){
+
+	public void keyTyped(KeyEvent e) {
 		e.consume();
 	}
 

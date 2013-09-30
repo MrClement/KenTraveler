@@ -3,6 +3,8 @@ package gui;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -10,7 +12,7 @@ import javax.swing.JPanel;
 
 import world.Grid;
 
-public class GameDisplay {
+public class GameDisplay implements KeyListener{
 
 	private JFrame frame;
 
@@ -61,6 +63,18 @@ public class GameDisplay {
 		initialize(g);
 		frame.getContentPane().validate();
 		frame.getContentPane().repaint();
+	}
+	
+	public void keyPressed(KeyEvent e){
+		int keyCode = e.getKeyCode();
+	}
+	
+	public void keyReleased(KeyEvent e){
+		int keyCode = e.getKeyCode();
+	}
+	
+	public void keyTyped(KeyEvent e){
+		e.consume();
 	}
 
 }

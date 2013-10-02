@@ -57,18 +57,28 @@ public class GameDisplay implements KeyListener {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Grid g) {
+		Random r = new Random();
+		for (int i = 0; i < 100; i++) {
+			
+			for (int j = 0; j < 25; j++){
+				GridBagConstraints c = new GridBagConstraints();
+				c.gridx = i;
+				c.gridy = j;
+				c.fill = GridBagConstraints.HORIZONTAL;
+				JPanel panel = new JPanel(true);
+				panel.setBackground(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
+				frame.getContentPane().add(panel,c);
+			}
+			
+		}
+		
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 0;
-		c.gridheight = 25;
-		c.gridwidth = 100;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		Random r = new Random();
-		for (int i = 0; i < 2500; i++) {
-			JPanel panel = new JPanel(true);
-			panel.setBackground(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
-			frame.getContentPane().add(panel);
-		}
+		JPanel panel = new JPanel(true);
+		panel.setBackground(new Color(255, 255, 255));
+		frame.getContentPane().add(panel,c);
 
 	}
 

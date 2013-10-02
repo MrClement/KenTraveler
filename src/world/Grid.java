@@ -15,7 +15,15 @@ public class Grid {
 	 * 
 	 */
 	public Grid() {
-		grid = new HashMap<Point, GridSpace>();
+		setGrid(new HashMap<Point, GridSpace>());
+	}
+
+	public HashMap<Point, GridSpace> getGrid() {
+		return grid;
+	}
+
+	public void setGrid(HashMap<Point, GridSpace> grid) {
+		this.grid = grid;
 	}
 
 }

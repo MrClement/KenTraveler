@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
@@ -56,7 +57,12 @@ public class GameDisplay implements KeyListener {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Grid g) {
-
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridheight = 25;
+		c.gridwidth = 100;
+		c.fill = GridBagConstraints.HORIZONTAL;
 		Random r = new Random();
 		for (int i = 0; i < 2500; i++) {
 			JPanel panel = new JPanel(true);

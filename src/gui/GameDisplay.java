@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -46,7 +47,7 @@ public class GameDisplay implements KeyListener {
 		});
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new GridLayout(25, 100, 0, 0));
+		frame.getContentPane().setLayout(new GridBagLayout());
 		frame.setLocationRelativeTo(null);
 		initialize(g);
 	}

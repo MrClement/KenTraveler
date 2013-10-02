@@ -67,7 +67,7 @@ public class Forge {
 			gassify.setDamage(gassifyDamage);
 			return gassify;
 		}
-		return 
+		return null;
 	}
 	
 }

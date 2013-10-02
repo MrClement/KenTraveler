@@ -8,6 +8,7 @@ public class Weapon extends Thing {
 
 	private LivingThing l;
 	private Damage damage;
+	private int id;
 	private int length;
 	private double strengthMultiplier;
 	private double dexterityMultiplier;

@@ -1,19 +1,20 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashMap;
 import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import world.Grid;
+import world.GridSpace;
 
 public class GameDisplay implements KeyListener {
 
@@ -58,37 +59,20 @@ public class GameDisplay implements KeyListener {
 	 */
 	private void initialize(Grid g) {
 		Random r = new Random();
-		
-		for (int i = 0; i < 100; i++){
-			
-			for (int j = 0; j < 25; i++){
-		
-			}
-			
-		}
-		
+		HashMap<Point, GridSpace> grid = g.getGrid();
 		for (int i = 0; i < 100; i++) {
-			
-			for (int j = 0; j < 25; j++){
+
+			for (int j = 0; j < 25; j++) {
 				GridBagConstraints c = new GridBagConstraints();
 				c.gridx = i;
 				c.gridy = j;
 				c.fill = GridBagConstraints.HORIZONTAL;
 				JPanel panel = new JPanel(true);
-				panel.setBackground(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256)));
-				frame.getContentPane().add(panel,c);
+				panel.setBackground(grid.get(new Point(i, j)).getColor());
+				frame.getContentPane().add(panel, c);
 			}
-			
-		}
-		
-		GridBagConstraints c = new GridBagConstraints();
-		c.gridx = 0;
-		c.gridy = 0;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		JPanel panel = new JPanel(true);
-		panel.setBackground(new Color(255, 255, 255));
-		frame.getContentPane().add(panel,c);
 
+		}
 	}
 
 	public void redraw(Grid g) {

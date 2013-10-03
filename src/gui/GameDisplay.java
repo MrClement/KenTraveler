@@ -58,6 +58,15 @@ public class GameDisplay implements KeyListener {
 	 */
 	private void initialize(Grid g) {
 		Random r = new Random();
+		
+		for (int i = 0; i < 100; i++){
+			
+			for (int j = 0; j < 25; i++){
+		
+			}
+			
+		}
+		
 		for (int i = 0; i < 100; i++) {
 			
 			for (int j = 0; j < 25; j++){

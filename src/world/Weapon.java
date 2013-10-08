@@ -1,5 +1,7 @@
 package world;
 
+import java.awt.Color;
+
 /**
  * @author cwilson14 defines all weapons, including melee and ranged weapons
  * 
@@ -16,11 +18,9 @@ public class Weapon extends Thing {
 	private double intelligenceMultiplier;
 	private double manaMultiplier;
 
-	
-	public Weapon(boolean b, LivingThing x) {
-		super(b);
+	public Weapon(boolean b, Color c, LivingThing x) {
+		super(b, c);
 		l = x;
-		// TODO Auto-generated constructor stub
 	}
 
 	public Damage getDamage() {
@@ -39,13 +39,12 @@ public class Weapon extends Thing {
 		this.length = length;
 	}
 
-
 	public void doDamage(LivingThing oo) {
 		double hpDamage;
-		double	strengthDamage;
-		double	intelligenceDamage;
-		double	dexterityDamage;
-		double	speedDamage;
+		double strengthDamage;
+		double intelligenceDamage;
+		double dexterityDamage;
+		double speedDamage;
 		double manaDamage;
 		double baseXpDamage;
 		double remainingHp;
@@ -54,41 +53,40 @@ public class Weapon extends Thing {
 		double remainingDexterity;
 		double remainingSpeed;
 		double remainingMana;
-		
-		//calculates damages
+
+		// calculates damages
 		hpDamage = this.getDamage().getBaseHpDamage();
-		if(strengthMultiplier > 1)
+		if (strengthMultiplier > 1)
 			hpDamage = hpDamage + (l.getStrength() * strengthMultiplier);
-		if(manaMultiplier > 1)
+		if (manaMultiplier > 1)
 			hpDamage = hpDamage + (l.getMana() * manaMultiplier);
-		if(speedMultiplier > 1)
+		if (speedMultiplier > 1)
 			hpDamage = hpDamage + (l.getSpeed() * speedMultiplier);
-		if(dexterityMultiplier > 1)
+		if (dexterityMultiplier > 1)
 			hpDamage = hpDamage + (l.getDexterity() * dexterityMultiplier);
-		if(intelligenceMultiplier > 1)
+		if (intelligenceMultiplier > 1)
 			hpDamage = hpDamage + (l.getIntelligence() * intelligenceMultiplier);
 		strengthDamage = this.getDamage().getBaseStrengthDamage();
 		intelligenceDamage = this.getDamage().getBaseIntelligenceDamage();
 		dexterityDamage = this.getDamage().getBaseDexterityDamage();
 		speedDamage = this.getDamage().getBaseSpeedDamage();
 		manaDamage = this.getDamage().getBaseManaDamage();
-		
-		//Calculates remaining stats
+
+		// Calculates remaining stats
 		remainingHp = oo.getHp() - hpDamage;
 		remainingStrength = oo.getStrength() - strengthDamage;
 		remainingIntelligence = oo.getIntelligence() - intelligenceDamage;
 		remainingDexterity = oo.getDexterity() - dexterityDamage;
 		remainingSpeed = oo.getSpeed() - speedDamage;
 		remainingMana = oo.getMana() - manaDamage;
-		
-		//updates all stats of Character
-		oo.updateHp((int)remainingHp);
-		oo.updateStrength((int)remainingStrength);
-		oo.updateIntelligence((int)remainingIntelligence);
-		oo.updateDexterity((int)remainingIntelligence);
-		oo.updateSpeed((int)remainingSpeed);
-		oo.updateMana((int)remainingMana);
-		}
-		
+
+		// updates all stats of Character
+		oo.updateHp((int) remainingHp);
+		oo.updateStrength((int) remainingStrength);
+		oo.updateIntelligence((int) remainingIntelligence);
+		oo.updateDexterity((int) remainingIntelligence);
+		oo.updateSpeed((int) remainingSpeed);
+		oo.updateMana((int) remainingMana);
+	}
 
 }

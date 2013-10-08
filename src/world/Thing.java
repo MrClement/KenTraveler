@@ -1,5 +1,6 @@
 package world;
 
+import java.awt.Color;
 import java.awt.Point;
 
 /**
@@ -9,14 +10,17 @@ import java.awt.Point;
 public abstract class Thing {
 
 	private boolean solid;
+	private Color color;
 
 	/**
 	 * @param b
 	 *            and array of grid spaces
+	 * @param c
+	 *            the color of the Thing object
 	 */
-	public Thing(boolean b) {
+	public Thing(boolean b, Color c) {
 		solid = b;
-		
+		color = c;
 	}
 
 	/**
@@ -36,6 +40,14 @@ public abstract class Thing {
 	public boolean getSolid() {
 		return solid;
 
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 }

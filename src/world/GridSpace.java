@@ -25,7 +25,11 @@ public class GridSpace {
 	public GridSpace(ArrayList<Thing> initialInGridSpace) {
 		thingsInSpace = initialInGridSpace;
 		Random r = new Random();
-		color = new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256));
+		if (initialInGridSpace != null) {
+			color = thingsInSpace.get(0).getColor();
+		} else {
+			color = new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256));
+		}
 	}
 
 	/**
@@ -117,6 +121,32 @@ public class GridSpace {
 		for (int l = 0; l < toMove.size(); l++) {
 			destinations.get(l).add(remove(toMove.get(l)));
 		}
+	}
+
+	public void sortArrayOfThings() {
+		ArrayList<Thing> sorted = new ArrayList<Thing>(thingsInSpace.size());
+		for (int i = 0; i < thingsInSpace.size(); i++) {
+			if (thingsInSpace.get(i) instanceof Character) {
+				sorted.add(thingsInSpace.remove(i));
+			}
+		}
+		for (int i = 0; i < thingsInSpace.size(); i++) {
+			if (thingsInSpace.get(i) instanceof LivingThing) {
+				sorted.add(thingsInSpace.remove(i));
+			}
+		}
+		for (int i = 0; i < thingsInSpace.size(); i++) {
+			if (thingsInSpace.get(i) instanceof Weapon) {
+				sorted.add(thingsInSpace.remove(i));
+			}
+		}
+		for (int i = 0; i < thingsInSpace.size(); i++) {
+			if (thingsInSpace.get(i) instanceof Thing) {
+				sorted.add(thingsInSpace.remove(i));
+			}
+		}
+		thingsInSpace = sorted;
+		color = thingsInSpace.get(0).getColor();
 	}
 
 	public Color getColor() {

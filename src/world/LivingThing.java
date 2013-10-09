@@ -1,20 +1,21 @@
 package world;
 
+import java.awt.Color;
+
 /**
- * @author jpoley15 Creates a new LivingThing, stores stats 
- *
+ * @author jpoley15 Creates a new LivingThing, stores stats
+ * 
  */
 
 public class LivingThing extends Thing {
 
-	
 	private int MaxHp;
 	private int MaxStrength;
 	private int MaxIntelligence;
 	private int MaxDexterity;
 	private int MaxSpeed;
 	private int MaxMana;
-	
+
 	private String name;
 	private int hp;
 	private int strength;
@@ -23,12 +24,12 @@ public class LivingThing extends Thing {
 	private int speed;
 	private int mana;
 
-	public LivingThing(boolean b) {
-		super(b);
+	public LivingThing(boolean b, Color c) {
+		super(b, c);
 	}
-	
-	public LivingThing(String name, int strength, int intelligence, int dexterity, boolean solid){
-		super(solid);
+
+	public LivingThing(String name, int strength, int intelligence, int dexterity, boolean solid, Color c) {
+		super(solid, c);
 		this.name = name;
 		this.strength = strength;
 		this.intelligence = intelligence;
@@ -36,7 +37,7 @@ public class LivingThing extends Thing {
 		hp = 20;
 		mana = (intelligence * 5) + 1;
 		speed = (dexterity * 5) + 1;
-		
+
 	}
 
 	public int getHp() {
@@ -46,7 +47,7 @@ public class LivingThing extends Thing {
 	public void setHp(int hp) {
 		this.hp = hp;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -94,32 +95,30 @@ public class LivingThing extends Thing {
 	public void setMana(int mana) {
 		this.mana = mana;
 	}
-	public void updateStrength(int Strength){
+
+	public void updateStrength(int Strength) {
 		strength += Strength;
 	}
 
-	public void updateIntelligence(int Intelligence){
+	public void updateIntelligence(int Intelligence) {
 		intelligence += Intelligence;
 		updateMana(0);
 	}
-	
 
-	public void updateDexterity(int Dexterity){
+	public void updateDexterity(int Dexterity) {
 		dexterity += Dexterity;
 		updateSpeed(0);
 	}
-	
 
-	public void updateSpeed(int increase){
+	public void updateSpeed(int increase) {
 		speed = (dexterity * 5) + increase + 1;
 	}
-	
 
-	public void updateMana(int increase){
+	public void updateMana(int increase) {
 		mana = (intelligence * 5) + increase + 1;
 	}
-	
-	public void updateHp(int increase){
+
+	public void updateHp(int increase) {
 		hp += increase;
 	}
 
@@ -170,35 +169,31 @@ public class LivingThing extends Thing {
 	public void setMaxMana(int maxMana) {
 		MaxMana = maxMana;
 	}
-	
-	public void updateMaxStrength(int Strength){
+
+	public void updateMaxStrength(int Strength) {
 		MaxStrength += Strength;
 	}
 
-	public void updateMaxIntelligence(int Intelligence){
+	public void updateMaxIntelligence(int Intelligence) {
 		MaxIntelligence += Intelligence;
 		updateMaxMana(0);
 	}
-	
 
-	public void updateMaxDexterity(int Dexterity){
+	public void updateMaxDexterity(int Dexterity) {
 		MaxDexterity += Dexterity;
 		updateMaxSpeed(0);
 	}
-	
 
-	public void updateMaxSpeed(int increase){
+	public void updateMaxSpeed(int increase) {
 		MaxSpeed = (dexterity * 5) + increase + 1;
 	}
-	
 
-	public void updateMaxMana(int increase){
+	public void updateMaxMana(int increase) {
 		MaxMana = (intelligence * 5) + increase + 1;
 	}
-	
-	public void updateMaxHp(int increase){
+
+	public void updateMaxHp(int increase) {
 		MaxHp += increase;
 	}
-
 
 }

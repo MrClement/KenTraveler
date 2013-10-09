@@ -25,7 +25,7 @@ public class GridSpace {
 	public GridSpace(ArrayList<Thing> initialInGridSpace) {
 		thingsInSpace = initialInGridSpace;
 		Random r = new Random();
-		if (initialInGridSpace != null) {
+		if (initialInGridSpace.size() > 0) {
 			color = thingsInSpace.get(0).getColor();
 		} else {
 			color = new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256));
@@ -63,7 +63,10 @@ public class GridSpace {
 	 *            is the Thing object to be added to the GridSpace
 	 */
 	public void add(Thing toAdd) {
+		System.out.println("toAdd " + toAdd);
+		System.out.println(thingsInSpace);
 		thingsInSpace.add(toAdd);
+		sortArrayOfThings();
 	}
 
 	/**
@@ -146,7 +149,11 @@ public class GridSpace {
 			}
 		}
 		thingsInSpace = sorted;
-		color = thingsInSpace.get(0).getColor();
+		if (thingsInSpace.size() > 0) {
+			color = thingsInSpace.get(0).getColor();
+		} else {
+			color = Color.WHITE;
+		}
 	}
 
 	public Color getColor() {

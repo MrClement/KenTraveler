@@ -19,6 +19,7 @@ import world.GridSpace;
 public class GameDisplay implements KeyListener {
 
 	private JFrame frame;
+	private Grid grid;
 
 	/**
 	 * Launch the application.
@@ -40,10 +41,24 @@ public class GameDisplay implements KeyListener {
 	 * Create the application.
 	 */
 	public GameDisplay(Grid g) {
+		grid = g;
 		frame = new JFrame();
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				int keyCode = e.getKeyCode();
+				if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
+					grid.moveCharacter(0, -1);
+				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
+					grid.moveCharacter(-1, 0);
+				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
+					grid.moveCharacter(0, 1);
+				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
+					grid.moveCharacter(1, 0);
+				} else {
+
+				}
+				// grid.moveCharacter();
 				System.out.println(e.getKeyCode());
 			}
 		});

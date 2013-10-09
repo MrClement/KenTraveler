@@ -22,7 +22,7 @@ public class TestDriver {
 		HashMap<Point, GridSpace> grid = g.getGrid();
 		for (int i = 0; i < 100; i++) {
 			for (int j = 0; j < 25; j++) {
-				GridSpace d = new GridSpace(null);
+				GridSpace d = new GridSpace(new ArrayList<Thing>());
 				if (j >= 22) {
 					d.setColor(Color.GREEN);
 				} else if (j > 2) {
@@ -42,12 +42,13 @@ public class TestDriver {
 		System.out.println(test.returnThings());
 		test.sortArrayOfThings();
 		System.out.println(test.returnThings());
-		grid.put(new Point(5, 5), test);
+		grid.put(new Point(15, 15), test);
+		g.setCharacterLocation(new Point(15, 15));
 		GameDisplay display = new GameDisplay(g);
 		display.getFrame().setVisible(true);
 		long s = System.currentTimeMillis();
 		while (true) {
-			if ((System.currentTimeMillis() - s) >= 1000) {
+			if ((System.currentTimeMillis() - s) >= 500) {
 				display.redraw(g);
 				s = System.currentTimeMillis();
 			}

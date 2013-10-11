@@ -38,13 +38,21 @@ public class Grid {
 	public void moveCharacter(int x, int y) {
 		Point newLocation = new Point((int) getCharacterLocation().getX() + x, (int) getCharacterLocation().getY() + y);
 		GridSpace gs = grid.get(getCharacterLocation());
-		Thing t = gs.remove(gs.returnThings().get(0));
 		GridSpace gs2 = grid.get(newLocation);
-		gs2.add(t);
-		gs.sortArrayOfThings();
-		gs2.sortArrayOfThings();
-		grid.put(getCharacterLocation(), gs);
-		grid.put(newLocation, gs2);
-		setCharacterLocation(newLocation);
+		if (gs2.returnWeapons().size() == 0) {
+			return;
+		} else if (gs2.hasSolid()) {
+			return;
+		} else if (gs2.returnThings().size() != 0) {
+			return;
+		} else {
+			Thing t = gs.remove(gs.returnThings().get(0));
+			gs2.add(t);
+			gs.sortArrayOfThings();
+			gs2.sortArrayOfThings();
+			grid.put(getCharacterLocation(), gs);
+			grid.put(newLocation, gs2);
+			setCharacterLocation(newLocation);
+		}
 	}
 }

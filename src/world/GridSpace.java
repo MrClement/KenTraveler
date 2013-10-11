@@ -56,6 +56,30 @@ public class GridSpace {
 		return toReturn;
 	}
 
+	public boolean hasSolid() {
+		for (Thing t : thingsInSpace) {
+			if (t.getSolid()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * This method returns all the Weapon objects in the GridSpace.
+	 * 
+	 * @return an ArrayList of all the Weapon objects in the GridSpace.
+	 */
+	public ArrayList<Weapon> returnWeapons() {
+		ArrayList<Weapon> toReturn = new ArrayList<Weapon>();
+		for (int i = 0; i < thingsInSpace.size(); i++) {
+			if (thingsInSpace.get(i) instanceof Weapon) {
+				toReturn.add((Weapon) thingsInSpace.get(i));
+			}
+		}
+		return toReturn;
+	}
+
 	/**
 	 * This method adds a Thing object to the GridSpace.
 	 * 

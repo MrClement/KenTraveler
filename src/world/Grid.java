@@ -57,6 +57,11 @@ public class Grid {
 							return;
 						}
 					}
+					for (Terrain t : gs2.returnTerrain()) {
+						if (t.getSolid()) {
+							return;
+						}
+					}
 				}
 			}
 		}
@@ -67,23 +72,6 @@ public class Grid {
 		grid.put(getCharacterLocation(), gs);
 		grid.put(newLocation, gs2);
 		setCharacterLocation(newLocation);
-
-		//
-		// if (gs2.returnWeapons().size() != 0) {
-		// return;
-		// } else if (gs2.hasSolid()) {
-		// return;
-		// } else if (gs2.returnThings().size() != 0) {
-		// return;
-		// } else {
-		// Thing t = gs.remove(gs.returnThings().get(0));
-		// gs2.add(t);
-		// gs.sortArrayOfThings();
-		// gs2.sortArrayOfThings();
-		// grid.put(getCharacterLocation(), gs);
-		// grid.put(newLocation, gs2);
-		// setCharacterLocation(newLocation);
-		// }
 
 	}
 }

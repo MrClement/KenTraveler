@@ -168,6 +168,11 @@ public class GridSpace {
 			}
 		}
 		for (int i = 0; i < thingsInSpace.size(); i++) {
+			if (thingsInSpace.get(i) instanceof Terrain) {
+				sorted.add(thingsInSpace.remove(i));
+			}
+		}
+		for (int i = 0; i < thingsInSpace.size(); i++) {
 			if (thingsInSpace.get(i) instanceof Thing) {
 				sorted.add(thingsInSpace.remove(i));
 			}
@@ -176,7 +181,7 @@ public class GridSpace {
 		if (thingsInSpace.size() > 0) {
 			color = thingsInSpace.get(0).getColor();
 		} else {
-			color = Color.WHITE;
+			color = Color.CYAN;
 		}
 	}
 
@@ -186,6 +191,16 @@ public class GridSpace {
 
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	public ArrayList<Terrain> returnTerrain() {
+		ArrayList<Terrain> toReturn = new ArrayList<Terrain>();
+		for (int i = 0; i < thingsInSpace.size(); i++) {
+			if (thingsInSpace.get(i) instanceof Terrain) {
+				toReturn.add((Terrain) thingsInSpace.get(i));
+			}
+		}
+		return toReturn;
 	}
 
 }

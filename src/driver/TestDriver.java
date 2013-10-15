@@ -11,6 +11,7 @@ import world.Character;
 import world.Grid;
 import world.GridSpace;
 import world.LivingThing;
+import world.Terrain;
 import world.Thing;
 import world.Weapon;
 
@@ -24,12 +25,13 @@ public class TestDriver {
 			for (int j = 0; j < 25; j++) {
 				GridSpace d = new GridSpace(new ArrayList<Thing>());
 				if (j >= 22) {
-					d.setColor(Color.GREEN);
+					d.add(new Terrain(true, Color.GREEN));
 				} else if (j > 2) {
-					d.setColor(Color.CYAN);
+
 				} else {
-					d.setColor(Color.DARK_GRAY);
+					d.add(new Terrain(true, Color.DARK_GRAY));
 				}
+				d.sortArrayOfThings();
 				grid.put(new Point(i, j), d);
 			}
 		}

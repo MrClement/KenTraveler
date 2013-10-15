@@ -37,7 +37,7 @@ public class TestDriver {
 		Character c = new Character(true, Color.BLUE);
 		things.add(new Weapon(true, Color.RED, c));
 		things.add(c);
-		things.add(new LivingThing(true, Color.YELLOW));
+		things.add(new LivingThing(false, Color.YELLOW));
 		GridSpace test = new GridSpace(things);
 		System.out.println(test.returnThings());
 		test.sortArrayOfThings();
@@ -46,14 +46,14 @@ public class TestDriver {
 		g.setCharacterLocation(new Point(15, 15));
 		GameDisplay display = new GameDisplay(g);
 		display.getFrame().setVisible(true);
-		long s = System.currentTimeMillis();
-		while (true) {
-			if ((System.currentTimeMillis() - s) >= 500) {
-				display.redraw(g);
-				s = System.currentTimeMillis();
-			}
-
-		}
+		// long s = System.currentTimeMillis();
+		// while (true) {
+		// if ((System.currentTimeMillis() - s) >= 1000) {
+		// display.redraw(g);
+		// s = System.currentTimeMillis();
+		// }
+		//
+		// }
 
 	}
 }

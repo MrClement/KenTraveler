@@ -59,10 +59,11 @@ public class GameDisplay implements KeyListener {
 
 				}
 				// grid.moveCharacter();
+				redraw(grid);
 				System.out.println(e.getKeyCode());
 			}
 		});
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(200, 200, 1200, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridBagLayout());
 		frame.setLocationRelativeTo(null);

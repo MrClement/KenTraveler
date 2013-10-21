@@ -39,20 +39,39 @@ public class Grid {
 		Point newLocation = new Point((int) getCharacterLocation().getX() + x, (int) getCharacterLocation().getY() + y);
 		GridSpace gs = grid.get(getCharacterLocation());
 		GridSpace gs2 = grid.get(newLocation);
-		if (gs2.returnWeapons().size() == 0) {
-			return;
-		} else if (gs2.hasSolid()) {
-			return;
-		} else if (gs2.returnThings().size() != 0) {
-			return;
-		} else {
-			Thing t = gs.remove(gs.returnThings().get(0));
-			gs2.add(t);
-			gs.sortArrayOfThings();
-			gs2.sortArrayOfThings();
-			grid.put(getCharacterLocation(), gs);
-			grid.put(newLocation, gs2);
-			setCharacterLocation(newLocation);
+
+		// Can move
+		// gs2.returnThings().size == 0
+		// !gs2.hasSolid()
+		// gs2.returnWeapons.size() !=0 && gs2.getLivingThings() == 0
+		// gs2.getLivingThings() //iterate over array list checking that
+		// !isSolid
+
+		if (gs2.returnThings().size() > 0) {
+			if (gs2.hasSolid()) {
+				if (gs2.returnWeapons().size() == 0) {
+					return;
+				} else {
+					for (LivingThing e : gs2.returnLivingThings()) {
+						if (e.getSolid()) {
+							return;
+						}
+					}
+					for (Terrain t : gs2.returnTerrain()) {
+						if (t.getSolid()) {
+							return;
+						}
+					}
+				}
+			}
 		}
+		Thing t = gs.remove(gs.returnThings().get(0));
+		gs2.add(t);
+		gs.sortArrayOfThings();
+		gs2.sortArrayOfThings();
+		grid.put(getCharacterLocation(), gs);
+		grid.put(newLocation, gs2);
+		setCharacterLocation(newLocation);
+
 	}
 }

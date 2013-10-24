@@ -48,7 +48,11 @@ public class GameDisplay implements KeyListener {
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
 				if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
-					grid.moveCharacter(0, -1);
+					if (grid.getGrid()
+							.get(new Point((int) grid.getCharacterLocation().getX(), (int) grid.getCharacterLocation()
+									.getY() + 1)).hasSolid()) {
+						grid.moveCharacter(0, -4);
+					}
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
 					grid.moveCharacter(-1, 0);
 				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
@@ -59,6 +63,7 @@ public class GameDisplay implements KeyListener {
 
 				}
 				// grid.moveCharacter();
+
 				redraw(grid);
 				System.out.println(e.getKeyCode());
 			}

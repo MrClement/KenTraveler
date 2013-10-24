@@ -46,16 +46,23 @@ public class TestDriver {
 		System.out.println(test.returnThings());
 		grid.put(new Point(15, 15), test);
 		g.setCharacterLocation(new Point(15, 15));
+		things = new ArrayList<Thing>();
+		things.add(new Weapon(true, Color.RED, c));
+		test = new GridSpace(things);
+		test.sortArrayOfThings();
+		grid.put(new Point(20, 21), test);
 		GameDisplay display = new GameDisplay(g);
 		display.getFrame().setVisible(true);
-		// long s = System.currentTimeMillis();
-		// while (true) {
-		// if ((System.currentTimeMillis() - s) >= 1000) {
-		// display.redraw(g);
-		// s = System.currentTimeMillis();
-		// }
-		//
-		// }
+		long s = System.currentTimeMillis();
+		while (true) {
+			if ((System.currentTimeMillis() - s) >= 1000) {
+				g.moveCharacter(0, 1);
+				g.moveCharacter(0, 1);
+				display.redraw(g);
+				s = System.currentTimeMillis();
+			}
+
+		}
 
 	}
 }

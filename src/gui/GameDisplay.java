@@ -51,7 +51,10 @@ public class GameDisplay implements KeyListener {
 					if (grid.getGrid()
 							.get(new Point((int) grid.getCharacterLocation().getX(), (int) grid.getCharacterLocation()
 									.getY() + 1)).hasSolid()) {
-						grid.moveCharacter(0, -4);
+						grid.moveCharacter(0, -1);
+						grid.moveCharacter(0, -1);
+						grid.moveCharacter(0, -1);
+						grid.moveCharacter(0, -1);
 					}
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
 					grid.moveCharacter(-1, 0);

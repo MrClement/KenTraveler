@@ -51,6 +51,77 @@ public class TestDriver {
 		test = new GridSpace(things);
 		test.sortArrayOfThings();
 		grid.put(new Point(20, 21), test);
+		
+		for(int i = 0; i < 4; i++){
+		
+		things = new ArrayList<Thing>();
+		things.add(new Terrain(true, Color.BLACK));
+		test = new GridSpace(things);
+		test.sortArrayOfThings();
+		grid.put(new Point(50, 21-i), test);
+		
+		}
+		
+		for(int i = 0; i < 8; i++){
+			
+			things = new ArrayList<Thing>();
+			things.add(new Terrain(true, Color.BLACK));
+			test = new GridSpace(things);
+			test.sortArrayOfThings();
+			grid.put(new Point(51, 21-i), test);
+			
+		}
+		
+		for(int i = 0; i < 12; i++){
+			
+			things = new ArrayList<Thing>();
+			things.add(new Terrain(true, Color.BLACK));
+			test = new GridSpace(things);
+			test.sortArrayOfThings();
+			grid.put(new Point(52, 21-i), test);
+			
+		}
+		
+		for(int i = 0; i < 16; i++){
+			
+			things = new ArrayList<Thing>();
+			things.add(new Terrain(true, Color.BLACK));
+			test = new GridSpace(things);
+			test.sortArrayOfThings();
+			grid.put(new Point(53, 21-i), test);
+			
+		}
+		
+		for(int i = 0; i < 12; i++){
+			
+			things = new ArrayList<Thing>();
+			things.add(new Terrain(true, Color.BLACK));
+			test = new GridSpace(things);
+			test.sortArrayOfThings();
+			grid.put(new Point(54, 21-i), test);
+			
+		}
+		
+		for(int i = 0; i < 8; i++){
+			
+			things = new ArrayList<Thing>();
+			things.add(new Terrain(true, Color.BLACK));
+			test = new GridSpace(things);
+			test.sortArrayOfThings();
+			grid.put(new Point(55, 21-i), test);
+			
+		}
+		
+		for(int i = 0; i < 4; i++){
+			
+			things = new ArrayList<Thing>();
+			things.add(new Terrain(true, Color.BLACK));
+			test = new GridSpace(things);
+			test.sortArrayOfThings();
+			grid.put(new Point(56, 21-i), test);
+			
+		}
+		
 		GameDisplay display = new GameDisplay(g);
 		display.getFrame().setVisible(true);
 		long s = System.currentTimeMillis();

@@ -11,9 +11,9 @@ public abstract class Landscape {
 	private Color groundColor;
 	private Color airColor;
 	private Color topColor;
-
 	private int groundHeight;
 	private int topHeight;
+	private boolean hasHill;
 
 	/**
 	 * @return the groundColor
@@ -74,6 +74,14 @@ public abstract class Landscape {
 
 	public void setTopHeight(int topHeight) {
 		this.topHeight = topHeight;
+	}
+
+	public boolean getHasHill() {
+		return hasHill;
+	}
+
+	public void setHasHill(boolean hasHill) {
+		this.hasHill = hasHill;
 	}
 
 }

@@ -10,6 +10,8 @@ public class Character extends LivingThing {
 
 	private int xp;
 	private int level;
+	private Weapon weapon;
+
 
 	public Character(boolean solid, Color c) {
 		super(solid, c);
@@ -28,6 +30,13 @@ public class Character extends LivingThing {
 	public void setXp(int xp) {
 		this.xp = xp;
 	}
+	public Weapon getWeapon() {
+		return weapon;
+	}
+
+	public void setWeapon(Weapon weapon) {
+		this.weapon = weapon;
+	}
 
 	public void levelUp() {
 		if (xp < (750 * level) + (250 * level)) {
@@ -43,5 +52,6 @@ public class Character extends LivingThing {
 			updateMaxHp(10);
 		}
 	}
+
 
 }

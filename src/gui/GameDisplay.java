@@ -62,7 +62,8 @@ public class GameDisplay implements KeyListener {
 					grid.moveCharacter(0, 1);
 				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
 					grid.moveCharacter(1, 0);
-				} else {
+				} else if (keyCode == KeyEvent.VK_SPACE) {
+					grid.useWeapon();
 
 				}
 				// grid.moveCharacter();

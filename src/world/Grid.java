@@ -74,4 +74,11 @@ public class Grid {
 		setCharacterLocation(newLocation);
 
 	}
+	public void useWeapon(){
+		Point charLoc=new Point(this.getCharacterLocation());
+		if(!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)){
+			GridSpace target;
+		}
+		
+	}
 }

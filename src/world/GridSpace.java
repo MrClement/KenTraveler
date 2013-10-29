@@ -202,5 +202,13 @@ public class GridSpace {
 		}
 		return toReturn;
 	}
+	public Character returnCharacter(){
+		for(Thing l: thingsInSpace){
+			if(l instanceof Character){
+				return (Character)l;
+			}
+		}
+		return null;
+	}
 
 }

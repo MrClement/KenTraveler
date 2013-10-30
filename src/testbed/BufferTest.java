@@ -104,25 +104,26 @@ public class BufferTest {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
-				 if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
-				 if (g.getGrid()
-				 .get(new Point((int) g.getCharacterLocation().getX(),
-				 (int) g.getCharacterLocation().getY() + 1)).hasSolid()) {
-				 g.moveCharacter(0, -4);
-				 }
-				 } else if (keyCode == KeyEvent.VK_A || keyCode ==
-				 KeyEvent.VK_LEFT) {
-				 g.moveCharacter(-1, 0);
-				 } else if (keyCode == KeyEvent.VK_S || keyCode ==
-				 KeyEvent.VK_DOWN) {
-				 g.moveCharacter(0, 1);
-				 } else if (keyCode == KeyEvent.VK_D || keyCode ==
-				 KeyEvent.VK_RIGHT) {
-				 g.moveCharacter(1, 0);
-				 } else {
-				
-				 }
-				 // grid.moveCharacter();
+				if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
+					if (g.getGrid()
+							.get(new Point((int) g.getCharacterLocation().getX(),
+									(int) g.getCharacterLocation().getY() + 1)).hasSolid()) {
+						g.moveCharacter(0, -1);
+						g.moveCharacter(0, -1);
+						g.moveCharacter(0, -1);
+						g.moveCharacter(0, -1);
+					}
+				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
+					g.moveCharacter(-1, 0);
+				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
+					g.moveCharacter(0, 1);
+				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
+					g.moveCharacter(1, 0);
+				} else if (keyCode == KeyEvent.VK_SPACE) {
+					g.useWeapon();
+
+				}
+				// grid.moveCharacter();
 
 				System.out.println(e.getKeyCode());
 			}
@@ -141,6 +142,9 @@ public class BufferTest {
 				totalTime += curTime - lastTime;
 
 				if (totalTime > 1000) {
+
+					g.moveCharacter(0, 1);
+					g.moveCharacter(0, 1);
 
 					totalTime -= 1000;
 

@@ -14,7 +14,6 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
-import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -65,7 +64,6 @@ public class BufferTest {
 		Graphics graphics = null;
 		Graphics2D g2d = null;
 		Color background = Color.BLACK;
-		Random rand = new Random();
 
 		// Variables for counting frames per seconds
 

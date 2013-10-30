@@ -6,9 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.HashMap;
-import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,7 +14,7 @@ import javax.swing.JPanel;
 import world.Grid;
 import world.GridSpace;
 
-public class GameDisplay implements KeyListener {
+public class GameDisplay {
 
 	private JFrame frame;
 	private Grid grid;
@@ -86,7 +84,6 @@ public class GameDisplay implements KeyListener {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Grid g) {
-		Random r = new Random();
 		HashMap<Point, GridSpace> grid = g.getGrid();
 		for (int i = 0; i < 100; i++) {
 
@@ -108,18 +105,6 @@ public class GameDisplay implements KeyListener {
 		initialize(g);
 		frame.getContentPane().validate();
 		frame.getContentPane().repaint();
-	}
-
-	public void keyPressed(KeyEvent e) {
-		int keyCode = e.getKeyCode();
-	}
-
-	public void keyReleased(KeyEvent e) {
-		int keyCode = e.getKeyCode();
-	}
-
-	public void keyTyped(KeyEvent e) {
-		e.consume();
 	}
 
 	public JFrame getFrame() {

@@ -96,7 +96,7 @@ public class BufferTest {
 				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
 					g.moveCharacter(1, 0);
 				} else if (keyCode == KeyEvent.VK_SPACE) {
-					g.useWeapon();
+					g.useWeapon(0); // fixed this
 
 				}
 

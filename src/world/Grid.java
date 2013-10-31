@@ -1,6 +1,8 @@
 package world;
-
+import java.awt.Color;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -74,11 +76,57 @@ public class Grid {
 		setCharacterLocation(newLocation);
 
 	}
-	public void useWeapon(){
-		Point charLoc=new Point(this.getCharacterLocation());
-		if(!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)){
-			GridSpace target;
+
+	public void makeDefaultGrid() {
+		for (int i = 0; i < 100; i++) {
+			for (int j = 0; j < 25; j++) {
+				GridSpace d = new GridSpace(new ArrayList<Thing>());
+				if (j >= 22) {
+					d.add(new Terrain(true, Color.GREEN));
+				} else if (j > 2) {
+
+				} else {
+					d.add(new Terrain(true, Color.DARK_GRAY));
+				}
+				d.sortArrayOfThings();
+				grid.put(new Point(i, j), d);
+			}
 		}
+		ArrayList<Thing> things = new ArrayList<Thing>();
+		Character c = new Character(true, Color.BLUE);
+		things.add(new Weapon(true, Color.RED, c));
+		things.add(c);
+		things.add(new LivingThing(false, Color.YELLOW));
+		GridSpace test = new GridSpace(things);
+		test.sortArrayOfThings();
+		grid.put(new Point(15, 15), test);
+		setCharacterLocation(new Point(15, 15));
+		things = new ArrayList<Thing>();
+		things.add(new Weapon(true, Color.RED, c));
+		test = new GridSpace(things);
+		test.sortArrayOfThings();
+		grid.put(new Point(20, 21), test);
+	}
+
+	public void useWeapon(int lastKeyPressed) {
+		int dir=1;
+		Point charLoc = new Point(this.getCharacterLocation());
+		if (!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)) {
+			if(lastKeyPressed == KeyEvent.VK_A){
+				dir=-1;
+			}
+			else if(lastKeyPressed == KeyEvent.VK_D){
+				dir=1;
+			}
+			Point side=new Point((int)(getCharacterLocation().getX()+dir), (int)getCharacterLocation().getY());
+			GridSpace target=grid.get(side);
+			
+			target.add(grid.get(charLoc).returnCharacter().getWeapon());
+			target.sortArrayOfThings();
+			target.remove(grid.get(charLoc).returnCharacter().getWeapon());
+			target.sortArrayOfThings();
+		}
+		
 		
 	}
 }

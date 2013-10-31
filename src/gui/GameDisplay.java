@@ -6,9 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.HashMap;
-import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,7 +14,7 @@ import javax.swing.JPanel;
 import world.Grid;
 import world.GridSpace;
 
-public class GameDisplay implements KeyListener {
+public class GameDisplay {
 
 	private JFrame frame;
 	private Grid grid;
@@ -47,6 +45,7 @@ public class GameDisplay implements KeyListener {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
+				int lastKeyPressed = KeyEvent.VK_D;
 				if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
 					if (grid.getGrid()
 							.get(new Point((int) grid.getCharacterLocation().getX(), (int) grid.getCharacterLocation()
@@ -57,13 +56,15 @@ public class GameDisplay implements KeyListener {
 						grid.moveCharacter(0, -1);
 					}
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
+					lastKeyPressed = KeyEvent.VK_A;
 					grid.moveCharacter(-1, 0);
 				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
 					grid.moveCharacter(0, 1);
 				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
+					lastKeyPressed = KeyEvent.VK_D;
 					grid.moveCharacter(1, 0);
 				} else if (keyCode == KeyEvent.VK_SPACE) {
-					grid.useWeapon();
+					grid.useWeapon(lastKeyPressed);
 
 				}
 				// grid.moveCharacter();
@@ -83,7 +84,6 @@ public class GameDisplay implements KeyListener {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Grid g) {
-		Random r = new Random();
 		HashMap<Point, GridSpace> grid = g.getGrid();
 		for (int i = 0; i < 100; i++) {
 
@@ -105,18 +105,6 @@ public class GameDisplay implements KeyListener {
 		initialize(g);
 		frame.getContentPane().validate();
 		frame.getContentPane().repaint();
-	}
-
-	public void keyPressed(KeyEvent e) {
-		int keyCode = e.getKeyCode();
-	}
-
-	public void keyReleased(KeyEvent e) {
-		int keyCode = e.getKeyCode();
-	}
-
-	public void keyTyped(KeyEvent e) {
-		e.consume();
 	}
 
 	public JFrame getFrame() {

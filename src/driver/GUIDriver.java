@@ -80,6 +80,7 @@ public class GUIDriver {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
+				int lastKeyPressed = KeyEvent.VK_D;
 				if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
 					if (g.getGrid()
 							.get(new Point((int) g.getCharacterLocation().getX(),
@@ -90,13 +91,15 @@ public class GUIDriver {
 						g.moveCharacter(0, -1);
 					}
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
+					lastKeyPressed=KeyEvent.VK_A;
 					g.moveCharacter(-1, 0);
 				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
 					g.moveCharacter(0, 1);
 				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
+					lastKeyPressed=KeyEvent.VK_D;
 					g.moveCharacter(1, 0);
 				} else if (keyCode == KeyEvent.VK_SPACE) {
-					g.useWeapon(0); // fixed this
+					g.useWeapon(lastKeyPressed);
 
 				}
 

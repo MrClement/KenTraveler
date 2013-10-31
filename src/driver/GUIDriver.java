@@ -82,6 +82,7 @@ public class GUIDriver {
 				int keyCode = e.getKeyCode();
 				int lastKeyPressed = KeyEvent.VK_D;
 				if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
+					g.retractWeapon(lastKeyPressed);
 					if (g.getGrid()
 							.get(new Point((int) g.getCharacterLocation().getX(),
 									(int) g.getCharacterLocation().getY() + 1)).hasSolid()) {
@@ -92,10 +93,13 @@ public class GUIDriver {
 					}
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
 					lastKeyPressed=KeyEvent.VK_A;
+					g.retractWeapon(lastKeyPressed);
 					g.moveCharacter(-1, 0);
 				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
+					g.retractWeapon(lastKeyPressed);
 					g.moveCharacter(0, 1);
 				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
+					g.retractWeapon(lastKeyPressed);
 					lastKeyPressed=KeyEvent.VK_D;
 					g.moveCharacter(1, 0);
 				} else if (keyCode == KeyEvent.VK_SPACE) {
@@ -104,6 +108,13 @@ public class GUIDriver {
 				}
 
 				System.out.println(e.getKeyCode());
+			}
+			public void keyReleased(KeyEvent e){
+				int keyCode=e.getKeyCode();
+				int lastKeyPressed=KeyEvent.VK_D;
+				if(keyCode == KeyEvent.VK_SPACE) {
+					g.retractWeapon(lastKeyPressed);
+				}
 			}
 		});
 

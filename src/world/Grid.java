@@ -123,10 +123,25 @@ public class Grid {
 			
 			target.add(grid.get(charLoc).returnCharacter().getWeapon());
 			target.sortArrayOfThings();
-			target.remove(grid.get(charLoc).returnCharacter().getWeapon());
-			target.sortArrayOfThings();
+			
 		}
 		
 		
+	}
+	public void retractWeapon(int lastKeyPressed){
+		int dir=1;
+		Point charLoc = new Point(this.getCharacterLocation());
+		if (!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)) {
+			if(lastKeyPressed == KeyEvent.VK_A){
+				dir=-1;
+			}
+			else if(lastKeyPressed == KeyEvent.VK_D){
+				dir=1;
+			}
+			Point side=new Point((int)(getCharacterLocation().getX()+dir), (int)getCharacterLocation().getY());
+			GridSpace target=grid.get(side);
+			target.remove(grid.get(charLoc).returnCharacter().getWeapon());
+			target.sortArrayOfThings();
+		}
 	}
 }

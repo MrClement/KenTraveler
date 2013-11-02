@@ -13,12 +13,16 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
 
+import world.Character;
 import world.Grid;
 import world.GridSpace;
+import world.Thing;
+import world.World;
 
 public class GUIDriver {
 
@@ -36,7 +40,7 @@ public class GUIDriver {
 
 		Canvas canvas = new Canvas();
 		canvas.setIgnoreRepaint(true);
-		canvas.setSize(640, 480);
+		canvas.setSize(1200, 480);
 
 		// Add canvas to game window...
 
@@ -57,7 +61,7 @@ public class GUIDriver {
 
 		// Create off-screen drawing surface
 
-		BufferedImage bi = gc.createCompatibleImage(640, 480);
+		BufferedImage bi = gc.createCompatibleImage(1200, 480);
 
 		// Objects needed for rendering...
 
@@ -92,7 +96,7 @@ public class GUIDriver {
 						g.moveCharacter(0, -1);
 					}
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
-					lastKeyPressed=KeyEvent.VK_A;
+					lastKeyPressed = KeyEvent.VK_A;
 					g.retractWeapon(lastKeyPressed);
 					g.moveCharacter(-1, 0);
 				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
@@ -100,7 +104,7 @@ public class GUIDriver {
 					g.moveCharacter(0, 1);
 				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
 					g.retractWeapon(lastKeyPressed);
-					lastKeyPressed=KeyEvent.VK_D;
+					lastKeyPressed = KeyEvent.VK_D;
 					g.moveCharacter(1, 0);
 				} else if (keyCode == KeyEvent.VK_SPACE) {
 					g.useWeapon(lastKeyPressed);
@@ -109,10 +113,11 @@ public class GUIDriver {
 
 				System.out.println(e.getKeyCode());
 			}
-			public void keyReleased(KeyEvent e){
-				int keyCode=e.getKeyCode();
-				int lastKeyPressed=KeyEvent.VK_D;
-				if(keyCode == KeyEvent.VK_SPACE) {
+
+			public void keyReleased(KeyEvent e) {
+				int keyCode = e.getKeyCode();
+				int lastKeyPressed = KeyEvent.VK_D;
+				if (keyCode == KeyEvent.VK_SPACE) {
 					g.retractWeapon(lastKeyPressed);
 				}
 			}
@@ -135,11 +140,21 @@ public class GUIDriver {
 				++frames;
 
 				// clear back buffer...
-
+				if (g.getCharacterLocation().getX() >= 99) {
+					HashMap<Point, GridSpace> grid = g.getGrid();
+					Point oldLocation = g.getCharacterLocation();
+					Character c = grid.get(oldLocation).returnCharacter();
+					World w = new World();
+					// g = w.drawWorld(1);
+					ArrayList<Thing> t = new ArrayList<Thing>();
+					t.add(c);
+					GridSpace gs = new GridSpace(t);
+					gs.sortArrayOfThings();
+					grid.put(new Point(0, (int) oldLocation.getY()), gs);
+				}
 				g2d = bi.createGraphics();
 				g2d.setColor(background);
 				g2d.fillRect(0, 0, 639, 479);
-
 				HashMap<Point, GridSpace> grid = g.getGrid();
 				for (int i = 0; i < 100; i++) {
 
@@ -181,5 +196,4 @@ public class GUIDriver {
 		}
 
 	}
-
 }

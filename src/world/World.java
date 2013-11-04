@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * @author King
@@ -48,6 +49,9 @@ public class World {
 				} else {
 					f.add(new Terrain(true, a.getTopColor()));
 				}
+				if(a.getHill())
+					
+					
 				// needs to check if there is a hill in the background then call
 				// the draw hill method
 				f.sortArrayOfThings();
@@ -63,8 +67,22 @@ public class World {
 	/**
 	 * Will draw a hill at a random place on the map
 	 */
-	public void drawHill() {
-		// needs to call a random point in between and add a hhill
+	public void drawHill(Grid g) {
+		Random r = new Random();
+		int height;
+		int width;
+		int seed;
+		height = r.nextInt(20) + 1;
+		width = r.nextInt(20) + 1;
+		seed = r.nextInt(90) + 2;
+		while((width + seed) >= 100)
+			width = r.nextInt(20) + 1;
+		
+		if(height % 4 >= 1)
+			
+			
+		
+
 	}
 
 	/**

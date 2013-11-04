@@ -32,16 +32,16 @@ public class World {
 		if (i == 1) {
 			BackGrounds = this.world1();
 		}
-		// Need to add check to see if the character is at the end of the map,
-		// if it is it calls the next background in the loop
 		Background a = BackGrounds.get(0);
 
 		Grid g = new Grid();
 		HashMap<Point, GridSpace> grid = g.getGrid();
-		for (int d = 0; i < 100; d++) {
+		for (int d = 0; d < 101; d++) {
 			for (int j = 0; j < 25; j++) {
 				GridSpace f = new GridSpace(new ArrayList<Thing>());
-				if (j >= 22) {
+				if (d == 100) {
+					f.add(new Terrain(false, Color.BLACK));
+				} else if (j >= 22) {
 					f.add(new Terrain(true, a.getGroundColor()));
 				} else if (j > 2) {
 
@@ -50,10 +50,12 @@ public class World {
 				}
 				// needs to check if there is a hill in the background then call
 				// the draw hill method
-
+				f.sortArrayOfThings();
+				grid.put(new Point(d, j), f);
 			}
 		}
-
+		System.out.println("Here");
+		g.setGrid(grid);
 		return g;
 
 	}

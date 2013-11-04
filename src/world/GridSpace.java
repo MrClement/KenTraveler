@@ -87,8 +87,8 @@ public class GridSpace {
 	 *            is the Thing object to be added to the GridSpace
 	 */
 	public void add(Thing toAdd) {
-		System.out.println("toAdd " + toAdd);
-		System.out.println(thingsInSpace);
+		// System.out.println("toAdd " + toAdd);
+		// System.out.println(thingsInSpace);
 		thingsInSpace.add(toAdd);
 		sortArrayOfThings();
 	}
@@ -202,10 +202,11 @@ public class GridSpace {
 		}
 		return toReturn;
 	}
-	public Character returnCharacter(){
-		for(Thing l: thingsInSpace){
-			if(l instanceof Character){
-				return (Character)l;
+
+	public Character returnCharacter() {
+		for (Thing l : thingsInSpace) {
+			if (l instanceof Character) {
+				return (Character) l;
 			}
 		}
 		return null;

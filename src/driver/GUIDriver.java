@@ -140,17 +140,19 @@ public class GUIDriver {
 				++frames;
 
 				// clear back buffer...
-				if (g.getCharacterLocation().getX() >= 99) {
+				if (g.getCharacterLocation().getX() >= 100) {
 					HashMap<Point, GridSpace> grid = g.getGrid();
 					Point oldLocation = g.getCharacterLocation();
 					Character c = grid.get(oldLocation).returnCharacter();
 					World w = new World();
-					// g = w.drawWorld(1);
+					g = w.drawWorld(1);
+					grid = g.getGrid();
 					ArrayList<Thing> t = new ArrayList<Thing>();
 					t.add(c);
 					GridSpace gs = new GridSpace(t);
 					gs.sortArrayOfThings();
 					grid.put(new Point(0, (int) oldLocation.getY()), gs);
+					g.setCharacterLocation(new Point(0, (int) oldLocation.getY()));
 				}
 				g2d = bi.createGraphics();
 				g2d.setColor(background);

@@ -5,6 +5,7 @@ import java.awt.Color;
 public class RangedWeapon extends Weapon {
 	private int range;
 	private int speed;
+	private int currentSpeed;
 
 	// ticks per cell
 
@@ -12,7 +13,16 @@ public class RangedWeapon extends Weapon {
 		super(b, c, l);
 		range = r;
 		speed = s;
+		currentSpeed=0;
 		// TODO Auto-generated constructor stub
+	}
+
+	public int getCurrentSpeed() {
+		return currentSpeed;
+	}
+
+	public void setCurrentSpeed(int currentSpeed) {
+		this.currentSpeed = currentSpeed;
 	}
 
 	public int getRange() {

@@ -76,7 +76,7 @@ public class GUIDriver {
 		long totalTime = 0;
 		long curTime = System.currentTimeMillis();
 		long lastTime = curTime;
-		
+
 		g = new Grid();
 		g.makeDefaultGrid();
 
@@ -94,7 +94,6 @@ public class GUIDriver {
 						g.moveCharacter(0, -1);
 						g.moveCharacter(0, -1);
 						g.moveCharacter(0, -1);
-						gravity();
 					}
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
 					lastKeyPressed = KeyEvent.VK_A;
@@ -129,14 +128,15 @@ public class GUIDriver {
 				lastTime = curTime;
 				curTime = System.currentTimeMillis();
 				totalTime += curTime - lastTime;
-				
 				if (totalTime > 1000) {
+
+					g.moveCharacter(0, 1);
+					g.moveCharacter(0, 1);
 
 					totalTime -= 1000;
 					fps = frames;
 					frames = 0;
 				}
-
 				++frames;
 
 				// clear back buffer...
@@ -163,6 +163,8 @@ public class GUIDriver {
 					for (int j = 0; j < 25; j++) {
 						g2d.setColor(grid.get(new Point(i, j)).getColor());
 						g2d.fillRect(i * 10, j * 10, 10, 10);
+
+					}
 
 				}
 
@@ -194,24 +196,6 @@ public class GUIDriver {
 			}
 
 		}
-		
 
-	}
-	private static void gravity(){
-		long initTime;
-		long currentTime;
-		for (int i = 0; i < 4; i++){
-			boolean b = true;
-			initTime = System.currentTimeMillis();
-			while (b){
-				currentTime = System.currentTimeMillis();
-				if (currentTime - initTime > 500){
-					g.moveCharacter(0, 1);
-					initTime = System.currentTimeMillis();
-				}
-				
-			}
-		}
-		
 	}
 }

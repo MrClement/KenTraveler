@@ -120,6 +120,15 @@ public class Forge {
 		}
 		return null;
 	}
+	public Weapon constructMeleeWeapons(int i, LivingThing l){
+		if(i==0){
+			Weapon sword=new Weapon(true, Color.RED, l);
+			Damage swordDamage=new Damage(5, 0, 0, 0, 0, 0, 0, 0, false, false, false);
+			sword.setDamage(swordDamage);
+			return sword;
+		}
+		return null;
+	}
 		
 	
 	

@@ -76,7 +76,7 @@ public class GUIDriver {
 		int frames = 0;
 		long totalTime = 0;
 		long gravityTime = 0;
-		gravityTime = 500;
+		gravityRate = 500;
 		long value = gravityRate;
 		long curTime = System.currentTimeMillis();
 		long lastTime = curTime;

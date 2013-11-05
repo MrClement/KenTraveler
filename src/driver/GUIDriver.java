@@ -94,6 +94,7 @@ public class GUIDriver {
 						g.moveCharacter(0, -1);
 						g.moveCharacter(0, -1);
 						g.moveCharacter(0, -1);
+						gravity();
 					}
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
 					lastKeyPressed = KeyEvent.VK_A;
@@ -129,9 +130,6 @@ public class GUIDriver {
 				curTime = System.currentTimeMillis();
 				totalTime += curTime - lastTime;
 				if (totalTime > 1000) {
-
-					g.moveCharacter(0, 1);
-					g.moveCharacter(0, 1);
 
 					totalTime -= 1000;
 					fps = frames;
@@ -195,6 +193,25 @@ public class GUIDriver {
 
 			}
 
+		}
+
+	}
+
+	private static void gravity() {
+		long initTime;
+		long currentTime;
+		for (int i = 0; i < 4; i++) {
+			boolean b = true;
+			initTime = System.currentTimeMillis();
+			while (b) {
+				currentTime = System.currentTimeMillis();
+				if (currentTime - initTime > 500) {
+					g.moveCharacter(0, 1);
+					initTime = System.currentTimeMillis();
+					b = false;
+				}
+
+			}
 		}
 
 	}

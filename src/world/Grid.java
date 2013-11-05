@@ -38,7 +38,8 @@ public class Grid {
 		this.characterLocation = characterLocation;
 	}
 
-	public void moveCharacter(int x, int y) {
+	public void moveCharacter(int x, int y, int lastKeyPressed) {
+		this.retractWeapon(lastKeyPressed);
 		Point newLocation = new Point((int) getCharacterLocation().getX() + x, (int) getCharacterLocation().getY() + y);
 		GridSpace gs = grid.get(getCharacterLocation());
 		GridSpace gs2 = grid.get(newLocation);

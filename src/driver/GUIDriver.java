@@ -27,6 +27,7 @@ import world.World;
 public class GUIDriver {
 
 	private static Grid g;
+	private static long gravityRate;
 
 	public static void main(String[] args) {
 
@@ -74,6 +75,9 @@ public class GUIDriver {
 		int fps = 0;
 		int frames = 0;
 		long totalTime = 0;
+		long gravityTime = 0;
+		gravityTime = 500;
+		long value = gravityRate;
 		long curTime = System.currentTimeMillis();
 		long lastTime = curTime;
 
@@ -94,11 +98,10 @@ public class GUIDriver {
 						g.moveCharacter(0, -1);
 						g.moveCharacter(0, -1);
 						g.moveCharacter(0, -1);
-						gravity();
 					}
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
-					lastKeyPressed = KeyEvent.VK_A;
 					g.retractWeapon(lastKeyPressed);
+					lastKeyPressed = KeyEvent.VK_A;
 					g.moveCharacter(-1, 0);
 				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
 					g.retractWeapon(lastKeyPressed);
@@ -129,6 +132,15 @@ public class GUIDriver {
 				lastTime = curTime;
 				curTime = System.currentTimeMillis();
 				totalTime += curTime - lastTime;
+				gravityTime += curTime - lastTime;
+				if (gravityTime > value) {
+					value += gravityRate;
+					g.moveCharacter(0, 1);
+					if (gravityTime > 4 * gravityRate) {
+						gravityTime = 0;
+						value = gravityRate;
+					}
+				}
 				if (totalTime > 1000) {
 
 					totalTime -= 1000;
@@ -193,25 +205,6 @@ public class GUIDriver {
 
 			}
 
-		}
-
-	}
-
-	private static void gravity() {
-		long initTime;
-		long currentTime;
-		for (int i = 0; i < 4; i++) {
-			boolean b = true;
-			initTime = System.currentTimeMillis();
-			while (b) {
-				currentTime = System.currentTimeMillis();
-				if (currentTime - initTime > 500) {
-					g.moveCharacter(0, 1);
-					initTime = System.currentTimeMillis();
-					b = false;
-				}
-
-			}
 		}
 
 	}

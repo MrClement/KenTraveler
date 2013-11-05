@@ -92,8 +92,10 @@ public class Grid {
 				grid.put(new Point(i, j), d);
 			}
 		}
+		Forge f=new Forge();
 		ArrayList<Thing> things = new ArrayList<Thing>();
 		Character c = new Character(true, Color.BLUE);
+		c.setWeapon(f.constructMeleeWeapons(0, (LivingThing)c));
 		things.add(new Weapon(true, Color.RED, c));
 		things.add(c);
 		things.add(new LivingThing(false, Color.YELLOW));

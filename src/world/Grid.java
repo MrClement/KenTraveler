@@ -1,4 +1,5 @@
 package world;
+
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
@@ -78,10 +79,12 @@ public class Grid {
 	}
 
 	public void makeDefaultGrid() {
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 101; i++) {
 			for (int j = 0; j < 25; j++) {
 				GridSpace d = new GridSpace(new ArrayList<Thing>());
-				if (j >= 22) {
+				if (i == 100) {
+					d.add(new Terrain(false, Color.BLACK));
+				} else if (j >= 22) {
 					d.add(new Terrain(true, Color.GREEN));
 				} else if (j > 2) {
 
@@ -92,10 +95,10 @@ public class Grid {
 				grid.put(new Point(i, j), d);
 			}
 		}
-		Forge f=new Forge();
+		Forge f = new Forge();
 		ArrayList<Thing> things = new ArrayList<Thing>();
 		Character c = new Character(true, Color.BLUE);
-		c.setWeapon(f.constructMeleeWeapons(0, (LivingThing)c));
+		c.setWeapon(f.constructMeleeWeapons(0, (LivingThing) c));
 		things.add(new Weapon(true, Color.RED, c));
 		things.add(c);
 		things.add(new LivingThing(false, Color.YELLOW));
@@ -111,50 +114,47 @@ public class Grid {
 	}
 
 	public void useWeapon(int lastKeyPressed) {
-		int dir=1;
+		int dir = 1;
 		Point charLoc = new Point(this.getCharacterLocation());
 		if (!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)) {
-			if(lastKeyPressed == KeyEvent.VK_A){
-				dir=-1;
+			if (lastKeyPressed == KeyEvent.VK_A) {
+				dir = -1;
+			} else if (lastKeyPressed == KeyEvent.VK_D) {
+				dir = 1;
 			}
-			else if(lastKeyPressed == KeyEvent.VK_D){
-				dir=1;
-			}
-			Point side=new Point((int)(getCharacterLocation().getX()+dir), (int)getCharacterLocation().getY());
-			GridSpace target=grid.get(side);
-			
+			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
+			GridSpace target = grid.get(side);
+
 			target.add(grid.get(charLoc).returnCharacter().getWeapon());
 			target.sortArrayOfThings();
-			
-		}
-		else{
-			if(lastKeyPressed == KeyEvent.VK_A){
-				dir=-1;
+
+		} else {
+			if (lastKeyPressed == KeyEvent.VK_A) {
+				dir = -1;
+			} else if (lastKeyPressed == KeyEvent.VK_D) {
+				dir = 1;
 			}
-			else if(lastKeyPressed == KeyEvent.VK_D){
-				dir=1;
-			}
-			Point side=new Point((int)(getCharacterLocation().getX()+dir), (int)getCharacterLocation().getY());
-			GridSpace target=grid.get(side);
-			RangedWeapon newWeapon=(RangedWeapon)grid.get(charLoc).returnCharacter().getWeapon();
-			newWeapon.setCurrentSpeed(newWeapon.getSpeed()*dir);
+			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
+			GridSpace target = grid.get(side);
+			RangedWeapon newWeapon = (RangedWeapon) grid.get(charLoc).returnCharacter().getWeapon();
+			newWeapon.setCurrentSpeed(newWeapon.getSpeed() * dir);
 			target.add(newWeapon);
 			target.sortArrayOfThings();
 		}
-		
+
 	}
-	public void retractWeapon(int lastKeyPressed){
-		int dir=1;
+
+	public void retractWeapon(int lastKeyPressed) {
+		int dir = 1;
 		Point charLoc = new Point(this.getCharacterLocation());
 		if (!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)) {
-			if(lastKeyPressed == KeyEvent.VK_A){
-				dir=-1;
+			if (lastKeyPressed == KeyEvent.VK_A) {
+				dir = -1;
+			} else if (lastKeyPressed == KeyEvent.VK_D) {
+				dir = 1;
 			}
-			else if(lastKeyPressed == KeyEvent.VK_D){
-				dir=1;
-			}
-			Point side=new Point((int)(getCharacterLocation().getX()+dir), (int)getCharacterLocation().getY());
-			GridSpace target=grid.get(side);
+			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
+			GridSpace target = grid.get(side);
 			target.remove(grid.get(charLoc).returnCharacter().getWeapon());
 			target.sortArrayOfThings();
 		}

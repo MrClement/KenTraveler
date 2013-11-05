@@ -49,12 +49,12 @@ public class World {
 				} else {
 					f.add(new Terrain(true, a.getTopColor()));
 				}
-				if(a.getHill())
-					
-					
-				// needs to check if there is a hill in the background then call
-				// the draw hill method
-				f.sortArrayOfThings();
+				if (a.getHill())
+
+					// needs to check if there is a hill in the background then
+					// call
+					// the draw hill method
+					f.sortArrayOfThings();
 				grid.put(new Point(d, j), f);
 			}
 		}
@@ -75,13 +75,11 @@ public class World {
 		height = r.nextInt(20) + 1;
 		width = r.nextInt(20) + 1;
 		seed = r.nextInt(90) + 2;
-		while((width + seed) >= 100)
+		while ((width + seed) >= 100)
 			width = r.nextInt(20) + 1;
-		
-		if(height % 4 >= 1)
-			
-			
-		
+
+		if (height % 4 >= 1)
+			;
 
 	}
 

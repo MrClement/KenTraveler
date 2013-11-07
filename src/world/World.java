@@ -49,7 +49,9 @@ public class World {
 				} else {
 					f.add(new Terrain(true, a.getTopColor()));
 				}
-				if (a.getHill())
+				if (a.getHill()){
+					this.drawHill(g);
+				}
 
 					// needs to check if there is a hill in the background then
 					// call
@@ -75,11 +77,23 @@ public class World {
 		height = r.nextInt(20) + 1;
 		width = r.nextInt(20) + 1;
 		seed = r.nextInt(90) + 2;
-		while ((width + seed) >= 100)
+		while ((width + seed) >= 100){
 			width = r.nextInt(20) + 1;
+		}
+		
+		HashMap<Point, GridSpace> grid = g.getGrid();
+		
+		for(int i = 0; i < width; i++){
+			for(int j = 0; j < height; j++){
+				GridSpace f = new GridSpace(new ArrayList<Thing>());
+				
+				
+				f.add(new Terrain(true, Color.BLACK));
+				grid.put(new Point(i, j), f);
+				
+			}
+		}
 
-		if (height % 4 >= 1)
-			;
 
 	}
 

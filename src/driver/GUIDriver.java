@@ -77,8 +77,9 @@ public class GUIDriver {
 		int frames = 0;
 		long totalTime = 0;
 		long gravityTime = 0;
-		gravityRate = 500;
-		long value = gravityRate;
+		long hangTime = 500;
+		gravityRate = 300;
+		long value = gravityRate + hangTime;
 		long curTime = System.currentTimeMillis();
 		long lastTime = curTime;
 
@@ -138,9 +139,9 @@ public class GUIDriver {
 				if (gravityTime > value) {
 					value += gravityRate;
 					g.moveCharacter(0, 1,lastKey);
-					if (gravityTime > 4 * gravityRate) {
+					if (gravityTime > 4 * gravityRate + hangTime) {
 						gravityTime = 0;
-						value = gravityRate;
+						value = gravityRate + hangTime;
 					}
 				}
 				if (totalTime > 1000) {

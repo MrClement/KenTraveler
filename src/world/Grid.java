@@ -105,8 +105,8 @@ public class Grid {
 		things.add(new LivingThing(false, Color.YELLOW));
 		GridSpace test = new GridSpace(things);
 		test.sortArrayOfThings();
-		grid.put(new Point(15, 15), test);
-		setCharacterLocation(new Point(15, 15));
+		grid.put(new Point(15, 21), test);
+		setCharacterLocation(new Point(15, 21));
 		things = new ArrayList<Thing>();
 		things.add(new Weapon(true, Color.RED, c));
 		test = new GridSpace(things);

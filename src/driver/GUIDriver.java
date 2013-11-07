@@ -103,16 +103,13 @@ public class GUIDriver {
 						g.moveCharacter(0, -1,lastKeyPressed);
 					}
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
-					g.retractWeapon(lastKeyPressed);
-					lastKeyPressed = KeyEvent.VK_A;
 					g.moveCharacter(-1, 0,lastKeyPressed);
+					lastKeyPressed = KeyEvent.VK_A;
 				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
-					g.retractWeapon(lastKeyPressed);
 					g.moveCharacter(0, 1,lastKeyPressed);
 				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
-					g.retractWeapon(lastKeyPressed);
-					lastKeyPressed = KeyEvent.VK_D;
 					g.moveCharacter(1, 0,lastKeyPressed);
+					lastKeyPressed = KeyEvent.VK_D;
 				} else if (keyCode == KeyEvent.VK_SPACE) {
 					g.useWeapon(lastKeyPressed);
 

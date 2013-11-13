@@ -145,7 +145,9 @@ public class GUIDriver {
 				if (gravityTime > value) {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
-					g.moveEnemy();
+					if (g.getEnemyLocation()!= null){
+						g.moveEnemy();
+					}
 					if (gravityTime > 4 * gravityRate + hangTime) {
 						gravityTime = 0;
 						value = gravityRate + hangTime;

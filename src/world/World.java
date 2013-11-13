@@ -76,16 +76,29 @@ public class World {
 		int seed;
 		height = r.nextInt(20) + 1;
 		seed = r.nextInt(50) + 2;
-		width = (r.nextInt(20) + 1) + seed;
-		HashMap<Point, GridSpace> grid = g.getGrid();
 		
-		for(int i = seed; i < width; i++){
-			for(int j = 23; j  > height; j--){
-				GridSpace f = new GridSpace(new ArrayList<Thing>());
-				f.add(new Terrain(true, Color.BLACK));
-				grid.put(new Point(i, j), f);
-				
+		HashMap<Point, GridSpace> grid = g.getGrid();
+		ArrayList<Integer> a = new ArrayList <Integer>();
+		int u = -1;
+		
+			for(int p = 0; p <= height; p = p+3)
+			{
+				a.add(23-p);
 			}
+			System.out.println(a);
+			int xpos = 0;
+		for(int i = 0; i < a.size(); i++){
+			width = (r.nextInt(7) + 1) + seed;
+			for(int s = 0; s < width; s++){
+			int topBlock = a.get(i);
+			for(int j = 23; j > topBlock; j--)
+			{
+				GridSpace f = new GridSpace(new ArrayList<Thing>());
+				f.add(new Terrain(true, Color.GREEN));
+				grid.put(new Point(xpos++, j), f);
+				
+			}	
+		}
 		}
 
 

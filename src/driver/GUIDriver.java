@@ -31,6 +31,7 @@ public class GUIDriver {
 	private static int lastKey;
 	private static long hangTime;
 	private static long value;
+	private static boolean spaceDown=false;
 
 	public static void main(String[] args) {
 
@@ -115,7 +116,10 @@ public class GUIDriver {
 					g.moveCharacter(1, 0, lastKeyPressed);
 					lastKeyPressed = KeyEvent.VK_D;
 				} else if (keyCode == KeyEvent.VK_SPACE) {
-					g.useWeapon(lastKeyPressed);
+					if(!spaceDown){
+						spaceDown=true;
+						g.useWeapon(lastKeyPressed);
+					}
 
 				}
 
@@ -127,6 +131,7 @@ public class GUIDriver {
 				int lastKeyPressed = KeyEvent.VK_D;
 				if (keyCode == KeyEvent.VK_SPACE) {
 					g.retractWeapon(lastKeyPressed);
+					spaceDown=false;
 				}
 			}
 		});

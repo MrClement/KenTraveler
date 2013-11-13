@@ -77,15 +77,14 @@ public class World {
 		seed = r.nextInt(50) + 2;
 		HashMap<Point, GridSpace> grid = g.getGrid();
 		ArrayList<Integer> a = new ArrayList<Integer>();
-		int u = -1;
-
+		
 		for (int p = 0; p <= height; p = p + 3) {
 			a.add(23 - p);
 		}
 		int xpos = 0;
 		for (int i = 0; i < a.size(); i++) {
 			width = (r.nextInt(7) + 1) + seed;
-			if(width >= 100)
+			while(width >= 100)
 				width = (r.nextInt(7) + 1) + seed;
 			for (int s = 0; s < width; s++) {
 				int topBlock = a.get(i);

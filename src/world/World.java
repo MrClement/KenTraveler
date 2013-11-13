@@ -60,7 +60,6 @@ public class World {
 				grid.put(new Point(d, j), f);
 			}
 		}
-		System.out.println("Here");
 		g.setGrid(grid);
 		return g;
 
@@ -76,7 +75,6 @@ public class World {
 		int seed;
 		height = r.nextInt(20) + 1;
 		seed = r.nextInt(50) + 2;
-
 		HashMap<Point, GridSpace> grid = g.getGrid();
 		ArrayList<Integer> a = new ArrayList<Integer>();
 		int u = -1;
@@ -84,10 +82,11 @@ public class World {
 		for (int p = 0; p <= height; p = p + 3) {
 			a.add(23 - p);
 		}
-		System.out.println(a);
 		int xpos = 0;
 		for (int i = 0; i < a.size(); i++) {
 			width = (r.nextInt(7) + 1) + seed;
+			if(width >= 100)
+				width = (r.nextInt(7) + 1) + seed;
 			for (int s = 0; s < width; s++) {
 				int topBlock = a.get(i);
 				for (int j = 23; j > topBlock; j--) {

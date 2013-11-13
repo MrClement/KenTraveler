@@ -38,6 +38,7 @@ public class Grid {
 	public void setCharacterLocation(Point characterLocation) {
 		this.characterLocation = characterLocation;
 	}
+
 	public Point getEnemyLocation() {
 		return enemyLocation;
 	}
@@ -45,7 +46,6 @@ public class Grid {
 	public void setEnemyLocation(Point enemyLocation) {
 		this.enemyLocation = enemyLocation;
 	}
-	
 
 	public void moveCharacter(int x, int y, int lastKeyPressed) {
 		this.retractWeapon(lastKeyPressed);
@@ -87,13 +87,15 @@ public class Grid {
 		setCharacterLocation(newLocation);
 
 	}
-	public void moveEnemy(){
-		Point newLocation = getEnemyLocation();
-		if (this.characterLocation.getX() - this.enemyLocation.getX() >= 0){
+
+	public void moveEnemy() {
+		Point newLocation = new Point(getEnemyLocation());
+		if (this.characterLocation.getX() - this.enemyLocation.getX() >= 0) {
 			newLocation.translate(1, 0);
-		}else{
+		} else {
 			newLocation.translate(-1, 0);
 		}
+		System.out.println(getEnemyLocation());
 		GridSpace gs = grid.get(getEnemyLocation());
 		GridSpace gs2 = grid.get(newLocation);
 		if (gs2.returnThings().size() > 0) {
@@ -114,7 +116,7 @@ public class Grid {
 				}
 			}
 		}
-		Thing t = gs.remove(gs.returnThings().get(1));
+		Thing t = gs.remove(gs.returnThings().get(0));
 		gs2.add(t);
 		gs.sortArrayOfThings();
 		gs2.sortArrayOfThings();
@@ -150,7 +152,7 @@ public class Grid {
 		GridSpace test = new GridSpace(things);
 		test.sortArrayOfThings();
 		ArrayList<Thing> enemies = new ArrayList<Thing>();
-		enemies.add(new Enemy (true, Color.ORANGE));
+		enemies.add(new Enemy(true, Color.ORANGE));
 		grid.put(new Point(15, 21), test);
 		setCharacterLocation(new Point(15, 21));
 		things = new ArrayList<Thing>();
@@ -159,7 +161,8 @@ public class Grid {
 		test.sortArrayOfThings();
 		GridSpace enemiesSpace = new GridSpace(enemies);
 		grid.put(new Point(20, 21), test);
-		grid.put(new Point (25, 21), enemiesSpace);
+		grid.put(new Point(25, 21), enemiesSpace);
+		setEnemyLocation(new Point(25, 21));
 	}
 
 	public void useWeapon(int lastKeyPressed) {

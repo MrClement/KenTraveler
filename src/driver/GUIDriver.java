@@ -29,6 +29,8 @@ public class GUIDriver {
 	private static Grid g;
 	private static long gravityRate;
 	private static int lastKey;
+	private static long hangTime;
+	private static long value;
 
 	public static void main(String[] args) {
 
@@ -77,9 +79,9 @@ public class GUIDriver {
 		int frames = 0;
 		long totalTime = 0;
 		long gravityTime = 0;
-		long hangTime = 500;
+		hangTime = 500;
 		gravityRate = 300;
-		long value = gravityRate + hangTime;
+		value = gravityRate + hangTime;
 		long curTime = System.currentTimeMillis();
 		long lastTime = curTime;
 
@@ -91,24 +93,26 @@ public class GUIDriver {
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
 				int lastKeyPressed = KeyEvent.VK_D;
-				lastKey=lastKeyPressed;
+				lastKey = lastKeyPressed;
 				if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
 					g.retractWeapon(lastKeyPressed);
 					if (g.getGrid()
 							.get(new Point((int) g.getCharacterLocation().getX(),
 									(int) g.getCharacterLocation().getY() + 1)).hasSolid()) {
-						g.moveCharacter(0, -1,lastKeyPressed);
-						g.moveCharacter(0, -1,lastKeyPressed);
-						g.moveCharacter(0, -1,lastKeyPressed);
-						g.moveCharacter(0, -1,lastKeyPressed);
+						g.moveCharacter(0, -1, lastKeyPressed);
+						g.moveCharacter(0, -1, lastKeyPressed);
+						g.moveCharacter(0, -1, lastKeyPressed);
+						g.moveCharacter(0, -1, lastKeyPressed);
+						value = gravityRate + hangTime;
+
 					}
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
-					g.moveCharacter(-1, 0,lastKeyPressed);
+					g.moveCharacter(-1, 0, lastKeyPressed);
 					lastKeyPressed = KeyEvent.VK_A;
 				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
-					g.moveCharacter(0, 1,lastKeyPressed);
+					g.moveCharacter(0, 1, lastKeyPressed);
 				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
-					g.moveCharacter(1, 0,lastKeyPressed);
+					g.moveCharacter(1, 0, lastKeyPressed);
 					lastKeyPressed = KeyEvent.VK_D;
 				} else if (keyCode == KeyEvent.VK_SPACE) {
 					g.useWeapon(lastKeyPressed);
@@ -135,7 +139,7 @@ public class GUIDriver {
 				gravityTime += curTime - lastTime;
 				if (gravityTime > value) {
 					value += gravityRate;
-					g.moveCharacter(0, 1,lastKey);
+					g.moveCharacter(0, 1, lastKey);
 					if (gravityTime > 4 * gravityRate + hangTime) {
 						gravityTime = 0;
 						value = gravityRate + hangTime;

@@ -158,6 +158,11 @@ public class GridSpace {
 			}
 		}
 		for (int i = 0; i < thingsInSpace.size(); i++) {
+			if (thingsInSpace.get(i) instanceof Enemy) {
+				sorted.add(thingsInSpace.remove(i));
+			}
+		}
+		for (int i = 0; i < thingsInSpace.size(); i++) {
 			if (thingsInSpace.get(i) instanceof LivingThing) {
 				sorted.add(thingsInSpace.remove(i));
 			}
@@ -211,5 +216,14 @@ public class GridSpace {
 		}
 		return null;
 	}
+	public Enemy returnEnemy(){
+		for (Thing e : thingsInSpace) {
+			if (e instanceof Enemy) {
+				return (Enemy) e;
+			}
+		}
+		return null;
+	}
+	
 
 }

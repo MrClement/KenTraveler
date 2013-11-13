@@ -83,7 +83,7 @@ public class World {
 		}
 		int xpos = 0;
 		for (int i = 0; i < a.size(); i++) {
-			width = (r.nextInt(7) + 1) + seed;
+			width = (r.nextInt(7) + 1);
 			while(width >= 100)
 				width = (r.nextInt(7) + 1) + seed;
 			for (int s = 0; s < width; s++) {

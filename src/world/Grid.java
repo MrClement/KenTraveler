@@ -14,6 +14,7 @@ public class Grid {
 
 	private HashMap<Point, GridSpace> grid;
 	private Point characterLocation;
+	private Point enemyLocation;
 
 	/**
 	 * 
@@ -37,6 +38,14 @@ public class Grid {
 	public void setCharacterLocation(Point characterLocation) {
 		this.characterLocation = characterLocation;
 	}
+	public Point getEnemyLocation() {
+		return enemyLocation;
+	}
+
+	public void setEnemyLocation(Point enemyLocation) {
+		this.enemyLocation = enemyLocation;
+	}
+	
 
 	public void moveCharacter(int x, int y, int lastKeyPressed) {
 		this.retractWeapon(lastKeyPressed);
@@ -78,6 +87,41 @@ public class Grid {
 		setCharacterLocation(newLocation);
 
 	}
+	public void moveEnemy(){
+		Point newLocation = getEnemyLocation();
+		if (this.characterLocation.getX() - this.enemyLocation.getX() >= 0){
+			newLocation.translate(1, 0);
+		}else{
+			newLocation.translate(-1, 0);
+		}
+		GridSpace gs = grid.get(getEnemyLocation());
+		GridSpace gs2 = grid.get(newLocation);
+		if (gs2.returnThings().size() > 0) {
+			if (gs2.hasSolid()) {
+				if (gs2.returnWeapons().size() == 0) {
+					return;
+				} else {
+					for (LivingThing e : gs2.returnLivingThings()) {
+						if (e.getSolid()) {
+							return;
+						}
+					}
+					for (Terrain t : gs2.returnTerrain()) {
+						if (t.getSolid()) {
+							return;
+						}
+					}
+				}
+			}
+		}
+		Thing t = gs.remove(gs.returnThings().get(1));
+		gs2.add(t);
+		gs.sortArrayOfThings();
+		gs2.sortArrayOfThings();
+		grid.put(getEnemyLocation(), gs);
+		grid.put(newLocation, gs2);
+		setEnemyLocation(newLocation);
+	}
 
 	public void makeDefaultGrid() {
 		for (int i = 0; i < 101; i++) {
@@ -105,13 +149,17 @@ public class Grid {
 		things.add(new LivingThing(false, Color.YELLOW));
 		GridSpace test = new GridSpace(things);
 		test.sortArrayOfThings();
+		ArrayList<Thing> enemies = new ArrayList<Thing>();
+		enemies.add(new Enemy (true, Color.ORANGE));
 		grid.put(new Point(15, 21), test);
 		setCharacterLocation(new Point(15, 21));
 		things = new ArrayList<Thing>();
 		things.add(new Weapon(true, Color.RED, c));
 		test = new GridSpace(things);
 		test.sortArrayOfThings();
+		GridSpace enemiesSpace = new GridSpace(enemies);
 		grid.put(new Point(20, 21), test);
+		grid.put(new Point (25, 21), enemiesSpace);
 	}
 
 	public void useWeapon(int lastKeyPressed) {

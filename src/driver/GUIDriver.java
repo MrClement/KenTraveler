@@ -93,32 +93,31 @@ public class GUIDriver {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
-				int lastKeyPressed = KeyEvent.VK_D;
-				lastKey = lastKeyPressed;
 				if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
-					g.retractWeapon(lastKeyPressed);
+					g.retractWeapon(lastKey);
 					if (g.getGrid()
 							.get(new Point((int) g.getCharacterLocation().getX(),
 									(int) g.getCharacterLocation().getY() + 1)).hasSolid()) {
-						g.moveCharacter(0, -1, lastKeyPressed);
-						g.moveCharacter(0, -1, lastKeyPressed);
-						g.moveCharacter(0, -1, lastKeyPressed);
-						g.moveCharacter(0, -1, lastKeyPressed);
+						g.moveCharacter(0, -1, lastKey);
+						g.moveCharacter(0, -1, lastKey);
+						g.moveCharacter(0, -1, lastKey);
+						g.moveCharacter(0, -1, lastKey);
 						value = gravityRate + hangTime;
 
 					}
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
-					g.moveCharacter(-1, 0, lastKeyPressed);
-					lastKeyPressed = KeyEvent.VK_A;
+					g.moveCharacter(-1, 0, lastKey);
+					lastKey = KeyEvent.VK_A;
+					System.out.println(lastKey == KeyEvent.VK_A);
 				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
-					g.moveCharacter(0, 1, lastKeyPressed);
+					g.moveCharacter(0, 1, lastKey);
 				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
-					g.moveCharacter(1, 0, lastKeyPressed);
-					lastKeyPressed = KeyEvent.VK_D;
+					g.moveCharacter(1, 0, lastKey);
+					lastKey = KeyEvent.VK_D;
 				} else if (keyCode == KeyEvent.VK_SPACE) {
 					if (!spaceDown) {
 						spaceDown = true;
-						g.useWeapon(lastKeyPressed);
+						g.useWeapon(lastKey);
 					}
 
 				}
@@ -145,7 +144,7 @@ public class GUIDriver {
 				if (gravityTime > value) {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
-					if (g.getEnemyLocation()!= null){
+					if (g.getEnemyLocation() != null) {
 						g.moveEnemy();
 					}
 					if (gravityTime > 4 * gravityRate + hangTime) {

@@ -49,15 +49,15 @@ public class World {
 				} else {
 					f.add(new Terrain(true, a.getTopColor()));
 				}
-				if (a.getHill()) {
-					this.drawHill(g);
-				}
 
 				// needs to check if there is a hill in the background then
 				// call
 				// the draw hill method
 				f.sortArrayOfThings();
 				grid.put(new Point(d, j), f);
+			}
+			if (a.getHill()) {
+				this.drawHill(g);
 			}
 		}
 		g.setGrid(grid);
@@ -81,11 +81,11 @@ public class World {
 		for (int p = 0; p <= height; p = p + 3) {
 			a.add(23 - p);
 		}
-		int xpos = 0;
+		int xpos = seed;
 		for (int i = 0; i < a.size(); i++) {
 			width = (r.nextInt(7) + 1);
-			while(width >= 100)
-				width = (r.nextInt(7) + 1) + seed;
+			while(width + seed >= 100)
+				width = (r.nextInt(7) + 1);
 			for (int s = 0; s < width; s++) {
 				int topBlock = a.get(i);
 				for (int j = 23; j > topBlock; j--) {
@@ -95,9 +95,10 @@ public class World {
 
 				}
 				xpos++;
+	
 			}
 		}
-
+	
 	}
 
 	/**

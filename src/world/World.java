@@ -56,9 +56,9 @@ public class World {
 				f.sortArrayOfThings();
 				grid.put(new Point(d, j), f);
 			}
-			if (a.getHill()) {
-				this.drawHill(g);
 			}
+		if (a.getHill()) {
+			this.drawHill(g);
 		}
 		g.setGrid(grid);
 		return g;
@@ -98,7 +98,26 @@ public class World {
 	
 			}
 		}
-	
+		ArrayList<Integer> q = new ArrayList<Integer>();
+		for(int i = 0; i < a.size(); i++){
+			q.add(a.get(i));
+	}
+		
+		for (int i = 0; i < a.size(); i++) {
+			width = (r.nextInt(7) + 1);
+			while(width + seed >= 100)
+				width = (r.nextInt(7) + 1);
+			for (int s = 0; s < width; s++) {
+				int topBlock = q.get(i);
+				for (int j = 23; j < topBlock; j++) {
+					GridSpace f = new GridSpace(new ArrayList<Thing>());
+					f.add(new Terrain(true, Color.GREEN));
+					grid.put(new Point(xpos, j), f);
+				}
+			}
+			xpos++;
+		}
+
 	}
 
 	/**

@@ -146,9 +146,7 @@ public class Grid {
 		ArrayList<Thing> things = new ArrayList<Thing>();
 		Character c = new Character(true, Color.BLUE);
 		c.setWeapon(f.constructMeleeWeapons(0, (LivingThing) c));
-		things.add(new Weapon(true, Color.RED, c));
 		things.add(c);
-		things.add(new LivingThing(false, Color.YELLOW));
 		GridSpace test = new GridSpace(things);
 		test.sortArrayOfThings();
 		ArrayList<Thing> enemies = new ArrayList<Thing>();
@@ -156,7 +154,6 @@ public class Grid {
 		grid.put(new Point(15, 21), test);
 		setCharacterLocation(new Point(15, 21));
 		things = new ArrayList<Thing>();
-		things.add(new Weapon(true, Color.RED, c));
 		test = new GridSpace(things);
 		test.sortArrayOfThings();
 		GridSpace enemiesSpace = new GridSpace(enemies);

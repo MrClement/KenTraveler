@@ -152,7 +152,7 @@ public class Grid {
 		GridSpace test = new GridSpace(things);
 		test.sortArrayOfThings();
 		ArrayList<Thing> enemies = new ArrayList<Thing>();
-		enemies.add(new Enemy(true, Color.ORANGE));
+		enemies.add(new Enemy(true, Color.ORANGE, "Jerome", 10, 10, 10));
 		grid.put(new Point(15, 21), test);
 		setCharacterLocation(new Point(15, 21));
 		things = new ArrayList<Thing>();
@@ -179,6 +179,7 @@ public class Grid {
 
 			target.add(grid.get(charLoc).returnCharacter().getWeapon());
 			target.sortArrayOfThings();
+			dealDamage(target, grid.get(charLoc).returnCharacter().getWeapon());
 
 		} else {
 			if (lastKeyPressed == KeyEvent.VK_A) {
@@ -194,6 +195,29 @@ public class Grid {
 			target.sortArrayOfThings();
 		}
 
+	}
+
+	private void dealDamage(GridSpace target, Weapon weapon) {
+		System.out.println("Dealing some damage!");
+		ArrayList<LivingThing> livingThings = target.returnLivingThings();
+		if (livingThings == null || livingThings.size() == 0) {
+			return;
+		} else {
+			for (LivingThing livingThing : livingThings) {
+				int hp = livingThing.getHp();
+				System.out.println("HP was " + hp);
+				hp -= weapon.getDamage().getBaseHpDamage();
+				System.out.println("HP now is " + hp);
+				if (hp <= 0) {
+					target.remove(livingThing);
+					setEnemyLocation(null);
+					System.out.println("Killed that dude!");
+				} else {
+					livingThing.setHp(hp);
+				}
+
+			}
+		}
 	}
 
 	public void retractWeapon(int lastKeyPressed) {

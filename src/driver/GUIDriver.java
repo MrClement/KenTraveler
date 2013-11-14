@@ -121,8 +121,6 @@ public class GUIDriver {
 					}
 
 				}
-
-				System.out.println(e.getKeyCode());
 			}
 
 			public void keyReleased(KeyEvent e) {

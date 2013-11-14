@@ -195,16 +195,13 @@ public class Grid {
 	}
 
 	private void dealDamage(GridSpace target, Weapon weapon) {
-		System.out.println("Dealing some damage!");
 		ArrayList<LivingThing> livingThings = target.returnLivingThings();
 		if (livingThings == null || livingThings.size() == 0) {
 			return;
 		} else {
 			for (LivingThing livingThing : livingThings) {
 				int hp = livingThing.getHp();
-				System.out.println("HP was " + hp);
 				hp -= weapon.getDamage().getBaseHpDamage();
-				System.out.println("HP now is " + hp);
 				if (hp <= 0) {
 					target.remove(livingThing);
 					setEnemyLocation(null);

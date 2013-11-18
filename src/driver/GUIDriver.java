@@ -108,7 +108,6 @@ public class GUIDriver {
 				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
 					g.moveCharacter(-1, 0, lastKey);
 					lastKey = KeyEvent.VK_A;
-					System.out.println(lastKey == KeyEvent.VK_A);
 				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
 					g.moveCharacter(0, 1, lastKey);
 				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {

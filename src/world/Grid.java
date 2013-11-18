@@ -95,7 +95,6 @@ public class Grid {
 		} else {
 			newLocation.translate(-1, 0);
 		}
-		System.out.println(getEnemyLocation());
 		GridSpace gs = grid.get(getEnemyLocation());
 		GridSpace gs2 = grid.get(newLocation);
 		if (gs2.returnThings().size() > 0) {

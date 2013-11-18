@@ -98,24 +98,23 @@ public class World {
 	
 			}
 		}
-		ArrayList<Integer> q = new ArrayList<Integer>();
-		for(int i = 0; i < a.size(); i++){
-			q.add(a.get(i));
-	}
+	
 		
 		for (int i = 0; i < a.size(); i++) {
 			width = (r.nextInt(7) + 1);
 			while(width + seed >= 100)
 				width = (r.nextInt(7) + 1);
 			for (int s = 0; s < width; s++) {
-				int topBlock = q.get(i);
-				for (int j = 23; j < topBlock; j++) {
+				int topBlock = a.get((a.size()-1)-i);
+				for (int j = 23; j > topBlock; j--) {
 					GridSpace f = new GridSpace(new ArrayList<Thing>());
 					f.add(new Terrain(true, Color.GREEN));
 					grid.put(new Point(xpos, j), f);
 				}
+				xpos++;
 			}
-			xpos++;
+			
+			
 		}
 
 	}

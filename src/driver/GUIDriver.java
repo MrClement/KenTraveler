@@ -125,7 +125,6 @@ public class GUIDriver {
 
 			public void keyReleased(KeyEvent e) {
 				int keyCode = e.getKeyCode();
-				int lastKey = KeyEvent.VK_D;
 				if (keyCode == KeyEvent.VK_SPACE) {
 					g.retractWeapon(lastKey);
 					spaceDown = false;

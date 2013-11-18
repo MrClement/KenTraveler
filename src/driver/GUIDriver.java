@@ -194,6 +194,7 @@ public class GUIDriver {
 				g2d.setColor(Color.GREEN);
 				g2d.drawString(String.format("FPS: %s", fps), 20, 20);
 				g2d.drawString(String.format("Stage: %s", stage), 100, 20);
+				g2d.drawString(String.format("Enemies killed: %s", g.getNumKilled()), 180, 20);
 
 				// Blit image and flip...
 

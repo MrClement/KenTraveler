@@ -15,6 +15,7 @@ public class Grid {
 	private HashMap<Point, GridSpace> grid;
 	private Point characterLocation;
 	private Point enemyLocation;
+	private int numKilled;
 
 	/**
 	 * 
@@ -139,6 +140,7 @@ public class Grid {
 				}
 				d.sortArrayOfThings();
 				grid.put(new Point(i, j), d);
+				numKilled = 0;
 			}
 		}
 		Forge f = new Forge();
@@ -205,6 +207,7 @@ public class Grid {
 					target.remove(livingThing);
 					setEnemyLocation(null);
 					System.out.println("Killed that dude!");
+					numKilled++;
 				} else {
 					livingThing.setHp(hp);
 				}
@@ -227,5 +230,8 @@ public class Grid {
 			target.remove(grid.get(charLoc).returnCharacter().getWeapon());
 			target.sortArrayOfThings();
 		}
+	}
+	public int getNumKilled(){
+		return numKilled;
 	}
 }

@@ -20,8 +20,9 @@ public class Grid {
 	/**
 	 * 
 	 */
-	public Grid() {
+	public Grid(int numKilled) {
 		setGrid(new HashMap<Point, GridSpace>());
+		this.numKilled = numKilled;
 	}
 
 	public HashMap<Point, GridSpace> getGrid() {
@@ -140,7 +141,6 @@ public class Grid {
 				}
 				d.sortArrayOfThings();
 				grid.put(new Point(i, j), d);
-				numKilled = 0;
 			}
 		}
 		Forge f = new Forge();
@@ -233,5 +233,8 @@ public class Grid {
 	}
 	public int getNumKilled(){
 		return numKilled;
+	}
+	public void setNumKilled(int numKilled){
+		this.numKilled = numKilled;
 	}
 }

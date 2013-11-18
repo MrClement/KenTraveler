@@ -87,7 +87,8 @@ public class GUIDriver {
 		long curTime = System.currentTimeMillis();
 		long lastTime = curTime;
 
-		g = new Grid();
+		g = new Grid(0);
+		
 		g.makeDefaultGrid();
 		stage = 1;
 
@@ -157,16 +158,18 @@ public class GUIDriver {
 					frames = 0;
 				}
 				++frames;
-
+				
 				// clear back buffer...
 				if (g.getCharacterLocation().getX() >= 100) {
 					HashMap<Point, GridSpace> grid = g.getGrid();
 					Point oldLocation = g.getCharacterLocation();
 					Character c = grid.get(oldLocation).returnCharacter();
 					World w = new World();
-					g = w.drawWorld(1);
+					int killed = g.getNumKilled();
+					g = w.drawWorld(1, killed);
 					stage++;
 					grid = g.getGrid();
+					g.setNumKilled(killed);
 					ArrayList<Thing> t = new ArrayList<Thing>();
 					t.add(c);
 					GridSpace gs = new GridSpace(t);

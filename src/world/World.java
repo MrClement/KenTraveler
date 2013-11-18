@@ -28,14 +28,14 @@ public class World {
 	 *            Backgrounds, it then checks if the the character is at the end
 	 *            of the map and if it is it moves to the next background
 	 */
-	public Grid drawWorld(int i) {
+	public Grid drawWorld(int i, int killed) {
 		ArrayList<Background> BackGrounds = new ArrayList<Background>();
 		if (i == 1) {
 			BackGrounds = this.world1();
 		}
 		Background a = BackGrounds.get(0);
 
-		Grid g = new Grid();
+		Grid g = new Grid(killed);
 		HashMap<Point, GridSpace> grid = g.getGrid();
 		for (int d = 0; d < 101; d++) {
 			for (int j = 0; j < 25; j++) {

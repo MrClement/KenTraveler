@@ -32,6 +32,7 @@ public class GUIDriver {
 	private static long hangTime;
 	private static long value;
 	private static boolean spaceDown = false;
+	private static int stage = 1;
 
 	public static void main(String[] args) {
 
@@ -88,6 +89,7 @@ public class GUIDriver {
 
 		g = new Grid();
 		g.makeDefaultGrid();
+		stage = 1;
 
 		app.addKeyListener(new KeyAdapter() {
 			@Override
@@ -163,6 +165,7 @@ public class GUIDriver {
 					Character c = grid.get(oldLocation).returnCharacter();
 					World w = new World();
 					g = w.drawWorld(1);
+					stage++;
 					grid = g.getGrid();
 					ArrayList<Thing> t = new ArrayList<Thing>();
 					t.add(c);
@@ -190,6 +193,7 @@ public class GUIDriver {
 				g2d.setFont(new Font("Courier New", Font.PLAIN, 12));
 				g2d.setColor(Color.GREEN);
 				g2d.drawString(String.format("FPS: %s", fps), 20, 20);
+				g2d.drawString(String.format("Stage: %s", stage), 100, 20);
 
 				// Blit image and flip...
 

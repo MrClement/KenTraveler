@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * @author aclement
@@ -248,5 +249,16 @@ public class Grid {
 		grid.put(point, enemiesSpace);
 		setEnemyLocation(point);
 
+	}
+
+	public Point findValidEnemyLocation() {
+		Point p = null;
+		Random r = new Random();
+		while (true) {
+			p = new Point(r.nextInt(100), r.nextInt(19) + 3);
+			if (!grid.get(p).hasSolid()) {
+				return p;
+			}
+		}
 	}
 }

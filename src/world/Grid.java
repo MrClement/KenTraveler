@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * @author aclement
@@ -20,8 +21,9 @@ public class Grid {
 	/**
 	 * 
 	 */
-	public Grid() {
+	public Grid(int numKilled) {
 		setGrid(new HashMap<Point, GridSpace>());
+		this.numKilled = numKilled;
 	}
 
 	public HashMap<Point, GridSpace> getGrid() {
@@ -89,15 +91,15 @@ public class Grid {
 
 	}
 
-	public void moveEnemy() {
-		Point newLocation = new Point(getEnemyLocation());
-		if (this.characterLocation.getX() - this.enemyLocation.getX() >= 0) {
-			newLocation.translate(1, 0);
-		} else {
-			newLocation.translate(-1, 0);
-		}
+	public void moveEnemy(int x, int y) {
+		Point newLocation = new Point((int) getEnemyLocation().getX() + x, (int) getEnemyLocation().getY() + y);
 		GridSpace gs = grid.get(getEnemyLocation());
 		GridSpace gs2 = grid.get(newLocation);
+		// if (this.characterLocation.getX() - this.enemyLocation.getX() >= 0) {
+		// newLocation.translate(1, 0);
+		// } else {
+		// newLocation.translate(-1, 0);
+		// }
 		if (gs2.returnThings().size() > 0) {
 			if (gs2.hasSolid()) {
 				if (gs2.returnWeapons().size() == 0) {
@@ -140,7 +142,6 @@ public class Grid {
 				}
 				d.sortArrayOfThings();
 				grid.put(new Point(i, j), d);
-				numKilled = 0;
 			}
 		}
 		Forge f = new Forge();
@@ -159,8 +160,8 @@ public class Grid {
 		test.sortArrayOfThings();
 		GridSpace enemiesSpace = new GridSpace(enemies);
 		grid.put(new Point(20, 21), test);
-		grid.put(new Point(25, 21), enemiesSpace);
-		setEnemyLocation(new Point(25, 21));
+		grid.put(new Point(25, 19), enemiesSpace);
+		setEnemyLocation(new Point(25, 19));
 	}
 
 	public void useWeapon(int lastKeyPressed) {
@@ -231,7 +232,34 @@ public class Grid {
 			target.sortArrayOfThings();
 		}
 	}
-	public int getNumKilled(){
+
+	public int getNumKilled() {
 		return numKilled;
+	}
+
+	public void setNumKilled(int numKilled) {
+		this.numKilled = numKilled;
+	}
+
+	public void spawnNewEnemy(Point point, Enemy enemy) {
+		ArrayList<Thing> enemies = new ArrayList<Thing>();
+		enemies.add(enemy);
+		GridSpace enemiesSpace = new GridSpace(enemies);
+		enemiesSpace.sortArrayOfThings();
+		grid.put(point, enemiesSpace);
+		setEnemyLocation(point);
+
+	}
+
+	public Point findValidEnemyLocation() {
+		Point p = null;
+		Random r = new Random();
+		for (int i = 0; i < 10000; i++) {
+			p = new Point(r.nextInt(100), r.nextInt(19) + 3);
+			if (!grid.get(p).hasSolid()) {
+				return p;
+			}
+		}
+		return null;
 	}
 }

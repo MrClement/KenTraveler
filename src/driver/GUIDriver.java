@@ -15,10 +15,12 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
 import world.Character;
+import world.Enemy;
 import world.Grid;
 import world.GridSpace;
 import world.Thing;
@@ -87,7 +89,8 @@ public class GUIDriver {
 		long curTime = System.currentTimeMillis();
 		long lastTime = curTime;
 
-		g = new Grid();
+		g = new Grid(0);
+
 		g.makeDefaultGrid();
 		stage = 1;
 
@@ -121,6 +124,16 @@ public class GUIDriver {
 						g.useWeapon(lastKey);
 					}
 
+				} else if (keyCode == KeyEvent.VK_P) {
+					Random r = new Random();
+					String name = "Yo Mama";
+					Color c = Color.ORANGE;
+					Point p = g.findValidEnemyLocation();
+					if (p != null) {
+						g.spawnNewEnemy(p, new Enemy(true, c, name, 10, 10, 10));
+					} else {
+						System.out.println("Could not spawn a new enemy.");
+					}
 				}
 			}
 
@@ -143,7 +156,14 @@ public class GUIDriver {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
 					if (g.getEnemyLocation() != null) {
-						g.moveEnemy();
+
+						if (g.getEnemyLocation().getX() - g.getCharacterLocation().getX() > 0) {
+							g.moveEnemy(-1, 0);
+						} else {
+							g.moveEnemy(1, 0);
+						}
+
+						g.moveEnemy(0, 1);
 					}
 					if (gravityTime > 4 * gravityRate + hangTime) {
 						gravityTime = 0;
@@ -164,9 +184,11 @@ public class GUIDriver {
 					Point oldLocation = g.getCharacterLocation();
 					Character c = grid.get(oldLocation).returnCharacter();
 					World w = new World();
-					g = w.drawWorld(1);
+					int killed = g.getNumKilled();
+					g = w.drawWorld(1, killed);
 					stage++;
 					grid = g.getGrid();
+					g.setNumKilled(killed);
 					ArrayList<Thing> t = new ArrayList<Thing>();
 					t.add(c);
 					GridSpace gs = new GridSpace(t);

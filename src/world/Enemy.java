@@ -3,9 +3,11 @@ package world;
 import java.awt.Color;
 
 public class Enemy extends LivingThing {
-
-	public Enemy(boolean b, Color c) {
+	private int damage;
+	
+	public Enemy(boolean b, Color c, int damage) {
 		super(b, c);
+		this.damage = damage;
 	}
 
 	public Enemy(boolean b, Color c, String name, int strength, int intelligence, int dexterity) {

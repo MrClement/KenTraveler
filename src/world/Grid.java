@@ -174,6 +174,8 @@ public class Grid {
 		Forge f = new Forge();
 		ArrayList<Thing> things = new ArrayList<Thing>();
 		Character c = new Character(true, Color.BLUE);
+		c.setMaxHp(20);
+		c.setHp(20);
 		c.setWeapon(f.constructMeleeWeapons(0, (LivingThing) c));
 		things.add(c);
 		GridSpace test = new GridSpace(things);

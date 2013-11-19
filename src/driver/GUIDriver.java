@@ -15,10 +15,12 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
 import world.Character;
+import world.Enemy;
 import world.Grid;
 import world.GridSpace;
 import world.Thing;
@@ -88,7 +90,7 @@ public class GUIDriver {
 		long lastTime = curTime;
 
 		g = new Grid(0);
-		
+
 		g.makeDefaultGrid();
 		stage = 1;
 
@@ -122,6 +124,11 @@ public class GUIDriver {
 						g.useWeapon(lastKey);
 					}
 
+				} else if (keyCode == KeyEvent.VK_P) {
+					Random r = new Random();
+					String name = "Yo Mama";
+					Color c = Color.ORANGE;
+					g.spawnNewEnemy(new Point(r.nextInt(100), 21), new Enemy(true, c, name, 10, 10, 10));
 				}
 			}
 
@@ -158,7 +165,7 @@ public class GUIDriver {
 					frames = 0;
 				}
 				++frames;
-				
+
 				// clear back buffer...
 				if (g.getCharacterLocation().getX() >= 100) {
 					HashMap<Point, GridSpace> grid = g.getGrid();

@@ -239,4 +239,14 @@ public class Grid {
 	public void setNumKilled(int numKilled) {
 		this.numKilled = numKilled;
 	}
+
+	public void spawnNewEnemy(Point point, Enemy enemy) {
+		ArrayList<Thing> enemies = new ArrayList<Thing>();
+		enemies.add(enemy);
+		GridSpace enemiesSpace = new GridSpace(enemies);
+		enemiesSpace.sortArrayOfThings();
+		grid.put(point, enemiesSpace);
+		setEnemyLocation(point);
+
+	}
 }

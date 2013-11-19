@@ -15,7 +15,6 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -125,10 +124,14 @@ public class GUIDriver {
 					}
 
 				} else if (keyCode == KeyEvent.VK_P) {
-					Random r = new Random();
 					String name = "Yo Mama";
 					Color c = Color.ORANGE;
-					g.spawnNewEnemy(new Point(r.nextInt(100), 21), new Enemy(true, c, name, 10, 10, 10));
+					Point p = g.findValidEnemyLocation();
+					if (p != null) {
+						g.spawnNewEnemy(p, new Enemy(true, c, name, 10, 10, 10));
+					} else {
+						System.out.println("Could not spawn a new enemy.");
+					}
 				}
 			}
 

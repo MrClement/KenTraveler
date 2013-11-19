@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 /**
  * @author aclement
@@ -88,7 +89,31 @@ public class Grid {
 		setCharacterLocation(newLocation);
 
 	}
-
+	public void moveRangedWeapon(){
+		for(Entry<Point, GridSpace> e: grid.entrySet()){
+			if(e.getValue().returnWeapons().size() > 0){
+			if(e.getValue().returnWeapons().get(0) instanceof RangedWeapon){
+				if(((RangedWeapon)(e.getValue().returnWeapons().get(0))).getCurrentSpeed() > 0){
+					GridSpace target=grid.get(new Point((int)(e.getKey().getX()+1), (int)(e.getKey().getY())));
+					if(!target.hasSolid()){
+					target.add(e.getValue().returnWeapons().get(0));
+					e.getValue().remove(e.getValue().returnWeapons().get(0));
+					e.getValue().sortArrayOfThings();
+					}
+				}
+				else if(((RangedWeapon)(e.getValue().returnWeapons().get(0))).getCurrentSpeed() < 0){
+					GridSpace target=grid.get(new Point((int)(e.getKey().getX()-1), (int)(e.getKey().getY())));
+					if(!target.hasSolid()){
+					target.add(e.getValue().returnWeapons().get(0));
+					e.getValue().remove(e.getValue().returnWeapons().get(0));
+					e.getValue().sortArrayOfThings();
+					}
+				}
+			}
+			
+		}
+	}
+	}
 	public void moveEnemy() {
 		Point newLocation = new Point(getEnemyLocation());
 		if (this.characterLocation.getX() - this.enemyLocation.getX() >= 0) {

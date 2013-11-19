@@ -145,6 +145,7 @@ public class GUIDriver {
 					if (g.getEnemyLocation() != null) {
 						g.moveEnemy();
 					}
+					g.moveRangedWeapon();
 					if (gravityTime > 4 * gravityRate + hangTime) {
 						gravityTime = 0;
 						value = gravityRate + hangTime;

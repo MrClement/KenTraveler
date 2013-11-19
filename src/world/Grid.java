@@ -231,10 +231,12 @@ public class Grid {
 			target.sortArrayOfThings();
 		}
 	}
-	public int getNumKilled(){
+
+	public int getNumKilled() {
 		return numKilled;
 	}
-	public void setNumKilled(int numKilled){
+
+	public void setNumKilled(int numKilled) {
 		this.numKilled = numKilled;
 	}
 }

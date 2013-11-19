@@ -155,6 +155,7 @@ public class GUIDriver {
 				if (gravityTime > value) {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
+					g.moveRangedWeapon();
 					if (g.getEnemyLocation() != null) {
 
 						if (g.getEnemyLocation().getX() - g.getCharacterLocation().getX() > 0) {

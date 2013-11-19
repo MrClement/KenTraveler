@@ -95,11 +95,11 @@ public class Grid {
 		Point newLocation = new Point((int) getEnemyLocation().getX() + x, (int) getEnemyLocation().getY() + y);
 		GridSpace gs = grid.get(getEnemyLocation());
 		GridSpace gs2 = grid.get(newLocation);
-//		if (this.characterLocation.getX() - this.enemyLocation.getX() >= 0) {
-//			newLocation.translate(1, 0);
-//		} else {
-//			newLocation.translate(-1, 0);
-//		}
+		// if (this.characterLocation.getX() - this.enemyLocation.getX() >= 0) {
+		// newLocation.translate(1, 0);
+		// } else {
+		// newLocation.translate(-1, 0);
+		// }
 		if (gs2.returnThings().size() > 0) {
 			if (gs2.hasSolid()) {
 				if (gs2.returnWeapons().size() == 0) {
@@ -254,11 +254,12 @@ public class Grid {
 	public Point findValidEnemyLocation() {
 		Point p = null;
 		Random r = new Random();
-		while (true) {
+		for (int i = 0; i < 10000; i++) {
 			p = new Point(r.nextInt(100), r.nextInt(19) + 3);
 			if (!grid.get(p).hasSolid()) {
 				return p;
 			}
 		}
+		return null;
 	}
 }

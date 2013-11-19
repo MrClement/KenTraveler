@@ -128,7 +128,12 @@ public class GUIDriver {
 					Random r = new Random();
 					String name = "Yo Mama";
 					Color c = Color.ORANGE;
-					g.spawnNewEnemy(new Point(r.nextInt(100), 21), new Enemy(true, c, name, 10, 10, 10));
+					Point p = g.findValidEnemyLocation();
+					if (p != null) {
+						g.spawnNewEnemy(p, new Enemy(true, c, name, 10, 10, 10));
+					} else {
+						System.out.println("Could not spawn a new enemy.");
+					}
 				}
 			}
 
@@ -151,13 +156,13 @@ public class GUIDriver {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
 					if (g.getEnemyLocation() != null) {
-						
-						if(g.getEnemyLocation().getX() - g.getCharacterLocation().getX() > 0){
+
+						if (g.getEnemyLocation().getX() - g.getCharacterLocation().getX() > 0) {
 							g.moveEnemy(-1, 0);
 						} else {
 							g.moveEnemy(1, 0);
 						}
-						
+
 						g.moveEnemy(0, 1);
 					}
 					if (gravityTime > 4 * gravityRate + hangTime) {

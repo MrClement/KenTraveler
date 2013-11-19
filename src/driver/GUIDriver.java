@@ -15,6 +15,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -124,14 +125,10 @@ public class GUIDriver {
 					}
 
 				} else if (keyCode == KeyEvent.VK_P) {
+					Random r = new Random();
 					String name = "Yo Mama";
 					Color c = Color.ORANGE;
-					Point p = g.findValidEnemyLocation();
-					if (p != null) {
-						g.spawnNewEnemy(p, new Enemy(true, c, name, 10, 10, 10));
-					} else {
-						System.out.println("Could not spawn a new enemy.");
-					}
+					g.spawnNewEnemy(new Point(r.nextInt(100), 21), new Enemy(true, c, name, 10, 10, 10));
 				}
 			}
 
@@ -154,7 +151,14 @@ public class GUIDriver {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
 					if (g.getEnemyLocation() != null) {
-						g.moveEnemy();
+						
+						if(g.getEnemyLocation().getX() - g.getCharacterLocation().getX() > 0){
+							g.moveEnemy(-1, 0);
+						} else {
+							g.moveEnemy(1, 0);
+						}
+						
+						g.moveEnemy(0, 1);
 					}
 					if (gravityTime > 4 * gravityRate + hangTime) {
 						gravityTime = 0;

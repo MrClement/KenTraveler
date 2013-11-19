@@ -91,15 +91,15 @@ public class Grid {
 
 	}
 
-	public void moveEnemy() {
-		Point newLocation = new Point(getEnemyLocation());
-		if (this.characterLocation.getX() - this.enemyLocation.getX() >= 0) {
-			newLocation.translate(1, 0);
-		} else {
-			newLocation.translate(-1, 0);
-		}
+	public void moveEnemy(int x, int y) {
+		Point newLocation = new Point((int) getEnemyLocation().getX() + x, (int) getEnemyLocation().getY() + y);
 		GridSpace gs = grid.get(getEnemyLocation());
 		GridSpace gs2 = grid.get(newLocation);
+//		if (this.characterLocation.getX() - this.enemyLocation.getX() >= 0) {
+//			newLocation.translate(1, 0);
+//		} else {
+//			newLocation.translate(-1, 0);
+//		}
 		if (gs2.returnThings().size() > 0) {
 			if (gs2.hasSolid()) {
 				if (gs2.returnWeapons().size() == 0) {
@@ -160,8 +160,8 @@ public class Grid {
 		test.sortArrayOfThings();
 		GridSpace enemiesSpace = new GridSpace(enemies);
 		grid.put(new Point(20, 21), test);
-		grid.put(new Point(25, 21), enemiesSpace);
-		setEnemyLocation(new Point(25, 21));
+		grid.put(new Point(25, 19), enemiesSpace);
+		setEnemyLocation(new Point(25, 19));
 	}
 
 	public void useWeapon(int lastKeyPressed) {

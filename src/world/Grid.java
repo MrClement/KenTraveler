@@ -97,26 +97,61 @@ public class Grid {
 			if(e.getValue().returnWeapons().size() > 0){
 			if(e.getValue().returnWeapons().get(0) instanceof RangedWeapon){
 				if(((RangedWeapon)(e.getValue().returnWeapons().get(0))).getCurrentSpeed() > 0){
+					Point targetPoint=new Point((int)(e.getKey().getX()+1), (int)(e.getKey().getY()));
 					GridSpace target=grid.get(new Point((int)(e.getKey().getX()+1), (int)(e.getKey().getY())));
-					if(!target.hasSolid()){
+					if(targetPoint.getX()==101){
+						e.getValue().remove(e.getValue().returnWeapons().get(0));
+						e.getValue().sortArrayOfThings();
+					}
+					else if(target.returnLivingThings().size()>0){
 					target.add(e.getValue().returnWeapons().get(0));
 					e.getValue().remove(e.getValue().returnWeapons().get(0));
 					e.getValue().sortArrayOfThings();
+					dealDamage(target, target.returnWeapons().get(0));
+					target.remove(target.returnWeapons().get(0));
+					e.getValue().sortArrayOfThings();
+				}
+					else if(target.hasSolid()){
+						e.getValue().remove(e.getValue().returnWeapons().get(0));
+						e.getValue().sortArrayOfThings();
+					}
+					else{
+						target.add(e.getValue().returnWeapons().get(0));
+						e.getValue().remove(e.getValue().returnWeapons().get(0));
+						e.getValue().sortArrayOfThings();
 					}
 				}
 				else if(((RangedWeapon)(e.getValue().returnWeapons().get(0))).getCurrentSpeed() < 0){
+					Point targetPoint=new Point((int)(e.getKey().getX()+1), (int)(e.getKey().getY()));
 					GridSpace target=grid.get(new Point((int)(e.getKey().getX()-1), (int)(e.getKey().getY())));
-					if(!target.hasSolid()){
+					if(targetPoint.getX()==-1){
+						e.getValue().remove(e.getValue().returnWeapons().get(0));
+						e.getValue().sortArrayOfThings();
+					}
+					else if(target.returnLivingThings().size()>0){
 					target.add(e.getValue().returnWeapons().get(0));
 					e.getValue().remove(e.getValue().returnWeapons().get(0));
 					e.getValue().sortArrayOfThings();
+					dealDamage(target, target.returnWeapons().get(0));
+					target.remove(target.returnWeapons().get(0));
+					e.getValue().sortArrayOfThings();
+				}
+					else if(target.hasSolid()){
+						e.getValue().remove(e.getValue().returnWeapons().get(0));
+						e.getValue().sortArrayOfThings();
 					}
+					else{
+						target.add(e.getValue().returnWeapons().get(0));
+						e.getValue().remove(e.getValue().returnWeapons().get(0));
+						e.getValue().sortArrayOfThings();
+					}
+				}
 				}
 			}
 			
 		}
 	}
-	}
+	
 	
 	public void moveEnemy(int x, int y) {
 		for(int i = 0; i < enemyLocation.size(); i++){

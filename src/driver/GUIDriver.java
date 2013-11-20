@@ -1,5 +1,6 @@
 package driver;
 
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
@@ -23,6 +24,8 @@ import world.Character;
 import world.Enemy;
 import world.Grid;
 import world.GridSpace;
+import world.LivingThing;
+import world.Terrain;
 import world.Thing;
 import world.World;
 
@@ -160,10 +163,46 @@ public class GUIDriver {
 					g.moveRangedWeapon();
 					if (g.getEnemyLocation() != null) {
 
+						Point p = g.getEnemyLocation();
+						Point q = new Point((int) g.getEnemyLocation().getX(), (int) g.getEnemyLocation().getY() + 1);
+						GridSpace gs = g.getGrid().get(q);
+						
 						if (g.getEnemyLocation().getX() - g.getCharacterLocation().getX() > 0) {
 							g.moveEnemy(-1, 0);
 						} else {
 							g.moveEnemy(1, 0);
+						}
+						
+						if(p.equals(g.getEnemyLocation())){
+							
+							if (gs.returnThings().size() > 0) {
+								if (gs.hasSolid()) {
+									if (gs.returnWeapons().size() == 0) {
+										g.moveEnemy(0, -1);
+										g.moveEnemy(0, -1);
+										g.moveEnemy(0, -1);
+										g.moveEnemy(0, -1);
+									} else {
+										for (LivingThing e : gs.returnLivingThings()) {
+											if (e.getSolid()) {
+												g.moveEnemy(0, -1);
+												g.moveEnemy(0, -1);
+												g.moveEnemy(0, -1);
+												g.moveEnemy(0, -1);
+											}
+										}
+										for (Terrain t : gs.returnTerrain()) {
+											if (t.getSolid()) {
+												g.moveEnemy(0, -1);
+												g.moveEnemy(0, -1);
+												g.moveEnemy(0, -1);
+												g.moveEnemy(0, -1);
+											}
+										}
+									}
+								}
+							}
+							
 						}
 
 						g.moveEnemy(0, 1);

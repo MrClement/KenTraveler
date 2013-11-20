@@ -1,6 +1,5 @@
 package driver;
 
-
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
@@ -156,7 +155,7 @@ public class GUIDriver {
 				curTime = System.currentTimeMillis();
 				totalTime += curTime - lastTime;
 				gravityTime += curTime - lastTime;
-				enemyDamageTime += curTime-lastTime;
+				enemyDamageTime += curTime - lastTime;
 				if (gravityTime > value) {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
@@ -165,15 +164,15 @@ public class GUIDriver {
 						Point p = g.getEnemyLocation();
 						Point q = new Point((int) g.getEnemyLocation().getX(), (int) g.getEnemyLocation().getY() + 1);
 						GridSpace gs = g.getGrid().get(q);
-						
+
 						if (g.getEnemyLocation().getX() - g.getCharacterLocation().getX() > 0) {
 							g.moveEnemy(-1, 0);
 						} else {
 							g.moveEnemy(1, 0);
 						}
-						
-						if(p.equals(g.getEnemyLocation())){
-							
+
+						if (p.equals(g.getEnemyLocation())) {
+
 							if (gs.returnThings().size() > 0) {
 								if (gs.hasSolid()) {
 									if (gs.returnWeapons().size() == 0) {
@@ -201,7 +200,7 @@ public class GUIDriver {
 									}
 								}
 							}
-							
+
 						}
 
 						g.moveEnemy(0, 1);
@@ -211,8 +210,8 @@ public class GUIDriver {
 						value = gravityRate + hangTime;
 					}
 				}
-				if (enemyDamageTime > 500){
-					
+				if (enemyDamageTime > 500) {
+
 				}
 				if (totalTime > 1000) {
 
@@ -261,12 +260,26 @@ public class GUIDriver {
 				g2d.drawString(String.format("FPS: %s", fps), 20, 20);
 				g2d.drawString(String.format("Stage: %s", stage), 100, 20);
 				g2d.drawString(String.format("Enemies killed: %s", g.getNumKilled()), 180, 20);
-				switch(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getHp()){
-				case 20: g2d.drawString("Health: * * * *", 320, 20); break;
-				case 15: g2d.drawString("Health: * * * _", 320, 20); break;
-				case 10: g2d.drawString("Health: * * _ _", 320, 20); break;
-				case 5: g2d.drawString("Health: * _ _ _", 320, 20); break;
-				default: g2d.drawString("Health: _ _ _ _", 320, 20); break;
+				try {
+					switch (g.getGrid().get(g.getCharacterLocation()).returnCharacter().getHp()) {
+						case 20:
+							g2d.drawString("Health: * * * *", 320, 20);
+							break;
+						case 15:
+							g2d.drawString("Health: * * * _", 320, 20);
+							break;
+						case 10:
+							g2d.drawString("Health: * * _ _", 320, 20);
+							break;
+						case 5:
+							g2d.drawString("Health: * _ _ _", 320, 20);
+							break;
+						default:
+							g2d.drawString("Health: _ _ _ _", 320, 20);
+							break;
+					}
+				} catch (NullPointerException e) {
+					System.out.println("Caught that error");
 				}
 
 				// Blit image and flip...

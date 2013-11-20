@@ -13,5 +13,9 @@ public class Enemy extends LivingThing {
 	public Enemy(boolean b, Color c, String name, int strength, int intelligence, int dexterity) {
 		super(name, strength, intelligence, dexterity, b, c);
 	}
+	
+	public int getDamage(){
+		return damage;
+	}
 
 }

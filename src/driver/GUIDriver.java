@@ -83,6 +83,7 @@ public class GUIDriver {
 		int frames = 0;
 		long totalTime = 0;
 		long gravityTime = 0;
+		long enemyDamageTime = 0;
 		hangTime = 500;
 		gravityRate = 300;
 		value = gravityRate + hangTime;
@@ -152,6 +153,7 @@ public class GUIDriver {
 				curTime = System.currentTimeMillis();
 				totalTime += curTime - lastTime;
 				gravityTime += curTime - lastTime;
+				enemyDamageTime += curTime-lastTime;
 				if (gravityTime > value) {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
@@ -170,6 +172,9 @@ public class GUIDriver {
 						gravityTime = 0;
 						value = gravityRate + hangTime;
 					}
+				}
+				if (enemyDamageTime > 500){
+					
 				}
 				if (totalTime > 1000) {
 
@@ -218,26 +223,12 @@ public class GUIDriver {
 				g2d.drawString(String.format("FPS: %s", fps), 20, 20);
 				g2d.drawString(String.format("Stage: %s", stage), 100, 20);
 				g2d.drawString(String.format("Enemies killed: %s", g.getNumKilled()), 180, 20);
-				try {
-					switch (g.getGrid().get(g.getCharacterLocation()).returnCharacter().getHp()) {
-						case 20:
-							g2d.drawString("Health: * * * *", 320, 20);
-							break;
-						case 15:
-							g2d.drawString("Health: * * * _", 320, 20);
-							break;
-						case 10:
-							g2d.drawString("Health: * * _ _", 320, 20);
-							break;
-						case 5:
-							g2d.drawString("Health: * _ _ _", 320, 20);
-							break;
-						default:
-							g2d.drawString("Health: _ _ _ _", 320, 20);
-							break;
-					}
-				} catch (NullPointerException e) {
-					System.out.println("Caught that error");
+				switch(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getHp()){
+				case 20: g2d.drawString("Health: * * * *", 320, 20); break;
+				case 15: g2d.drawString("Health: * * * _", 320, 20); break;
+				case 10: g2d.drawString("Health: * * _ _", 320, 20); break;
+				case 5: g2d.drawString("Health: * _ _ _", 320, 20); break;
+				default: g2d.drawString("Health: _ _ _ _", 320, 20); break;
 				}
 
 				// Blit image and flip...

@@ -261,6 +261,17 @@ public class Grid {
 			target.sortArrayOfThings();
 		}
 	}
+	public void characterDamage(Enemy e){
+		if(grid.get(characterLocation).returnCharacter() == null){
+			return;
+		}else{
+			grid.get(characterLocation).returnCharacter().updateHp(-5);
+			if (grid.get(characterLocation).returnCharacter().getHp() <= 0){
+				grid.get(characterLocation).remove(grid.get(characterLocation).returnCharacter());
+				System.out.println("You died.");
+			}
+		}
+	}
 
 	public int getNumKilled() {
 		return numKilled;

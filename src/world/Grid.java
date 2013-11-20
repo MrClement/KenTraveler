@@ -23,6 +23,7 @@ public class Grid {
 	 * 
 	 */
 	public Grid(int numKilled) {
+		enemyLocation = new ArrayList<Point>();
 		setGrid(new HashMap<Point, GridSpace>());
 		this.numKilled = numKilled;
 	}
@@ -92,102 +93,98 @@ public class Grid {
 
 	}
 
-	public void moveRangedWeapon(){
-		for(Entry<Point, GridSpace> e: grid.entrySet()){
-			if(e.getValue().returnWeapons().size() > 0){
-			if(e.getValue().returnWeapons().get(0) instanceof RangedWeapon){
-				if(((RangedWeapon)(e.getValue().returnWeapons().get(0))).getCurrentSpeed() > 0){
-					Point targetPoint=new Point((int)(e.getKey().getX()+1), (int)(e.getKey().getY()));
-					GridSpace target=grid.get(new Point((int)(e.getKey().getX()+1), (int)(e.getKey().getY())));
-					if(targetPoint.getX()==101){
-						e.getValue().remove(e.getValue().returnWeapons().get(0));
-						e.getValue().sortArrayOfThings();
+	public void moveRangedWeapon() {
+		for (Entry<Point, GridSpace> e : grid.entrySet()) {
+			if (e.getValue().returnWeapons().size() > 0) {
+				if (e.getValue().returnWeapons().get(0) instanceof RangedWeapon) {
+					if (((RangedWeapon) (e.getValue().returnWeapons().get(0))).getCurrentSpeed() > 0) {
+						Point targetPoint = new Point((int) (e.getKey().getX() + 1), (int) (e.getKey().getY()));
+						GridSpace target = grid
+								.get(new Point((int) (e.getKey().getX() + 1), (int) (e.getKey().getY())));
+						if (targetPoint.getX() == 101) {
+							e.getValue().remove(e.getValue().returnWeapons().get(0));
+							e.getValue().sortArrayOfThings();
+						} else if (target.returnLivingThings().size() > 0) {
+							target.add(e.getValue().returnWeapons().get(0));
+							e.getValue().remove(e.getValue().returnWeapons().get(0));
+							e.getValue().sortArrayOfThings();
+							dealDamage(target, target.returnWeapons().get(0));
+							target.remove(target.returnWeapons().get(0));
+							e.getValue().sortArrayOfThings();
+						} else if (target.hasSolid()) {
+							e.getValue().remove(e.getValue().returnWeapons().get(0));
+							e.getValue().sortArrayOfThings();
+						} else {
+							target.add(e.getValue().returnWeapons().get(0));
+							e.getValue().remove(e.getValue().returnWeapons().get(0));
+							e.getValue().sortArrayOfThings();
+						}
+					} else if (((RangedWeapon) (e.getValue().returnWeapons().get(0))).getCurrentSpeed() < 0) {
+						Point targetPoint = new Point((int) (e.getKey().getX() + 1), (int) (e.getKey().getY()));
+						GridSpace target = grid
+								.get(new Point((int) (e.getKey().getX() - 1), (int) (e.getKey().getY())));
+						if (targetPoint.getX() == -1) {
+							e.getValue().remove(e.getValue().returnWeapons().get(0));
+							e.getValue().sortArrayOfThings();
+						} else if (target.returnLivingThings().size() > 0) {
+							target.add(e.getValue().returnWeapons().get(0));
+							e.getValue().remove(e.getValue().returnWeapons().get(0));
+							e.getValue().sortArrayOfThings();
+							dealDamage(target, target.returnWeapons().get(0));
+							target.remove(target.returnWeapons().get(0));
+							e.getValue().sortArrayOfThings();
+						} else if (target.hasSolid()) {
+							e.getValue().remove(e.getValue().returnWeapons().get(0));
+							e.getValue().sortArrayOfThings();
+						} else {
+							target.add(e.getValue().returnWeapons().get(0));
+							e.getValue().remove(e.getValue().returnWeapons().get(0));
+							e.getValue().sortArrayOfThings();
+						}
 					}
-					else if(target.returnLivingThings().size()>0){
-					target.add(e.getValue().returnWeapons().get(0));
-					e.getValue().remove(e.getValue().returnWeapons().get(0));
-					e.getValue().sortArrayOfThings();
-					dealDamage(target, target.returnWeapons().get(0));
-					target.remove(target.returnWeapons().get(0));
-					e.getValue().sortArrayOfThings();
-				}
-					else if(target.hasSolid()){
-						e.getValue().remove(e.getValue().returnWeapons().get(0));
-						e.getValue().sortArrayOfThings();
-					}
-					else{
-						target.add(e.getValue().returnWeapons().get(0));
-						e.getValue().remove(e.getValue().returnWeapons().get(0));
-						e.getValue().sortArrayOfThings();
-					}
-				}
-				else if(((RangedWeapon)(e.getValue().returnWeapons().get(0))).getCurrentSpeed() < 0){
-					Point targetPoint=new Point((int)(e.getKey().getX()+1), (int)(e.getKey().getY()));
-					GridSpace target=grid.get(new Point((int)(e.getKey().getX()-1), (int)(e.getKey().getY())));
-					if(targetPoint.getX()==-1){
-						e.getValue().remove(e.getValue().returnWeapons().get(0));
-						e.getValue().sortArrayOfThings();
-					}
-					else if(target.returnLivingThings().size()>0){
-					target.add(e.getValue().returnWeapons().get(0));
-					e.getValue().remove(e.getValue().returnWeapons().get(0));
-					e.getValue().sortArrayOfThings();
-					dealDamage(target, target.returnWeapons().get(0));
-					target.remove(target.returnWeapons().get(0));
-					e.getValue().sortArrayOfThings();
-				}
-					else if(target.hasSolid()){
-						e.getValue().remove(e.getValue().returnWeapons().get(0));
-						e.getValue().sortArrayOfThings();
-					}
-					else{
-						target.add(e.getValue().returnWeapons().get(0));
-						e.getValue().remove(e.getValue().returnWeapons().get(0));
-						e.getValue().sortArrayOfThings();
-					}
-				}
 				}
 			}
-			
+
 		}
 	}
-	
-	
+
 	public void moveEnemy(int x, int y) {
-		for(int i = 0; i < enemyLocation.size(); i++){
-		Point newLocation = new Point((int) getEnemyLocation().get(i).getX() + x, (int) getEnemyLocation().get(i).getY() + y);
-		GridSpace gs = grid.get(getEnemyLocation());
-		GridSpace gs2 = grid.get(newLocation);
-		// if (this.characterLocation.getX() - this.enemyLocation.getX() >= 0) {
-		// newLocation.translate(1, 0);
-		// } else {
-		// newLocation.translate(-1, 0);
-		// }
-		if (gs2.returnThings().size() > 0) {
-			if (gs2.hasSolid()) {
-				if (gs2.returnWeapons().size() == 0) {
-					return;
-				} else {
-					for (LivingThing e : gs2.returnLivingThings()) {
-						if (e.getSolid()) {
-							return;
+		for (int i = 0; i < enemyLocation.size(); i++) {
+			Point newLocation = new Point((int) getEnemyLocation().get(i).getX() + x, (int) getEnemyLocation().get(i)
+					.getY() + y);
+			GridSpace gs = grid.get(getEnemyLocation().get(i));
+			GridSpace gs2 = grid.get(newLocation);
+			// if (this.characterLocation.getX() - this.enemyLocation.getX() >=
+			// 0) {
+			// newLocation.translate(1, 0);
+			// } else {
+			// newLocation.translate(-1, 0);
+			// }
+			if (gs2.returnThings().size() > 0) {
+				if (gs2.hasSolid()) {
+					if (gs2.returnWeapons().size() == 0) {
+						return;
+					} else {
+						for (LivingThing e : gs2.returnLivingThings()) {
+							if (e.getSolid()) {
+								return;
+							}
 						}
-					}
-					for (Terrain t : gs2.returnTerrain()) {
-						if (t.getSolid()) {
-							return;
+						for (Terrain t : gs2.returnTerrain()) {
+							if (t.getSolid()) {
+								return;
+							}
 						}
 					}
 				}
 			}
-		}
-		Thing t = gs.remove(gs.returnThings().get(0));
-		gs2.add(t);
-		gs.sortArrayOfThings();
-		gs2.sortArrayOfThings();
-		grid.put(getEnemyLocation().get(i), gs);
-		grid.put(newLocation, gs2);
-		setEnemyLocation(newLocation);
+			Thing t = gs.remove(gs.returnThings().get(0));
+			gs2.add(t);
+			gs.sortArrayOfThings();
+			gs2.sortArrayOfThings();
+			grid.put(getEnemyLocation().get(i), gs);
+			grid.put(newLocation, gs2);
+			setEnemyLocation(newLocation);
 		}
 	}
 
@@ -298,12 +295,13 @@ public class Grid {
 			target.sortArrayOfThings();
 		}
 	}
-	public void characterDamage(Enemy e){
-		if(grid.get(characterLocation).returnCharacter() == null){
+
+	public void characterDamage(Enemy e) {
+		if (grid.get(characterLocation).returnCharacter() == null) {
 			return;
-		}else{
+		} else {
 			grid.get(characterLocation).returnCharacter().updateHp(-5);
-			if (grid.get(characterLocation).returnCharacter().getHp() <= 0){
+			if (grid.get(characterLocation).returnCharacter().getHp() <= 0) {
 				grid.get(characterLocation).remove(grid.get(characterLocation).returnCharacter());
 				System.out.println("You died.");
 			}

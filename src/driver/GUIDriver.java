@@ -160,12 +160,12 @@ public class GUIDriver {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
 					g.moveRangedWeapon();
-					if (g.getEnemyLocation() != null) {
-						Point p = g.getEnemyLocation();
-						Point q = new Point((int) g.getEnemyLocation().getX(), (int) g.getEnemyLocation().getY() + 1);
+					for (Point p : g.getEnemyLocation()) {
+
+						Point q = new Point((int) p.getX(), (int) p.getY() + 1);
 						GridSpace gs = g.getGrid().get(q);
 
-						if (g.getEnemyLocation().getX() - g.getCharacterLocation().getX() > 0) {
+						if (p.getX() - g.getCharacterLocation().getX() > 0) {
 							g.moveEnemy(-1, 0);
 						} else {
 							g.moveEnemy(1, 0);

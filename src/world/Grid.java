@@ -16,7 +16,7 @@ public class Grid {
 
 	private HashMap<Point, GridSpace> grid;
 	private Point characterLocation;
-	private Point enemyLocation;
+	private ArrayList <Point> enemyLocation;
 	private int numKilled;
 
 	/**
@@ -43,12 +43,12 @@ public class Grid {
 		this.characterLocation = characterLocation;
 	}
 
-	public Point getEnemyLocation() {
+	public ArrayList<Point> getEnemyLocation() {
 		return enemyLocation;
 	}
 
 	public void setEnemyLocation(Point enemyLocation) {
-		this.enemyLocation = enemyLocation;
+		this.enemyLocation.add(enemyLocation);
 	}
 
 	public void moveCharacter(int x, int y, int lastKeyPressed) {
@@ -119,7 +119,9 @@ public class Grid {
 	}
 	
 	public void moveEnemy(int x, int y) {
-		Point newLocation = new Point((int) getEnemyLocation().getX() + x, (int) getEnemyLocation().getY() + y);
+		for(int i = 0; i < enemyLocation.size(); i++)
+		{
+		Point newLocation = new Point((int) getEnemyLocation().get(i).getX() + x, (int) getEnemyLocation().get(i).getY() + y);
 		GridSpace gs = grid.get(getEnemyLocation());
 		GridSpace gs2 = grid.get(newLocation);
 		// if (this.characterLocation.getX() - this.enemyLocation.getX() >= 0) {
@@ -149,9 +151,10 @@ public class Grid {
 		gs2.add(t);
 		gs.sortArrayOfThings();
 		gs2.sortArrayOfThings();
-		grid.put(getEnemyLocation(), gs);
+		grid.put(getEnemyLocation().get(i), gs);
 		grid.put(newLocation, gs2);
 		setEnemyLocation(newLocation);
+		}
 	}
 
 	public void makeDefaultGrid() {
@@ -259,17 +262,6 @@ public class Grid {
 			GridSpace target = grid.get(side);
 			target.remove(grid.get(charLoc).returnCharacter().getWeapon());
 			target.sortArrayOfThings();
-		}
-	}
-	public void characterDamage(Enemy e){
-		if(grid.get(characterLocation).returnCharacter() == null){
-			return;
-		}else{
-			grid.get(characterLocation).returnCharacter().updateHp(-5);
-			if (grid.get(characterLocation).returnCharacter().getHp() <= 0){
-				grid.get(characterLocation).remove(grid.get(characterLocation).returnCharacter());
-				System.out.println("You died.");
-			}
 		}
 	}
 

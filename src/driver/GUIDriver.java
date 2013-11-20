@@ -218,12 +218,26 @@ public class GUIDriver {
 				g2d.drawString(String.format("FPS: %s", fps), 20, 20);
 				g2d.drawString(String.format("Stage: %s", stage), 100, 20);
 				g2d.drawString(String.format("Enemies killed: %s", g.getNumKilled()), 180, 20);
-				switch(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getHp()){
-				case 20: g2d.drawString("Health: * * * *", 320, 20); break;
-				case 15: g2d.drawString("Health: * * * _", 320, 20); break;
-				case 10: g2d.drawString("Health: * * _ _", 320, 20); break;
-				case 5: g2d.drawString("Health: * _ _ _", 320, 20); break;
-				default: g2d.drawString("Health: _ _ _ _", 320, 20); break;
+				try {
+					switch (g.getGrid().get(g.getCharacterLocation()).returnCharacter().getHp()) {
+						case 20:
+							g2d.drawString("Health: * * * *", 320, 20);
+							break;
+						case 15:
+							g2d.drawString("Health: * * * _", 320, 20);
+							break;
+						case 10:
+							g2d.drawString("Health: * * _ _", 320, 20);
+							break;
+						case 5:
+							g2d.drawString("Health: * _ _ _", 320, 20);
+							break;
+						default:
+							g2d.drawString("Health: _ _ _ _", 320, 20);
+							break;
+					}
+				} catch (NullPointerException e) {
+					System.out.println("Caught that error");
 				}
 
 				// Blit image and flip...

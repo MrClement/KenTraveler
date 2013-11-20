@@ -162,7 +162,6 @@ public class GUIDriver {
 					g.moveCharacter(0, 1, lastKey);
 					g.moveRangedWeapon();
 					if (g.getEnemyLocation() != null) {
-
 						Point p = g.getEnemyLocation();
 						Point q = new Point((int) g.getEnemyLocation().getX(), (int) g.getEnemyLocation().getY() + 1);
 						GridSpace gs = g.getGrid().get(q);

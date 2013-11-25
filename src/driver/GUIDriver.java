@@ -171,7 +171,7 @@ public class GUIDriver {
 							g.moveEnemy(1, 0);
 						}
 
-						if (true) {
+						if (p.equals(g.getEnemyLocation().get(i))) {
 
 							if (gs.returnThings().size() > 0) {
 								if (gs.hasSolid()) {

@@ -166,9 +166,11 @@ public class GUIDriver {
 						GridSpace gs = g.getGrid().get(q);
 
 						if (p.getX() - g.getCharacterLocation().getX() > 0) {
-							g.moveEnemy(-1, 0);
+							g.moveEnemy(-1, 0, p);
+							p.translate(-1, 0);
 						} else {
-							g.moveEnemy(1, 0);
+							g.moveEnemy(1, 0, p);
+							p.translate(1, 0);
 						}
 
 						if (p.equals(g.getEnemyLocation().get(i))) {
@@ -176,25 +178,37 @@ public class GUIDriver {
 							if (gs.returnThings().size() > 0) {
 								if (gs.hasSolid()) {
 									if (gs.returnWeapons().size() == 0) {
-										g.moveEnemy(0, -1);
-										g.moveEnemy(0, -1);
-										g.moveEnemy(0, -1);
-										g.moveEnemy(0, -1);
+										g.moveEnemy(0, -1, p);
+										p.translate(0, -1);
+										g.moveEnemy(0, -1, p);
+										p.translate(0, -1);
+										g.moveEnemy(0, -1, p);
+										p.translate(0, -1);
+										g.moveEnemy(0, -1, p);
+										p.translate(0, -1);
 									} else {
 										for (LivingThing e : gs.returnLivingThings()) {
 											if (e.getSolid()) {
-												g.moveEnemy(0, -1);
-												g.moveEnemy(0, -1);
-												g.moveEnemy(0, -1);
-												g.moveEnemy(0, -1);
+												g.moveEnemy(0, -1, p);
+												p.translate(0, -1);
+												g.moveEnemy(0, -1, p);
+												p.translate(0, -1);
+												g.moveEnemy(0, -1, p);
+												p.translate(0, -1);
+												g.moveEnemy(0, -1, p);
+												p.translate(0, -1);
 											}
 										}
 										for (Terrain t : gs.returnTerrain()) {
 											if (t.getSolid()) {
-												g.moveEnemy(0, -1);
-												g.moveEnemy(0, -1);
-												g.moveEnemy(0, -1);
-												g.moveEnemy(0, -1);
+												g.moveEnemy(0, -1, p);
+												p.translate(0, -1);
+												g.moveEnemy(0, -1, p);
+												p.translate(0, -1);
+												g.moveEnemy(0, -1, p);
+												p.translate(0, -1);
+												g.moveEnemy(0, -1, p);
+												p.translate(0, -1);
 											}
 										}
 									}
@@ -203,7 +217,8 @@ public class GUIDriver {
 
 						}
 
-						g.moveEnemy(0, 1);
+						g.moveEnemy(0, 1, p);
+						p.translate(0, 1);
 					}
 					if (gravityTime > 4 * gravityRate + hangTime) {
 						gravityTime = 0;

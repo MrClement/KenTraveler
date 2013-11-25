@@ -155,49 +155,43 @@ public class Grid {
 		}
 	}
 
-	public void moveEnemy(int x, int y) {
-		for (int i = 0; i < enemyLocations.size(); i++) {
-			System.out.println("Enemy location: " + getEnemyLocation().get(i).getX() + ", "
-					+ getEnemyLocation().get(i).getY());
-			System.out.println("X and Y: " + x + ", " + y);
-			Point newLocation = new Point((int) getEnemyLocation().get(i).getX() + x, (int) getEnemyLocation().get(i)
-					.getY() + y);
-			GridSpace gs = grid.get(getEnemyLocation().get(i));
-			GridSpace gs2 = grid.get(newLocation);
-			// if (this.characterLocation.getX() - this.enemyLocation.getX() >=
-			// 0) {
-			// newLocation.translate(1, 0);
-			// } else {
-			// newLocation.translate(-1, 0);
-			// }
+	public void moveEnemy(int x, int y, Point enemyToMove) {
+		Point newLocation = new Point((int) enemyToMove.getX() + x, (int) enemyToMove.getY() + y);
+		GridSpace gs = grid.get(enemyToMove);
+		GridSpace gs2 = grid.get(newLocation);
+		// if (this.characterLocation.getX() - this.enemyLocation.getX() >=
+		// 0) {
+		// newLocation.translate(1, 0);
+		// } else {
+		// newLocation.translate(-1, 0);
+		// }
 
-			System.out.println(newLocation);
-			if (gs2.returnThings().size() > 0) {
-				if (gs2.hasSolid()) {
-					if (gs2.returnWeapons().size() == 0) {
-						return;
-					} else {
-						for (LivingThing e : gs2.returnLivingThings()) {
-							if (e.getSolid()) {
-								return;
-							}
+		if (gs2.returnThings().size() > 0) {
+			if (gs2.hasSolid()) {
+				if (gs2.returnWeapons().size() == 0) {
+					return;
+				} else {
+					for (LivingThing e : gs2.returnLivingThings()) {
+						if (e.getSolid()) {
+							return;
 						}
-						for (Terrain t : gs2.returnTerrain()) {
-							if (t.getSolid()) {
-								return;
-							}
+					}
+					for (Terrain t : gs2.returnTerrain()) {
+						if (t.getSolid()) {
+							return;
 						}
 					}
 				}
 			}
-			Thing t = gs.remove(gs.returnThings().get(0));
-			gs2.add(t);
-			gs.sortArrayOfThings();
-			gs2.sortArrayOfThings();
-			grid.put(getEnemyLocation().get(i), gs);
-			grid.put(newLocation, gs2);
-			setEnemyLocation(newLocation, getEnemyLocation().get(i));
 		}
+		Thing t = gs.remove(gs.returnThings().get(0));
+		gs2.add(t);
+		gs.sortArrayOfThings();
+		gs2.sortArrayOfThings();
+		grid.put(enemyToMove, gs);
+		grid.put(newLocation, gs2);
+		setEnemyLocation(newLocation, enemyToMove);
+
 	}
 
 	public void makeDefaultGrid() {

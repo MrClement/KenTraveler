@@ -16,14 +16,14 @@ public class Grid {
 
 	private HashMap<Point, GridSpace> grid;
 	private Point characterLocation;
-	private ArrayList<Point> enemyLocation;
+	private ArrayList<Point> enemyLocations;
 	private int numKilled;
 
 	/**
 	 * 
 	 */
 	public Grid(int numKilled) {
-		enemyLocation = new ArrayList<Point>();
+		enemyLocations = new ArrayList<Point>();
 		setGrid(new HashMap<Point, GridSpace>());
 		this.numKilled = numKilled;
 	}
@@ -45,11 +45,20 @@ public class Grid {
 	}
 
 	public ArrayList<Point> getEnemyLocation() {
-		return enemyLocation;
+		return enemyLocations;
 	}
 
-	public void setEnemyLocation(Point enemyLocation) {
-		this.enemyLocation.add(enemyLocation);
+	public void setEnemyLocation(Point enemyLocation, Point oldLocation) {
+		this.enemyLocations.remove(oldLocation);
+		this.enemyLocations.add(enemyLocation);
+	}
+
+	private void setEnemyLocation(Point enemyLocation) {
+		this.enemyLocations.add(enemyLocation);
+	}
+
+	private void removeEnemy(Point enemyLocation) {
+		this.enemyLocations.remove(enemyLocation);
 	}
 
 	public void moveCharacter(int x, int y, int lastKeyPressed) {
@@ -99,8 +108,7 @@ public class Grid {
 				if (e.getValue().returnWeapons().get(0) instanceof RangedWeapon) {
 					if (((RangedWeapon) (e.getValue().returnWeapons().get(0))).getCurrentSpeed() > 0) {
 						Point targetPoint = new Point((int) (e.getKey().getX() + 1), (int) (e.getKey().getY()));
-						GridSpace target = grid
-								.get(new Point((int) (e.getKey().getX() + 1), (int) (e.getKey().getY())));
+						GridSpace target = grid.get(targetPoint);
 						if (targetPoint.getX() == 101) {
 							e.getValue().remove(e.getValue().returnWeapons().get(0));
 							e.getValue().sortArrayOfThings();
@@ -108,7 +116,7 @@ public class Grid {
 							target.add(e.getValue().returnWeapons().get(0));
 							e.getValue().remove(e.getValue().returnWeapons().get(0));
 							e.getValue().sortArrayOfThings();
-							dealDamage(target, target.returnWeapons().get(0));
+							dealDamage(target, target.returnWeapons().get(0), targetPoint);
 							target.remove(target.returnWeapons().get(0));
 							e.getValue().sortArrayOfThings();
 						} else if (target.hasSolid()) {
@@ -120,9 +128,8 @@ public class Grid {
 							e.getValue().sortArrayOfThings();
 						}
 					} else if (((RangedWeapon) (e.getValue().returnWeapons().get(0))).getCurrentSpeed() < 0) {
-						Point targetPoint = new Point((int) (e.getKey().getX() + 1), (int) (e.getKey().getY()));
-						GridSpace target = grid
-								.get(new Point((int) (e.getKey().getX() - 1), (int) (e.getKey().getY())));
+						Point targetPoint = new Point((int) (e.getKey().getX() - 1), (int) (e.getKey().getY()));
+						GridSpace target = grid.get(targetPoint);
 						if (targetPoint.getX() == -1) {
 							e.getValue().remove(e.getValue().returnWeapons().get(0));
 							e.getValue().sortArrayOfThings();
@@ -130,7 +137,7 @@ public class Grid {
 							target.add(e.getValue().returnWeapons().get(0));
 							e.getValue().remove(e.getValue().returnWeapons().get(0));
 							e.getValue().sortArrayOfThings();
-							dealDamage(target, target.returnWeapons().get(0));
+							dealDamage(target, target.returnWeapons().get(0), targetPoint);
 							target.remove(target.returnWeapons().get(0));
 							e.getValue().sortArrayOfThings();
 						} else if (target.hasSolid()) {
@@ -149,7 +156,10 @@ public class Grid {
 	}
 
 	public void moveEnemy(int x, int y) {
-		for (int i = 0; i < enemyLocation.size(); i++) {
+		for (int i = 0; i < enemyLocations.size(); i++) {
+			System.out.println("Enemy location: " + getEnemyLocation().get(i).getX() + ", "
+					+ getEnemyLocation().get(i).getY());
+			System.out.println("X and Y: " + x + ", " + y);
 			Point newLocation = new Point((int) getEnemyLocation().get(i).getX() + x, (int) getEnemyLocation().get(i)
 					.getY() + y);
 			GridSpace gs = grid.get(getEnemyLocation().get(i));
@@ -160,6 +170,8 @@ public class Grid {
 			// } else {
 			// newLocation.translate(-1, 0);
 			// }
+
+			System.out.println(newLocation);
 			if (gs2.returnThings().size() > 0) {
 				if (gs2.hasSolid()) {
 					if (gs2.returnWeapons().size() == 0) {
@@ -184,7 +196,7 @@ public class Grid {
 			gs2.sortArrayOfThings();
 			grid.put(getEnemyLocation().get(i), gs);
 			grid.put(newLocation, gs2);
-			setEnemyLocation(newLocation);
+			setEnemyLocation(newLocation, getEnemyLocation().get(i));
 		}
 	}
 
@@ -241,7 +253,7 @@ public class Grid {
 
 			target.add(grid.get(charLoc).returnCharacter().getWeapon());
 			target.sortArrayOfThings();
-			dealDamage(target, grid.get(charLoc).returnCharacter().getWeapon());
+			dealDamage(target, grid.get(charLoc).returnCharacter().getWeapon(), side);
 
 		} else {
 			if (lastKeyPressed == KeyEvent.VK_A) {
@@ -259,7 +271,7 @@ public class Grid {
 
 	}
 
-	private void dealDamage(GridSpace target, Weapon weapon) {
+	private void dealDamage(GridSpace target, Weapon weapon, Point targetLocation) {
 		ArrayList<LivingThing> livingThings = target.returnLivingThings();
 		if (livingThings == null || livingThings.size() == 0) {
 			return;
@@ -269,7 +281,7 @@ public class Grid {
 				hp -= weapon.getDamage().getBaseHpDamage();
 				if (hp <= 0) {
 					target.remove(livingThing);
-					setEnemyLocation(null);
+					removeEnemy(targetLocation);
 					System.out.println("Killed that dude!");
 					numKilled++;
 				} else {

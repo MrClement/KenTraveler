@@ -15,7 +15,6 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -128,7 +127,6 @@ public class GUIDriver {
 					}
 
 				} else if (keyCode == KeyEvent.VK_P) {
-					Random r = new Random();
 					String name = "Yo Mama";
 					Color c = Color.ORANGE;
 					Point p = g.findValidEnemyLocation();
@@ -160,8 +158,10 @@ public class GUIDriver {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
 					g.moveRangedWeapon();
-					for (Point p : g.getEnemyLocation()) {
 
+					// check every instance of p
+					for (int i = 0; i < g.getEnemyLocation().size(); i++) {
+						Point p = g.getEnemyLocation().get(i);
 						Point q = new Point((int) p.getX(), (int) p.getY() + 1);
 						GridSpace gs = g.getGrid().get(q);
 
@@ -171,7 +171,7 @@ public class GUIDriver {
 							g.moveEnemy(1, 0);
 						}
 
-						if (p.equals(g.getEnemyLocation())) {
+						if (true) {
 
 							if (gs.returnThings().size() > 0) {
 								if (gs.hasSolid()) {

@@ -156,7 +156,7 @@ public class Grid {
 	}
 
 	public void moveEnemy(int x, int y, Point enemyToMove) {
-		Point newLocation = new Point((int) enemyToMove.getX() + x, (int) enemyToMove.getY() + y);
+		Point newLocation = new Point((int) (enemyToMove.getX() + x), (int) (enemyToMove.getY() + y));
 		GridSpace gs = grid.get(enemyToMove);
 		GridSpace gs2 = grid.get(newLocation);
 		// if (this.characterLocation.getX() - this.enemyLocation.getX() >=
@@ -191,6 +191,7 @@ public class Grid {
 		grid.put(enemyToMove, gs);
 		grid.put(newLocation, gs2);
 		setEnemyLocation(newLocation, enemyToMove);
+		enemyToMove.translate(x, y);
 
 	}
 

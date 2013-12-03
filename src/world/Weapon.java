@@ -23,6 +23,14 @@ public class Weapon extends Thing {
 		l = x;
 	}
 
+	public LivingThing getL() {
+		return l;
+	}
+
+	public void setL(LivingThing l) {
+		this.l = l;
+	}
+
 	public Damage getDamage() {
 		return damage;
 	}

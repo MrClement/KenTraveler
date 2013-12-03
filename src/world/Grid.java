@@ -217,7 +217,7 @@ public class Grid {
 		Character c = new Character(true, Color.BLUE);
 		c.setMaxHp(20);
 		c.setHp(20);
-		c.setWeapon(f.constructMeleeWeapons(0, (LivingThing) c));
+		c.setWeapon(f.constructMagic(3, (LivingThing) c));
 		things.add(c);
 		GridSpace test = new GridSpace(things);
 		test.sortArrayOfThings();
@@ -258,7 +258,8 @@ public class Grid {
 			}
 			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
 			GridSpace target = grid.get(side);
-			RangedWeapon newWeapon = (RangedWeapon) grid.get(charLoc).returnCharacter().getWeapon();
+			RangedWeapon middleMan =(RangedWeapon) grid.get(charLoc).returnCharacter().getWeapon();
+			RangedWeapon newWeapon = new RangedWeapon(middleMan.getSolid(), middleMan.getColor(), middleMan.getL(), middleMan.getRange(), middleMan.getSpeed());
 			newWeapon.setCurrentSpeed(newWeapon.getSpeed() * dir);
 			target.add(newWeapon);
 			target.sortArrayOfThings();

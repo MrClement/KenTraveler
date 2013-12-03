@@ -23,8 +23,10 @@ import world.Enemy;
 import world.Grid;
 import world.GridSpace;
 import world.LivingThing;
+import world.RangedWeapon;
 import world.Terrain;
 import world.Thing;
+import world.Weapon;
 import world.World;
 
 public class GUIDriver {
@@ -260,6 +262,17 @@ public class GUIDriver {
 				g2d.drawString(String.format("FPS: %s", fps), 20, 20);
 				g2d.drawString(String.format("Stage: %s", stage), 100, 20);
 				g2d.drawString(String.format("Enemies killed: %s", g.getNumKilled()), 180, 20);
+				try{
+					if ((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof RangedWeapon){
+						g2d.drawString("Current weapon: Bow", 440, 20);
+					}else if((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof Weapon){
+						g2d.drawString("Current weapon: Sword", 440, 20);
+					}
+				}catch(NullPointerException e){
+					System.out.println("Caught null pointer error on HUD for weapon.");
+				}
+				
+				
 				try {
 					switch (g.getGrid().get(g.getCharacterLocation()).returnCharacter().getHp()) {
 						case 20:

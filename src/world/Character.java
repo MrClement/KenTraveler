@@ -35,24 +35,24 @@ public class Character extends LivingThing {
 	public Weapon getWeapon() {
 		return weapon;
 	}
-	public RangedWeapon getRangedStore(){
+
+	public RangedWeapon getRangedStore() {
 		return rangedStore;
 	}
-	public Weapon getCloseStore(){
+
+	public Weapon getCloseStore() {
 		return closeStore;
 	}
 
 	public void setWeapon(Weapon weapon) {
 		this.weapon = weapon;
-		if (weapon instanceof RangedWeapon){
+		if (weapon instanceof RangedWeapon) {
 			this.rangedStore = (RangedWeapon) weapon;
-		}
-		else{
+		} else {
 			this.closeStore = weapon;
 		}
-		
+
 	}
-	
 
 	public void levelUp() {
 		if (!(xp < (750 * level) + (250 * level))) {

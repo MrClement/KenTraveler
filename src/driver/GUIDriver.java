@@ -96,6 +96,9 @@ public class GUIDriver {
 		g = new Grid(0);
 
 		g.makeDefaultGrid();
+		Character casdfasdfasd = g.getGrid().get(g.getCharacterLocation()).returnCharacter();
+		System.out.println(casdfasdfasd.getRangedStore());
+		System.out.println(casdfasdfasd.getCloseStore());
 		stage = 1;
 
 		app.addKeyListener(new KeyAdapter() {

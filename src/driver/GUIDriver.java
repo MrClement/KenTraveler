@@ -18,6 +18,8 @@ import java.util.HashMap;
 
 import javax.swing.JFrame;
 
+import apple.security.KeychainStore;
+
 import world.Character;
 import world.Enemy;
 import world.Grid;
@@ -136,6 +138,13 @@ public class GUIDriver {
 						g.spawnNewEnemy(p, new Enemy(true, c, name, 10, 10, 10));
 					} else {
 						System.out.println("Could not spawn a new enemy.");
+					}
+				}
+				else if (keyCode == KeyEvent.VK_Q || keyCode == KeyEvent.VK_E){
+					if(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon() instanceof RangedWeapon){
+						g.getGrid().get(g.getCharacterLocation()).returnCharacter().setWeapon(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getCloseStore());
+					}else{
+						g.getGrid().get(g.getCharacterLocation()).returnCharacter().setWeapon(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getRangedStore());
 					}
 				}
 			}

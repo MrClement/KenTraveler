@@ -217,6 +217,7 @@ public class Grid {
 		Character c = new Character(true, Color.BLUE);
 		c.setMaxHp(20);
 		c.setHp(20);
+		c.setWeapon(f.constructMeleeWeapons(3, (LivingThing) c));
 		c.setWeapon(f.constructMagic(3, (LivingThing) c));
 		things.add(c);
 		GridSpace test = new GridSpace(things);

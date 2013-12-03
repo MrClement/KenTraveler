@@ -18,8 +18,6 @@ import java.util.HashMap;
 
 import javax.swing.JFrame;
 
-import apple.security.KeychainStore;
-
 import world.Character;
 import world.Enemy;
 import world.Grid;
@@ -139,13 +137,18 @@ public class GUIDriver {
 					} else {
 						System.out.println("Could not spawn a new enemy.");
 					}
-				}
-				else if (keyCode == KeyEvent.VK_Q || keyCode == KeyEvent.VK_E){
-					if(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon() instanceof RangedWeapon){
-						g.getGrid().get(g.getCharacterLocation()).returnCharacter().setWeapon(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getCloseStore());
-					}else{
-						g.getGrid().get(g.getCharacterLocation()).returnCharacter().setWeapon(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getRangedStore());
+				} else if (keyCode == KeyEvent.VK_Q || keyCode == KeyEvent.VK_E) {
+					if (g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon() instanceof RangedWeapon) {
+						g.getGrid().get(g.getCharacterLocation()).returnCharacter()
+								.setWeapon(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getCloseStore());
+					} else {
+						g.getGrid()
+								.get(g.getCharacterLocation())
+								.returnCharacter()
+								.setWeapon(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getRangedStore());
 					}
+				} else if (keyCode == KeyEvent.VK_SLASH) {
+					g.killAllEnemies();
 				}
 			}
 
@@ -271,17 +274,16 @@ public class GUIDriver {
 				g2d.drawString(String.format("FPS: %s", fps), 20, 20);
 				g2d.drawString(String.format("Stage: %s", stage), 100, 20);
 				g2d.drawString(String.format("Enemies killed: %s", g.getNumKilled()), 180, 20);
-				try{
-					if ((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof RangedWeapon){
+				try {
+					if ((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof RangedWeapon) {
 						g2d.drawString("Current weapon: Bow", 440, 20);
-					}else if((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof Weapon){
+					} else if ((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof Weapon) {
 						g2d.drawString("Current weapon: Sword", 440, 20);
 					}
-				}catch(NullPointerException e){
+				} catch (NullPointerException e) {
 					System.out.println("Caught null pointer error on HUD for weapon.");
 				}
-				
-				
+
 				try {
 					switch (g.getGrid().get(g.getCharacterLocation()).returnCharacter().getHp()) {
 						case 20:

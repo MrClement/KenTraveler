@@ -259,8 +259,9 @@ public class Grid {
 			}
 			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
 			GridSpace target = grid.get(side);
-			RangedWeapon middleMan =(RangedWeapon) grid.get(charLoc).returnCharacter().getWeapon();
-			RangedWeapon newWeapon = new RangedWeapon(middleMan.getSolid(), middleMan.getColor(), middleMan.getL(), middleMan.getRange(), middleMan.getSpeed());
+			RangedWeapon middleMan = (RangedWeapon) grid.get(charLoc).returnCharacter().getWeapon();
+			RangedWeapon newWeapon = new RangedWeapon(middleMan.getSolid(), middleMan.getColor(), middleMan.getL(),
+					middleMan.getRange(), middleMan.getSpeed());
 			newWeapon.setDamage(middleMan.getDamage());
 			newWeapon.setCurrentSpeed(newWeapon.getSpeed() * dir);
 			target.add(newWeapon);
@@ -346,5 +347,14 @@ public class Grid {
 			}
 		}
 		return null;
+	}
+
+	public void killAllEnemies() {
+		for (Entry<Point, GridSpace> e : grid.entrySet()) {
+			GridSpace gs = e.getValue();
+			gs.remove(gs.returnEnemy());
+			gs.sortArrayOfThings();
+		}
+		enemyLocations = new ArrayList<>();
 	}
 }

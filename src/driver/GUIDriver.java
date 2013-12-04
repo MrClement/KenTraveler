@@ -191,37 +191,50 @@ public class GUIDriver {
 							g.moveEnemy(1, 0, p);
 						}
 
-						if (p.equals(g.getEnemyLocation().get(i))) {
-
-							if (gs.returnThings().size() > 0) {
-								if (gs.hasSolid()) {
-									if (gs.returnWeapons().size() == 0) {
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-									} else {
-										for (LivingThing e : gs.returnLivingThings()) {
-											if (e.getSolid()) {
-												g.moveEnemy(0, -1, p);
-												g.moveEnemy(0, -1, p);
-												g.moveEnemy(0, -1, p);
-												g.moveEnemy(0, -1, p);
-											}
-										}
-										for (Terrain t : gs.returnTerrain()) {
-											if (t.getSolid()) {
-												g.moveEnemy(0, -1, p);
-												g.moveEnemy(0, -1, p);
-												g.moveEnemy(0, -1, p);
-												g.moveEnemy(0, -1, p);
-											}
+						if(g.getCharacterLocation().getX() > g.getEnemyLocation().get(i).getX()){
+							Point check = new Point ((int)(p.getX() + 1), (int)(p.getY()));
+							GridSpace more = g.getGrid().get(check);
+							if(more.hasSolid()){
+									for(Terrain t : more.returnTerrain()){
+										if (t.getSolid()) {
+											g.moveEnemy(0, -1, p);
+											g.moveEnemy(0, -1, p);
+											g.moveEnemy(0, -1, p);
+											g.moveEnemy(0, -1, p);
 										}
 									}
+										for (LivingThing e : more.returnLivingThings()) {
+											if (e.getSolid() && !(e instanceof Character)) {
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+											}
+										}
+								}
+						}
+						else if(g.getCharacterLocation().getX() < g.getEnemyLocation().get(i).getX()){
+										Point check = new Point ((int)(p.getX() - 1), (int)(p.getY()));
+										GridSpace more = g.getGrid().get(check);
+										if(more.hasSolid()){
+										for(Terrain t : more.returnTerrain()){
+										if (t.getSolid()) {
+											g.moveEnemy(0, -1, p);
+											g.moveEnemy(0, -1, p);
+											g.moveEnemy(0, -1, p);
+											g.moveEnemy(0, -1, p);
+										}
+									}
+										for (LivingThing e : more.returnLivingThings()) {
+											if (e.getSolid() && !(e instanceof Character)) {
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+											}
+										}
 								}
 							}
-
-						}
 
 						g.moveEnemy(0, 1, p);
 					}

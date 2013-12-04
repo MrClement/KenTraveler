@@ -175,8 +175,18 @@ public class GUIDriver {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
 					
-					for (int i = 0; i < 2; i++){
+					for (int a = 0; a < 2; a++){
 						g.moveRangedWeapon();
+					}
+					
+					
+					//g.getGrid().get(g.getCharacterLocation()).returnCharacter()
+					Point charLoc = g.getCharacterLocation();
+					ArrayList <Point> enemyLocs = g.getEnemyLocation();
+					for (int j = 0; j < enemyLocs.size(); j++){
+						if (charLoc.distance(enemyLocs.get(j)) <= 1){
+							g.getGrid().get(g.getCharacterLocation()).returnCharacter().updateHp(-5);
+						}
 					}
 					
 					// check every instance of p

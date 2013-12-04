@@ -304,12 +304,14 @@ public class GUIDriver {
 						case 5:
 							g2d.drawString("Health: * _ _ _", 320, 20);
 							break;
+							
 						default:
 							g2d.drawString("Health: _ _ _ _", 320, 20);
 							break;
 					}
 				} catch (NullPointerException e) {
 					System.out.println("Caught that error");
+					g2d.drawString("Health: Dead", 320, 20);
 				}
 
 				// Blit image and flip...

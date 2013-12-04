@@ -174,8 +174,11 @@ public class GUIDriver {
 				if (gravityTime > value) {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
-					g.moveRangedWeapon();
-
+					
+					for (int i = 0; i < 2; i++){
+						g.moveRangedWeapon();
+					}
+					
 					// check every instance of p
 					for (int i = 0; i < g.getEnemyLocation().size(); i++) {
 						Point p = g.getEnemyLocation().get(i);

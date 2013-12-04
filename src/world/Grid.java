@@ -355,6 +355,6 @@ public class Grid {
 			gs.remove(gs.returnEnemy());
 			gs.sortArrayOfThings();
 		}
-		enemyLocations = new ArrayList<>();
+		enemyLocations = new ArrayList<Point>();
 	}
 }

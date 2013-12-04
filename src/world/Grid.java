@@ -357,4 +357,21 @@ public class Grid {
 		}
 		enemyLocations = new ArrayList<Point>();
 	}
+
+	public void placeTerrain(int lastKey) {
+
+		int dir = 0;
+		if (lastKey == KeyEvent.VK_A) {
+			dir = -1;
+		} else if (lastKey == KeyEvent.VK_D) {
+			dir = 1;
+		}
+		if (dir != 0) {
+			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
+			GridSpace target = grid.get(side);
+			target.add(new Terrain(true, Color.GREEN));
+			target.sortArrayOfThings();
+		}
+
+	}
 }

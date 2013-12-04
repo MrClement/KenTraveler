@@ -152,6 +152,8 @@ public class GUIDriver {
 					}
 				} else if (keyCode == KeyEvent.VK_SLASH) {
 					g.killAllEnemies();
+				} else if (keyCode == KeyEvent.VK_SEMICOLON) {
+					g.placeTerrain(keyCode);
 				}
 			}
 
@@ -174,21 +176,20 @@ public class GUIDriver {
 				if (gravityTime > value) {
 					value += gravityRate;
 					g.moveCharacter(0, 1, lastKey);
-					
-					for (int a = 0; a < 2; a++){
+
+					for (int a = 0; a < 2; a++) {
 						g.moveRangedWeapon();
 					}
-					
-					
-					//g.getGrid().get(g.getCharacterLocation()).returnCharacter()
+
+					// g.getGrid().get(g.getCharacterLocation()).returnCharacter()
 					Point charLoc = g.getCharacterLocation();
-					ArrayList <Point> enemyLocs = g.getEnemyLocation();
-					for (int j = 0; j < enemyLocs.size(); j++){
-						if (charLoc.distance(enemyLocs.get(j)) <= 1){
+					ArrayList<Point> enemyLocs = g.getEnemyLocation();
+					for (int j = 0; j < enemyLocs.size(); j++) {
+						if (charLoc.distance(enemyLocs.get(j)) <= 1) {
 							g.getGrid().get(g.getCharacterLocation()).returnCharacter().updateHp(-5);
 						}
 					}
-					
+
 					// check every instance of p
 					for (int i = 0; i < g.getEnemyLocation().size(); i++) {
 						Point p = g.getEnemyLocation().get(i);
@@ -201,50 +202,49 @@ public class GUIDriver {
 							g.moveEnemy(1, 0, p);
 						}
 
-						if(g.getCharacterLocation().getX() > g.getEnemyLocation().get(i).getX()){
-							Point check = new Point ((int)(p.getX() + 1), (int)(p.getY()));
+						if (g.getCharacterLocation().getX() > g.getEnemyLocation().get(i).getX()) {
+							Point check = new Point((int) (p.getX() + 1), (int) (p.getY()));
 							GridSpace more = g.getGrid().get(check);
-							if(more.hasSolid()){
-									for(Terrain t : more.returnTerrain()){
-										if (t.getSolid()) {
-											g.moveEnemy(0, -1, p);
-											g.moveEnemy(0, -1, p);
-											g.moveEnemy(0, -1, p);
-											g.moveEnemy(0, -1, p);
-										}
+							if (more.hasSolid()) {
+								for (Terrain t : more.returnTerrain()) {
+									if (t.getSolid()) {
+										g.moveEnemy(0, -1, p);
+										g.moveEnemy(0, -1, p);
+										g.moveEnemy(0, -1, p);
+										g.moveEnemy(0, -1, p);
 									}
-										for (LivingThing e : more.returnLivingThings()) {
-											if (e.getSolid() && !(e instanceof Character)) {
-												g.moveEnemy(0, -1, p);
-												g.moveEnemy(0, -1, p);
-												g.moveEnemy(0, -1, p);
-												g.moveEnemy(0, -1, p);
-											}
-										}
 								}
-						}
-						else if(g.getCharacterLocation().getX() < g.getEnemyLocation().get(i).getX()){
-										Point check = new Point ((int)(p.getX() - 1), (int)(p.getY()));
-										GridSpace more = g.getGrid().get(check);
-										if(more.hasSolid()){
-										for(Terrain t : more.returnTerrain()){
-										if (t.getSolid()) {
-											g.moveEnemy(0, -1, p);
-											g.moveEnemy(0, -1, p);
-											g.moveEnemy(0, -1, p);
-											g.moveEnemy(0, -1, p);
-										}
+								for (LivingThing e : more.returnLivingThings()) {
+									if (e.getSolid() && !(e instanceof Character)) {
+										g.moveEnemy(0, -1, p);
+										g.moveEnemy(0, -1, p);
+										g.moveEnemy(0, -1, p);
+										g.moveEnemy(0, -1, p);
 									}
-										for (LivingThing e : more.returnLivingThings()) {
-											if (e.getSolid() && !(e instanceof Character)) {
-												g.moveEnemy(0, -1, p);
-												g.moveEnemy(0, -1, p);
-												g.moveEnemy(0, -1, p);
-												g.moveEnemy(0, -1, p);
-											}
-										}
 								}
 							}
+						} else if (g.getCharacterLocation().getX() < g.getEnemyLocation().get(i).getX()) {
+							Point check = new Point((int) (p.getX() - 1), (int) (p.getY()));
+							GridSpace more = g.getGrid().get(check);
+							if (more.hasSolid()) {
+								for (Terrain t : more.returnTerrain()) {
+									if (t.getSolid()) {
+										g.moveEnemy(0, -1, p);
+										g.moveEnemy(0, -1, p);
+										g.moveEnemy(0, -1, p);
+										g.moveEnemy(0, -1, p);
+									}
+								}
+								for (LivingThing e : more.returnLivingThings()) {
+									if (e.getSolid() && !(e instanceof Character)) {
+										g.moveEnemy(0, -1, p);
+										g.moveEnemy(0, -1, p);
+										g.moveEnemy(0, -1, p);
+										g.moveEnemy(0, -1, p);
+									}
+								}
+							}
+						}
 
 						g.moveEnemy(0, 1, p);
 					}
@@ -327,7 +327,7 @@ public class GUIDriver {
 						case 5:
 							g2d.drawString("Health: * _ _ _", 320, 20);
 							break;
-							
+
 						default:
 							g2d.drawString("Health: _ _ _ _", 320, 20);
 							break;

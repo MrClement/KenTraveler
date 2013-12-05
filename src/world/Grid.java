@@ -245,11 +245,16 @@ public class Grid {
 				dir = 1;
 			}
 			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
+			Point secondSide = new Point((int) (getCharacterLocation().getX() + dir + dir), (int) getCharacterLocation().getY());
 			GridSpace target = grid.get(side);
+			GridSpace target2 = grid.get(secondSide);
 
 			target.add(grid.get(charLoc).returnCharacter().getWeapon());
 			target.sortArrayOfThings();
+			target2.add(grid.get(charLoc).returnCharacter().getWeapon());
+			target2.sortArrayOfThings();
 			dealDamage(target, grid.get(charLoc).returnCharacter().getWeapon(), side);
+			dealDamage(target2, grid.get(charLoc).returnCharacter().getWeapon(), secondSide);
 
 		} else {
 			if (lastKeyPressed == KeyEvent.VK_A) {
@@ -301,9 +306,13 @@ public class Grid {
 				dir = 1;
 			}
 			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
+			Point secondSide = new Point((int) (getCharacterLocation().getX() + dir + dir), (int) getCharacterLocation().getY());
 			GridSpace target = grid.get(side);
+			GridSpace target2 = grid.get(secondSide);
 			target.remove(grid.get(charLoc).returnCharacter().getWeapon());
 			target.sortArrayOfThings();
+			target2.remove(grid.get(charLoc).returnCharacter().getWeapon());
+			target2.sortArrayOfThings();
 		}
 	}
 

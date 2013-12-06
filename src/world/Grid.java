@@ -245,7 +245,8 @@ public class Grid {
 				dir = 1;
 			}
 			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
-			Point secondSide = new Point((int) (getCharacterLocation().getX() + dir + dir), (int) getCharacterLocation().getY());
+			Point secondSide = new Point((int) (getCharacterLocation().getX() + dir + dir),
+					(int) getCharacterLocation().getY());
 			GridSpace target = grid.get(side);
 			GridSpace target2 = grid.get(secondSide);
 
@@ -294,6 +295,7 @@ public class Grid {
 
 			}
 		}
+		target.sortArrayOfThings();
 	}
 
 	public void retractWeapon(int lastKeyPressed) {
@@ -306,7 +308,8 @@ public class Grid {
 				dir = 1;
 			}
 			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
-			Point secondSide = new Point((int) (getCharacterLocation().getX() + dir + dir), (int) getCharacterLocation().getY());
+			Point secondSide = new Point((int) (getCharacterLocation().getX() + dir + dir),
+					(int) getCharacterLocation().getY());
 			GridSpace target = grid.get(side);
 			GridSpace target2 = grid.get(secondSide);
 			target.remove(grid.get(charLoc).returnCharacter().getWeapon());

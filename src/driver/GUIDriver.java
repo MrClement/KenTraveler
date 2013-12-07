@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
@@ -268,6 +269,7 @@ public class GUIDriver {
 					HashMap<Point, GridSpace> grid = g.getGrid();
 					Point oldLocation = g.getCharacterLocation();
 					Character c = grid.get(oldLocation).returnCharacter();
+					c.setHp(20);
 					World w = new World();
 					int killed = g.getNumKilled();
 					g = w.drawWorld(1, killed);
@@ -310,6 +312,8 @@ public class GUIDriver {
 					}
 				} catch (NullPointerException e) {
 					System.out.println("Caught null pointer error on HUD for weapon.");
+				}catch(ConcurrentModificationException c){
+					System.out.println("Caught concurrent modification exception.");
 				}
 
 				try {

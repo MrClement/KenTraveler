@@ -62,43 +62,48 @@ public class Grid {
 	}
 
 	public void moveCharacter(int x, int y, int lastKeyPressed) {
-		this.retractWeapon(lastKeyPressed);
-		Point newLocation = new Point((int) getCharacterLocation().getX() + x, (int) getCharacterLocation().getY() + y);
-		GridSpace gs = grid.get(getCharacterLocation());
-		GridSpace gs2 = grid.get(newLocation);
+		try{
+			this.retractWeapon(lastKeyPressed);
+			Point newLocation = new Point((int) getCharacterLocation().getX() + x, (int) getCharacterLocation().getY() + y);
+			GridSpace gs = grid.get(getCharacterLocation());
+			GridSpace gs2 = grid.get(newLocation);
 
-		// Can move
-		// gs2.returnThings().size == 0
-		// !gs2.hasSolid()
-		// gs2.returnWeapons.size() !=0 && gs2.getLivingThings() == 0
-		// gs2.getLivingThings() //iterate over array list checking that
-		// !isSolid
+			// Can move
+			// gs2.returnThings().size == 0
+			// !gs2.hasSolid()
+			// gs2.returnWeapons.size() !=0 && gs2.getLivingThings() == 0
+			// gs2.getLivingThings() //iterate over array list checking that
+			// !isSolid
 
-		if (gs2.returnThings().size() > 0) {
-			if (gs2.hasSolid()) {
-				if (gs2.returnWeapons().size() == 0) {
-					return;
-				} else {
-					for (LivingThing e : gs2.returnLivingThings()) {
-						if (e.getSolid()) {
-							return;
+			if (gs2.returnThings().size() > 0) {
+				if (gs2.hasSolid()) {
+					if (gs2.returnWeapons().size() == 0) {
+						return;
+					} else {
+						for (LivingThing e : gs2.returnLivingThings()) {
+							if (e.getSolid()) {
+								return;
+							}
 						}
-					}
-					for (Terrain t : gs2.returnTerrain()) {
-						if (t.getSolid()) {
-							return;
+						for (Terrain t : gs2.returnTerrain()) {
+							if (t.getSolid()) {
+								return;
+							}
 						}
 					}
 				}
 			}
+			Thing t = gs.remove(gs.returnThings().get(0));
+			gs2.add(t);
+			gs.sortArrayOfThings();
+			gs2.sortArrayOfThings();
+			grid.put(getCharacterLocation(), gs);
+			grid.put(newLocation, gs2);
+			setCharacterLocation(newLocation);
+		}catch(NullPointerException e){
+			System.out.println("Caught moveCharacter null pointer error.");
 		}
-		Thing t = gs.remove(gs.returnThings().get(0));
-		gs2.add(t);
-		gs.sortArrayOfThings();
-		gs2.sortArrayOfThings();
-		grid.put(getCharacterLocation(), gs);
-		grid.put(newLocation, gs2);
-		setCharacterLocation(newLocation);
+		
 
 	}
 
@@ -236,42 +241,46 @@ public class Grid {
 	}
 
 	public void useWeapon(int lastKeyPressed) {
-		int dir = 1;
-		Point charLoc = new Point(this.getCharacterLocation());
-		if (!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)) {
-			if (lastKeyPressed == KeyEvent.VK_A) {
-				dir = -1;
-			} else if (lastKeyPressed == KeyEvent.VK_D) {
-				dir = 1;
-			}
-			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
-			Point secondSide = new Point((int) (getCharacterLocation().getX() + dir + dir),
-					(int) getCharacterLocation().getY());
-			GridSpace target = grid.get(side);
-			GridSpace target2 = grid.get(secondSide);
+		try{
+			int dir = 1;
+			Point charLoc = new Point(this.getCharacterLocation());
+			if (!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)) {
+				if (lastKeyPressed == KeyEvent.VK_A) {
+					dir = -1;
+				} else if (lastKeyPressed == KeyEvent.VK_D) {
+					dir = 1;
+				}
+				Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
+				Point secondSide = new Point((int) (getCharacterLocation().getX() + dir + dir),
+						(int) getCharacterLocation().getY());
+				GridSpace target = grid.get(side);
+				GridSpace target2 = grid.get(secondSide);
 
-			target.add(grid.get(charLoc).returnCharacter().getWeapon());
-			target.sortArrayOfThings();
-			target2.add(grid.get(charLoc).returnCharacter().getWeapon());
-			target2.sortArrayOfThings();
-			dealDamage(target, grid.get(charLoc).returnCharacter().getWeapon(), side);
-			dealDamage(target2, grid.get(charLoc).returnCharacter().getWeapon(), secondSide);
+				target.add(grid.get(charLoc).returnCharacter().getWeapon());
+				target.sortArrayOfThings();
+				target2.add(grid.get(charLoc).returnCharacter().getWeapon());
+				target2.sortArrayOfThings();
+				dealDamage(target, grid.get(charLoc).returnCharacter().getWeapon(), side);
+				dealDamage(target2, grid.get(charLoc).returnCharacter().getWeapon(), secondSide);
 
-		} else {
-			if (lastKeyPressed == KeyEvent.VK_A) {
-				dir = -1;
-			} else if (lastKeyPressed == KeyEvent.VK_D) {
-				dir = 1;
+			} else {
+				if (lastKeyPressed == KeyEvent.VK_A) {
+					dir = -1;
+				} else if (lastKeyPressed == KeyEvent.VK_D) {
+					dir = 1;
+				}
+				Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
+				GridSpace target = grid.get(side);
+				RangedWeapon middleMan = (RangedWeapon) grid.get(charLoc).returnCharacter().getWeapon();
+				RangedWeapon newWeapon = new RangedWeapon(middleMan.getSolid(), middleMan.getColor(), middleMan.getL(),
+						middleMan.getRange(), middleMan.getSpeed());
+				newWeapon.setDamage(middleMan.getDamage());
+				newWeapon.setCurrentSpeed(newWeapon.getSpeed() * dir);
+				target.add(newWeapon);
+				target.sortArrayOfThings();
 			}
-			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
-			GridSpace target = grid.get(side);
-			RangedWeapon middleMan = (RangedWeapon) grid.get(charLoc).returnCharacter().getWeapon();
-			RangedWeapon newWeapon = new RangedWeapon(middleMan.getSolid(), middleMan.getColor(), middleMan.getL(),
-					middleMan.getRange(), middleMan.getSpeed());
-			newWeapon.setDamage(middleMan.getDamage());
-			newWeapon.setCurrentSpeed(newWeapon.getSpeed() * dir);
-			target.add(newWeapon);
-			target.sortArrayOfThings();
+		}catch(NullPointerException e){
+			System.out.println("Caught useWeapon null pointer error.");
 		}
 
 	}
@@ -282,41 +291,49 @@ public class Grid {
 			return;
 		} else {
 			for (LivingThing livingThing : livingThings) {
-				int hp = livingThing.getHp();
-				hp -= weapon.getDamage().getBaseHpDamage();
-				if (hp <= 0) {
-					target.remove(livingThing);
-					removeEnemy(targetLocation);
-					System.out.println("Killed that dude!");
-					numKilled++;
-				} else {
-					livingThing.setHp(hp);
+				if (livingThing instanceof Character){
+					return;
+				}else{
+					int hp = livingThing.getHp();
+					hp -= weapon.getDamage().getBaseHpDamage();
+					if (hp <= 0) {
+						target.remove(livingThing);
+						removeEnemy(targetLocation);
+						System.out.println("Killed that dude!");
+						numKilled++;
+					} else {
+						livingThing.setHp(hp);
+					}
 				}
-
 			}
 		}
 		target.sortArrayOfThings();
 	}
 
 	public void retractWeapon(int lastKeyPressed) {
-		int dir = 1;
-		Point charLoc = new Point(this.getCharacterLocation());
-		if (!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)) {
-			if (lastKeyPressed == KeyEvent.VK_A) {
-				dir = -1;
-			} else if (lastKeyPressed == KeyEvent.VK_D) {
-				dir = 1;
+		try{
+			int dir = 1;
+			Point charLoc = new Point(this.getCharacterLocation());
+			if (!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)) {
+				if (lastKeyPressed == KeyEvent.VK_A) {
+					dir = -1;
+				} else if (lastKeyPressed == KeyEvent.VK_D) {
+					dir = 1;
+				}
+				Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
+				Point secondSide = new Point((int) (getCharacterLocation().getX() + dir + dir),
+						(int) getCharacterLocation().getY());
+				GridSpace target = grid.get(side);
+				GridSpace target2 = grid.get(secondSide);
+				target.remove(grid.get(charLoc).returnCharacter().getWeapon());
+				target.sortArrayOfThings();
+				target2.remove(grid.get(charLoc).returnCharacter().getWeapon());
+				target2.sortArrayOfThings();
 			}
-			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
-			Point secondSide = new Point((int) (getCharacterLocation().getX() + dir + dir),
-					(int) getCharacterLocation().getY());
-			GridSpace target = grid.get(side);
-			GridSpace target2 = grid.get(secondSide);
-			target.remove(grid.get(charLoc).returnCharacter().getWeapon());
-			target.sortArrayOfThings();
-			target2.remove(grid.get(charLoc).returnCharacter().getWeapon());
-			target2.sortArrayOfThings();
+		}catch(NullPointerException e){
+			System.out.println("Caught retractWeapon null pointer error.");
 		}
+		
 	}
 
 	public void characterDamage(Enemy e) {

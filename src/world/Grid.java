@@ -164,6 +164,9 @@ public class Grid {
 		Point newLocation = new Point((int) (enemyToMove.getX() + x), (int) (enemyToMove.getY() + y));
 		GridSpace gs = grid.get(enemyToMove);
 		GridSpace gs2 = grid.get(newLocation);
+		if(gs.returnLivingThings().get(0).isFrozen()){
+			return;
+		}
 		// if (this.characterLocation.getX() - this.enemyLocation.getX() >=
 		// 0) {
 		// newLocation.translate(1, 0);
@@ -223,7 +226,7 @@ public class Grid {
 		c.setMaxHp(20);
 		c.setHp(20);
 		c.setWeapon(f.constructMeleeWeapons(0, (LivingThing) c));
-		c.setWeapon(f.constructMagic(3, (LivingThing) c));
+		c.setWeapon(f.constructMagic(5, (LivingThing) c));
 		things.add(c);
 		GridSpace test = new GridSpace(things);
 		test.sortArrayOfThings();
@@ -296,6 +299,9 @@ public class Grid {
 				} else {
 					int hp = livingThing.getHp();
 					hp -= weapon.getDamage().getBaseHpDamage();
+					if(weapon.getDamage().isFreeze()){
+						livingThing.setFrozen(true);
+					}
 					if (hp <= 0) {
 						target.remove(livingThing);
 						removeEnemy(targetLocation);

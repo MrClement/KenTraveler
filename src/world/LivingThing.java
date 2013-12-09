@@ -23,6 +23,7 @@ public class LivingThing extends Thing {
 	private int dexterity;
 	private int speed;
 	private int mana;
+	private boolean frozen;
 
 	public LivingThing(boolean b, Color c) {
 		super(b, c);
@@ -37,7 +38,16 @@ public class LivingThing extends Thing {
 		hp = 20;
 		mana = (intelligence * 5) + 1;
 		speed = (dexterity * 5) + 1;
+		frozen=false;
 
+	}
+
+	public boolean isFrozen() {
+		return frozen;
+	}
+
+	public void setFrozen(boolean frozen) {
+		this.frozen = frozen;
 	}
 
 	public int getHp() {

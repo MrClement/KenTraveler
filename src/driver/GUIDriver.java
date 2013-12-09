@@ -130,8 +130,8 @@ public class GUIDriver {
 					g.moveCharacter(1, 0, lastKey);
 					lastKey = KeyEvent.VK_RIGHT;
 				} else if (keyCode == KeyEvent.VK_A) {
-						lastKey = KeyEvent.VK_A;
-						g.useWeapon(lastKey);
+					lastKey = KeyEvent.VK_A;
+					g.useWeapon(lastKey);
 				} else if (keyCode == KeyEvent.VK_D) {
 					lastKey = KeyEvent.VK_D;
 					g.useWeapon(lastKey);
@@ -177,90 +177,115 @@ public class GUIDriver {
 				totalTime += curTime - lastTime;
 				gravityTime += curTime - lastTime;
 				enemyDamageTime += curTime - lastTime;
-				if (gravityTime > value) {
-					value += gravityRate;
-					g.moveCharacter(0, 1, lastKey);
+				if (keepGoing) {
+					if (gravityTime > value) {
+						value += gravityRate;
+						g.moveCharacter(0, 1, lastKey);
 
-					for (int a = 0; a < 2; a++) {
-						g.moveRangedWeapon();
-					}
-
-					Point charLoc = g.getCharacterLocation();
-					ArrayList<Point> enemyLocs = g.getEnemyLocation();
-					for (int j = 0; j < enemyLocs.size(); j++) {
-						if (charLoc.distance(enemyLocs.get(j)) <= 1) {
-							keepGoing = g.characterDamage(g.getGrid().get(enemyLocs.get(j)).returnEnemy());
-							if (!keepGoing) {
-								System.exit(0);
-							}
-						}
-					}
-
-					// check every instance of p
-					for (int i = 0; i < g.getEnemyLocation().size(); i++) {
-						Point p = g.getEnemyLocation().get(i);
-						Point q = new Point((int) p.getX(), (int) p.getY() + 1);
-						GridSpace gs = g.getGrid().get(q);
-
-						if (p.getX() - g.getCharacterLocation().getX() > 0) {
-							g.moveEnemy(-1, 0, p);
-						} else {
-							g.moveEnemy(1, 0, p);
+						for (int a = 0; a < 2; a++) {
+							g.moveRangedWeapon();
 						}
 
-						if (g.getCharacterLocation().getX() > g.getEnemyLocation().get(i).getX()) {
-							Point check = new Point((int) (p.getX() + 1), (int) (p.getY()));
-							GridSpace more = g.getGrid().get(check);
-							if (more.hasSolid()) {
-								for (Terrain t : more.returnTerrain()) {
-									if (t.getSolid()) {
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-									}
-								}
-								for (LivingThing e : more.returnLivingThings()) {
-									if (e.getSolid() && !(e instanceof Character)) {
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-									}
-								}
-							}
-						} else if (g.getCharacterLocation().getX() < g.getEnemyLocation().get(i).getX()) {
-							Point check = new Point((int) (p.getX() - 1), (int) (p.getY()));
-							GridSpace more = g.getGrid().get(check);
-							if (more.hasSolid()) {
-								for (Terrain t : more.returnTerrain()) {
-									if (t.getSolid()) {
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-									}
-								}
-								for (LivingThing e : more.returnLivingThings()) {
-									if (e.getSolid() && !(e instanceof Character)) {
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-										g.moveEnemy(0, -1, p);
-									}
+						Point charLoc = g.getCharacterLocation();
+						ArrayList<Point> enemyLocs = g.getEnemyLocation();
+						for (int j = 0; j < enemyLocs.size(); j++) {
+							if (charLoc.distance(enemyLocs.get(j)) <= 1) {
+								keepGoing = g.characterDamage(g.getGrid().get(enemyLocs.get(j)).returnEnemy());
+								if (!keepGoing) {
+									// System.exit(0);
 								}
 							}
 						}
 
-						g.moveEnemy(0, 1, p);
-					}
-					if (gravityTime > 4 * gravityRate + hangTime) {
-						gravityTime = 0;
-						value = gravityRate + hangTime;
-					}
-				}
-				if (enemyDamageTime > 500) {
+						if (keepGoing) {
+							// check every instance of p
+							for (int i = 0; i < g.getEnemyLocation().size(); i++) {
+								Point p = g.getEnemyLocation().get(i);
+								Point q = new Point((int) p.getX(), (int) p.getY() + 1);
+								GridSpace gs = g.getGrid().get(q);
 
+								if (p.getX() - g.getCharacterLocation().getX() > 0) {
+									g.moveEnemy(-1, 0, p);
+								} else {
+									g.moveEnemy(1, 0, p);
+								}
+
+								if (g.getCharacterLocation().getX() > g.getEnemyLocation().get(i).getX()) {
+									Point check = new Point((int) (p.getX() + 1), (int) (p.getY()));
+									GridSpace more = g.getGrid().get(check);
+									if (more.hasSolid()) {
+										for (Terrain t : more.returnTerrain()) {
+											if (t.getSolid()) {
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+											}
+										}
+										for (LivingThing e : more.returnLivingThings()) {
+											if (e.getSolid() && !(e instanceof Character)) {
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+											}
+										}
+									}
+								} else if (g.getCharacterLocation().getX() < g.getEnemyLocation().get(i).getX()) {
+									Point check = new Point((int) (p.getX() - 1), (int) (p.getY()));
+									GridSpace more = g.getGrid().get(check);
+									if (more.hasSolid()) {
+										for (Terrain t : more.returnTerrain()) {
+											if (t.getSolid()) {
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+											}
+										}
+										for (LivingThing e : more.returnLivingThings()) {
+											if (e.getSolid() && !(e instanceof Character)) {
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+												g.moveEnemy(0, -1, p);
+											}
+										}
+									}
+								}
+
+								g.moveEnemy(0, 1, p);
+							}
+							if (gravityTime > 4 * gravityRate + hangTime) {
+								gravityTime = 0;
+								value = gravityRate + hangTime;
+							}
+
+							if (enemyDamageTime > 500) {
+
+							}
+
+							// clear back buffer...
+							if (g.getCharacterLocation().getX() >= 100) {
+								HashMap<Point, GridSpace> grid = g.getGrid();
+								Point oldLocation = g.getCharacterLocation();
+								Character c = grid.get(oldLocation).returnCharacter();
+								c.setHp(20);
+								World w = new World();
+								int killed = g.getNumKilled();
+								g = w.drawWorld(1, killed);
+								stage++;
+								grid = g.getGrid();
+								g.setNumKilled(killed);
+								ArrayList<Thing> t = new ArrayList<Thing>();
+								t.add(c);
+								GridSpace gs = new GridSpace(t);
+								gs.sortArrayOfThings();
+								grid.put(new Point(0, (int) oldLocation.getY()), gs);
+								g.setCharacterLocation(new Point(0, (int) oldLocation.getY()));
+							}
+						}
+					}
 				}
 				if (totalTime > 1000) {
 
@@ -269,26 +294,6 @@ public class GUIDriver {
 					frames = 0;
 				}
 				++frames;
-
-				// clear back buffer...
-				if (g.getCharacterLocation().getX() >= 100) {
-					HashMap<Point, GridSpace> grid = g.getGrid();
-					Point oldLocation = g.getCharacterLocation();
-					Character c = grid.get(oldLocation).returnCharacter();
-					c.setHp(20);
-					World w = new World();
-					int killed = g.getNumKilled();
-					g = w.drawWorld(1, killed);
-					stage++;
-					grid = g.getGrid();
-					g.setNumKilled(killed);
-					ArrayList<Thing> t = new ArrayList<Thing>();
-					t.add(c);
-					GridSpace gs = new GridSpace(t);
-					gs.sortArrayOfThings();
-					grid.put(new Point(0, (int) oldLocation.getY()), gs);
-					g.setCharacterLocation(new Point(0, (int) oldLocation.getY()));
-				}
 				g2d = bi.createGraphics();
 				g2d.setColor(background);
 				g2d.fillRect(0, 0, 639, 479);
@@ -310,45 +315,46 @@ public class GUIDriver {
 				g2d.drawString(String.format("FPS: %s", fps), 20, 20);
 				g2d.drawString(String.format("Stage: %s", stage), 100, 20);
 				g2d.drawString(String.format("Enemies killed: %s", g.getNumKilled()), 180, 20);
-				try {
-					if ((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof RangedWeapon) {
-						g2d.drawString("Current weapon: Bow", 440, 20);
-					} else if ((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof Weapon) {
-						g2d.drawString("Current weapon: Sword", 440, 20);
+				if (keepGoing) {
+					try {
+						if ((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof RangedWeapon) {
+							g2d.drawString("Current weapon: Bow", 440, 20);
+						} else if ((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof Weapon) {
+							g2d.drawString("Current weapon: Sword", 440, 20);
+						}
+					} catch (NullPointerException e) {
+						System.out.println("Caught null pointer error on HUD for weapon.");
+					} catch (ConcurrentModificationException c) {
+						System.out.println("Caught concurrent modification exception.");
 					}
-				} catch (NullPointerException e) {
-					System.out.println("Caught null pointer error on HUD for weapon.");
-				} catch (ConcurrentModificationException c) {
-					System.out.println("Caught concurrent modification exception.");
-				}
 
-				try {
-					switch (g.getGrid().get(g.getCharacterLocation()).returnCharacter().getHp()) {
-						case 20:
-							g2d.drawString("Health: * * * *", 320, 20);
-							break;
-						case 15:
-							g2d.drawString("Health: * * * _", 320, 20);
-							break;
-						case 10:
-							g2d.drawString("Health: * * _ _", 320, 20);
-							break;
-						case 5:
-							g2d.drawString("Health: * _ _ _", 320, 20);
-							break;
-						case 0:
-							keepGoing = false;
-							break;
+					try {
+						switch (g.getGrid().get(g.getCharacterLocation()).returnCharacter().getHp()) {
+							case 20:
+								g2d.drawString("Health: * * * *", 320, 20);
+								break;
+							case 15:
+								g2d.drawString("Health: * * * _", 320, 20);
+								break;
+							case 10:
+								g2d.drawString("Health: * * _ _", 320, 20);
+								break;
+							case 5:
+								g2d.drawString("Health: * _ _ _", 320, 20);
+								break;
+							case 0:
+								keepGoing = false;
+								break;
 
-						default:
-							g2d.drawString("Health: _ _ _ _", 320, 20);
-							break;
+							default:
+								g2d.drawString("Health: _ _ _ _", 320, 20);
+								break;
+						}
+					} catch (NullPointerException e) {
+						System.out.println("Caught that error");
+						g2d.drawString("Health: Dead", 320, 20);
 					}
-				} catch (NullPointerException e) {
-					System.out.println("Caught that error");
-					g2d.drawString("Health: Dead", 320, 20);
 				}
-
 				// Blit image and flip...
 
 				graphics = buffer.getDrawGraphics();

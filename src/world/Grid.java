@@ -321,9 +321,9 @@ public class Grid {
 			int dir = 1;
 			Point charLoc = new Point(this.getCharacterLocation());
 			if (!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)) {
-				if (lastKeyPressed == KeyEvent.VK_A) {
+				if (lastKeyPressed == KeyEvent.VK_A || lastKeyPressed == KeyEvent.VK_LEFT) {
 					dir = -1;
-				} else if (lastKeyPressed == KeyEvent.VK_D) {
+				} else if (lastKeyPressed == KeyEvent.VK_D || lastKeyPressed == KeyEvent.VK_RIGHT) {
 					dir = 1;
 				}
 				Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());

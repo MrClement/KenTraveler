@@ -145,6 +145,8 @@ public class GUIDriver {
 						System.out.println("Could not spawn a new enemy.");
 					}
 				} else if (keyCode == KeyEvent.VK_Q || keyCode == KeyEvent.VK_E) {
+					g.retractWeapon(KeyEvent.VK_A);
+					g.retractWeapon(KeyEvent.VK_D);
 					if (g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon() instanceof RangedWeapon) {
 						g.getGrid().get(g.getCharacterLocation()).returnCharacter()
 								.setWeapon(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getCloseStore());

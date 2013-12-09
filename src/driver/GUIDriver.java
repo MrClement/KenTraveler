@@ -37,7 +37,6 @@ public class GUIDriver {
 	private static int lastKey;
 	private static long hangTime;
 	private static long value;
-	private static boolean spaceDown = false;
 	private static int stage = 1;
 	private static boolean keepGoing;
 
@@ -110,7 +109,8 @@ public class GUIDriver {
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
 				if (keyCode == KeyEvent.VK_UP) {
-					g.retractWeapon(lastKey);
+					g.retractWeapon(KeyEvent.VK_A);
+					g.retractWeapon(KeyEvent.VK_D);
 					if (g.getGrid()
 							.get(new Point((int) g.getCharacterLocation().getX(),
 									(int) g.getCharacterLocation().getY() + 1)).hasSolid()) {
@@ -129,12 +129,12 @@ public class GUIDriver {
 				} else if (keyCode == KeyEvent.VK_RIGHT) {
 					g.moveCharacter(1, 0, lastKey);
 					lastKey = KeyEvent.VK_RIGHT;
-				} else if (keyCode == KeyEvent.VK_SPACE) {
-					if (!spaceDown) {
-						spaceDown = true;
+				} else if (keyCode == KeyEvent.VK_A) {
+						lastKey = KeyEvent.VK_A;
 						g.useWeapon(lastKey);
-					}
-
+				} else if (keyCode == KeyEvent.VK_D) {
+					lastKey = KeyEvent.VK_D;
+					g.useWeapon(lastKey);
 				} else if (keyCode == KeyEvent.VK_P) {
 					String name = "Yo Mama";
 					Color c = Color.ORANGE;
@@ -163,9 +163,9 @@ public class GUIDriver {
 
 			public void keyReleased(KeyEvent e) {
 				int keyCode = e.getKeyCode();
-				if (keyCode == KeyEvent.VK_SPACE) {
-					g.retractWeapon(lastKey);
-					spaceDown = false;
+				if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_D) {
+					g.retractWeapon(KeyEvent.VK_A);
+					g.retractWeapon(KeyEvent.VK_D);
 				}
 			}
 		});

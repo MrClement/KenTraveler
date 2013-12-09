@@ -109,7 +109,7 @@ public class GUIDriver {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				int keyCode = e.getKeyCode();
-				if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_UP) {
+				if (keyCode == KeyEvent.VK_UP) {
 					g.retractWeapon(lastKey);
 					if (g.getGrid()
 							.get(new Point((int) g.getCharacterLocation().getX(),
@@ -121,14 +121,14 @@ public class GUIDriver {
 						value = gravityRate + hangTime;
 
 					}
-				} else if (keyCode == KeyEvent.VK_A || keyCode == KeyEvent.VK_LEFT) {
+				} else if (keyCode == KeyEvent.VK_LEFT) {
 					g.moveCharacter(-1, 0, lastKey);
-					lastKey = KeyEvent.VK_A;
-				} else if (keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_DOWN) {
+					lastKey = KeyEvent.VK_LEFT;
+				} else if (keyCode == KeyEvent.VK_DOWN) {
 					g.moveCharacter(0, 1, lastKey);
-				} else if (keyCode == KeyEvent.VK_D || keyCode == KeyEvent.VK_RIGHT) {
+				} else if (keyCode == KeyEvent.VK_RIGHT) {
 					g.moveCharacter(1, 0, lastKey);
-					lastKey = KeyEvent.VK_D;
+					lastKey = KeyEvent.VK_RIGHT;
 				} else if (keyCode == KeyEvent.VK_SPACE) {
 					if (!spaceDown) {
 						spaceDown = true;

@@ -39,6 +39,7 @@ public class GUIDriver {
 	private static long value;
 	private static boolean spaceDown = false;
 	private static int stage = 1;
+	private static boolean keepGoing;
 
 	public static void main(String[] args) {
 
@@ -93,6 +94,8 @@ public class GUIDriver {
 		value = gravityRate + hangTime;
 		long curTime = System.currentTimeMillis();
 		long lastTime = curTime;
+
+		keepGoing = true;
 
 		g = new Grid(0);
 
@@ -167,7 +170,7 @@ public class GUIDriver {
 			}
 		});
 
-		while (true) {
+		while (keepGoing) {
 			try {
 				lastTime = curTime;
 				curTime = System.currentTimeMillis();
@@ -186,7 +189,10 @@ public class GUIDriver {
 					ArrayList<Point> enemyLocs = g.getEnemyLocation();
 					for (int j = 0; j < enemyLocs.size(); j++) {
 						if (charLoc.distance(enemyLocs.get(j)) <= 1) {
-							g.characterDamage(g.getGrid().get(enemyLocs.get(j)).returnEnemy());
+							keepGoing = g.characterDamage(g.getGrid().get(enemyLocs.get(j)).returnEnemy());
+							if (!keepGoing) {
+								System.exit(0);
+							}
 						}
 					}
 
@@ -312,7 +318,7 @@ public class GUIDriver {
 					}
 				} catch (NullPointerException e) {
 					System.out.println("Caught null pointer error on HUD for weapon.");
-				}catch(ConcurrentModificationException c){
+				} catch (ConcurrentModificationException c) {
 					System.out.println("Caught concurrent modification exception.");
 				}
 
@@ -329,6 +335,9 @@ public class GUIDriver {
 							break;
 						case 5:
 							g2d.drawString("Health: * _ _ _", 320, 20);
+							break;
+						case 0:
+							keepGoing = false;
 							break;
 
 						default:

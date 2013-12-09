@@ -62,9 +62,10 @@ public class Grid {
 	}
 
 	public void moveCharacter(int x, int y, int lastKeyPressed) {
-		try{
+		try {
 			this.retractWeapon(lastKeyPressed);
-			Point newLocation = new Point((int) getCharacterLocation().getX() + x, (int) getCharacterLocation().getY() + y);
+			Point newLocation = new Point((int) getCharacterLocation().getX() + x, (int) getCharacterLocation().getY()
+					+ y);
 			GridSpace gs = grid.get(getCharacterLocation());
 			GridSpace gs2 = grid.get(newLocation);
 
@@ -100,10 +101,9 @@ public class Grid {
 			grid.put(getCharacterLocation(), gs);
 			grid.put(newLocation, gs2);
 			setCharacterLocation(newLocation);
-		}catch(NullPointerException e){
+		} catch (NullPointerException e) {
 			System.out.println("Caught moveCharacter null pointer error.");
 		}
-		
 
 	}
 
@@ -241,7 +241,7 @@ public class Grid {
 	}
 
 	public void useWeapon(int lastKeyPressed) {
-		try{
+		try {
 			int dir = 1;
 			Point charLoc = new Point(this.getCharacterLocation());
 			if (!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)) {
@@ -279,7 +279,7 @@ public class Grid {
 				target.add(newWeapon);
 				target.sortArrayOfThings();
 			}
-		}catch(NullPointerException e){
+		} catch (NullPointerException e) {
 			System.out.println("Caught useWeapon null pointer error.");
 		}
 
@@ -291,9 +291,9 @@ public class Grid {
 			return;
 		} else {
 			for (LivingThing livingThing : livingThings) {
-				if (livingThing instanceof Character){
+				if (livingThing instanceof Character) {
 					return;
-				}else{
+				} else {
 					int hp = livingThing.getHp();
 					hp -= weapon.getDamage().getBaseHpDamage();
 					if (hp <= 0) {
@@ -311,7 +311,7 @@ public class Grid {
 	}
 
 	public void retractWeapon(int lastKeyPressed) {
-		try{
+		try {
 			int dir = 1;
 			Point charLoc = new Point(this.getCharacterLocation());
 			if (!(grid.get(charLoc).returnCharacter().getWeapon() instanceof RangedWeapon)) {
@@ -330,21 +330,24 @@ public class Grid {
 				target2.remove(grid.get(charLoc).returnCharacter().getWeapon());
 				target2.sortArrayOfThings();
 			}
-		}catch(NullPointerException e){
+		} catch (NullPointerException e) {
 			System.out.println("Caught retractWeapon null pointer error.");
 		}
-		
+
 	}
 
-	public void characterDamage(Enemy e) {
+	public boolean characterDamage(Enemy e) {
 		if (grid.get(characterLocation).returnCharacter() == null) {
-			return;
+			return false;
 		} else {
 			grid.get(characterLocation).returnCharacter().updateHp(-5);
 			if (grid.get(characterLocation).returnCharacter().getHp() <= 0) {
 				grid.get(characterLocation).remove(grid.get(characterLocation).returnCharacter());
 				System.out.println("You died.");
+				characterLocation = null;
+				return false;
 			}
+			return true;
 		}
 	}
 

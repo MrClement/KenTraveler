@@ -74,6 +74,7 @@ public class Character extends LivingThing {
 			updateMaxSpeed(0);
 			updateMaxMana(0);
 			updateMaxHp(10);
+			xp = getMaxHp();
 		}
 	}
 

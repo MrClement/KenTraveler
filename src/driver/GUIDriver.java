@@ -333,7 +333,6 @@ public class GUIDriver {
 					try {
 						Character c = g.getGrid().get(g.getCharacterLocation()).returnCharacter();
 						String healthString = "";
-						System.out.println(c.getMaxHp());
 						for (int i = 0; i < c.getMaxHp(); i += 5) {
 							if (c.getHp() > i) {
 								healthString += "* ";

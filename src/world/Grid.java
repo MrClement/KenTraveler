@@ -418,4 +418,263 @@ public class Grid {
 		}
 
 	}
+	public void gameOver(){
+		Random r = new Random();
+		for (int i = 0; i < 101; i++) {
+			for (int j = 0; j < 25; j++) {
+				Color c = new Color(r.nextInt(500));
+				GridSpace d = new GridSpace(new ArrayList<Thing>());
+					d.add(new Terrain(true, c));
+				d.sortArrayOfThings();
+				grid.put(new Point(i, j), d);
+			}
+		}
+		GridSpace c = new GridSpace(new ArrayList<Thing>());
+		c.add(new Terrain(true, Color.WHITE));
+		c.sortArrayOfThings();
+		grid.put(new Point(20, 10), c);
+		grid.put(new Point(20, 9), c);
+		for(int i = 19; i > 14; i--)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(i, 9), c);
+		}
+		for(int i = 9; i < 15; i++)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(14, i), c);
+		}
+		for(int i = 14; i < 21; i++)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(i, 15), c);
+		}
+		for(int i = 15; i > 13; i--)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(21, i), c);
+		}
+		for(int i = 21; i > 18; i--)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(i, 13), c);
+		}
+		
+		c.add(new Terrain(true, Color.WHITE));
+		c.sortArrayOfThings();
+		//A drawing
+		for(int i = 24; i < 30; i++)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(i, 9), c);
+		}
+		for(int i = 10; i < 16; i++)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(23, i), c);
+		}
+		
+		for(int i = 10; i < 16; i++)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(30, i), c);
+		}
+		for(int i = 23; i < 30; i++)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(i, 12), c);
+		}
+		//M Drawing
+		for(int i = 9; i < 16; i++)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(32, i), c);
+		}
+		int xint = 31;
+		for(int i = 9; i < 13; i++)
+		{
+			xint++;
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(xint, i), c);
+		}
+		xint = 34;
+		for(int i = 12; i > 9; i--)
+		{
+			xint++;
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(xint, i), c);
+		}
+		for(int i = 9; i < 16; i++)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(38, i), c);
+		}
+		
+		//Draw E
+		
+		for(int i = 9; i < 16; i++)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(40, i), c);
+		}
+		
+		for(int i = 40; i < 48; i++)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(i, 9), c);
+		}
+		
+		for(int i = 40; i < 48; i++)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(i, 12), c);
+		}
+		
+		for(int i = 40; i < 48; i++)
+		{
+			c.add(new Terrain(true, Color.WHITE));
+			c.sortArrayOfThings();
+			grid.put(new Point(i, 15), c);
+		}
+		
+		int y = 15;
+		for (int x = 53; x < 60; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(x, y), d);
+		}
+		y = 9;
+		for (int x = 53; x < 60; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(x, y), d);
+		}
+		y = 53;
+		for (int x = 9; x < 16; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(y, x), d);
+		}
+		y = 59;
+		for (int x = 9; x < 16; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(y, x), d);
+		}
+		// V
+		y = 61;
+		for (int x = 9; x < 13; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(y, x), d);
+		}
+		y = 67;
+		for (int x = 9; x < 13; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(y, x), d);
+		}
+		y = 61;
+		for (int x = 13; x < 16; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(y + x - 12, x), d);
+		}
+		y = 67;
+		for (int x = 13; x < 16; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(y - x + 12, x), d);
+		}
+		// E
+		y = 69;
+		for (int x = 9; x < 16; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(y, x), d);
+		}
+		y = 9;
+		for (int x = 69; x < 76; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(x, y), d);
+		}
+		y = 12;
+		for (int x = 69; x < 76; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(x, y), d);
+		}
+		y = 15;
+		for (int x = 69; x < 76; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(x, y), d);
+		}
+		// R
+		y = 12;
+		for (int x = 77; x < 84; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(x, y), d);
+		}
+		y = 9;
+		for (int x = 77; x < 84; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(x, y), d);
+		}
+		y = 77;
+		for (int x = 9; x < 16; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(y, x), d);
+		}
+		y = 83;
+		for (int x = 9; x < 13; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(y, x), d);
+		}
+		y = 80;
+		for (int x = 13; x < 16; x++) {
+			GridSpace d = new GridSpace(new ArrayList<Thing>());
+			d.add(new Terrain(true, Color.WHITE));
+			d.sortArrayOfThings();
+			grid.put(new Point(y + x - 12, x), d);
+		}
+		
+	}
 }

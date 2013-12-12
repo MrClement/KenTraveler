@@ -194,7 +194,7 @@ public class GUIDriver {
 							if (charLoc.distance(enemyLocs.get(j)) <= 1) {
 								keepGoing = g.characterDamage(g.getGrid().get(enemyLocs.get(j)).returnEnemy());
 								if (!keepGoing) {
-									// System.exit(0);
+									g.gameOver();
 								}
 							}
 						}

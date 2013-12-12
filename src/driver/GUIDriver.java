@@ -272,7 +272,7 @@ public class GUIDriver {
 								HashMap<Point, GridSpace> grid = g.getGrid();
 								Point oldLocation = g.getCharacterLocation();
 								Character c = grid.get(oldLocation).returnCharacter();
-								c.setHp(20);
+								c.setHp(c.getMaxHp());
 								World w = new World();
 								int killed = g.getNumKilled();
 								g = w.drawWorld(1, killed);
@@ -332,6 +332,7 @@ public class GUIDriver {
 
 					try {
 						Character c = g.getGrid().get(g.getCharacterLocation()).returnCharacter();
+						g2d.drawString("Current level: " + c.getLevel(), 840, 20);
 						String healthString = "";
 						for (int i = 0; i < c.getMaxHp(); i += 5) {
 							if (c.getHp() > i) {

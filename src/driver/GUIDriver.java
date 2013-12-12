@@ -320,9 +320,9 @@ public class GUIDriver {
 				if (keepGoing) {
 					try {
 						if ((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof RangedWeapon) {
-							g2d.drawString("Current weapon: Bow", 440, 20);
+							g2d.drawString("Current weapon: Bow", 640, 20);
 						} else if ((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof Weapon) {
-							g2d.drawString("Current weapon: Sword", 440, 20);
+							g2d.drawString("Current weapon: Sword", 640, 20);
 						}
 					} catch (NullPointerException e) {
 						System.out.println("Caught null pointer error on HUD for weapon.");
@@ -331,27 +331,19 @@ public class GUIDriver {
 					}
 
 					try {
-						switch (g.getGrid().get(g.getCharacterLocation()).returnCharacter().getHp()) {
-							case 20:
-								g2d.drawString("Health: * * * *", 320, 20);
-								break;
-							case 15:
-								g2d.drawString("Health: * * * _", 320, 20);
-								break;
-							case 10:
-								g2d.drawString("Health: * * _ _", 320, 20);
-								break;
-							case 5:
-								g2d.drawString("Health: * _ _ _", 320, 20);
-								break;
-							case 0:
-								keepGoing = false;
-								break;
-
-							default:
-								g2d.drawString("Health: _ _ _ _", 320, 20);
-								break;
+						Character c = g.getGrid().get(g.getCharacterLocation()).returnCharacter();
+						String healthString = "";
+						System.out.println(c.getMaxHp());
+						for (int i = 0; i < c.getMaxHp(); i += 5) {
+							if (c.getHp() > i) {
+								healthString += "* ";
+							} else {
+								healthString += "_ ";
+							}
 						}
+
+						g2d.drawString(healthString, 320, 20);
+
 					} catch (NullPointerException e) {
 						System.out.println("Caught that error");
 						g2d.drawString("Health: Dead", 320, 20);

@@ -166,7 +166,7 @@ public class Grid {
 		Point newLocation = new Point((int) (enemyToMove.getX() + x), (int) (enemyToMove.getY() + y));
 		GridSpace gs = grid.get(enemyToMove);
 		GridSpace gs2 = grid.get(newLocation);
-		if(gs.returnLivingThings().get(0).isFrozen()){
+		if (gs.returnLivingThings().get(0).isFrozen()) {
 			return;
 		}
 		// if (this.characterLocation.getX() - this.enemyLocation.getX() >=
@@ -302,7 +302,7 @@ public class Grid {
 				} else {
 					int hp = livingThing.getHp();
 					hp -= weapon.getDamage().getBaseHpDamage();
-					if(weapon.getDamage().isFreeze()){
+					if (weapon.getDamage().isFreeze()) {
 						livingThing.setFrozen(true);
 					}
 					if (hp <= 0) {
@@ -403,15 +403,20 @@ public class Grid {
 	}
 
 	public void placeTerrain(int lastKey) {
-
+		boolean up = lastKey == KeyEvent.VK_PERIOD;
 		int dir = 0;
-		if (lastKey == KeyEvent.VK_A) {
+		if (lastKey == KeyEvent.VK_LEFT || lastKey == KeyEvent.VK_A) {
 			dir = -1;
-		} else if (lastKey == KeyEvent.VK_D) {
+		} else if (lastKey == KeyEvent.VK_RIGHT || lastKey == KeyEvent.VK_D) {
 			dir = 1;
 		}
 		if (dir != 0) {
 			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
+			GridSpace target = grid.get(side);
+			target.add(new Terrain(true, Color.GREEN));
+			target.sortArrayOfThings();
+		} else if (up) {
+			Point side = new Point((int) (getCharacterLocation().getX()), (int) (getCharacterLocation().getY() - 1));
 			GridSpace target = grid.get(side);
 			target.add(new Terrain(true, Color.GREEN));
 			target.sortArrayOfThings();

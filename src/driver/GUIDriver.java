@@ -160,6 +160,8 @@ public class GUIDriver {
 					g.killAllEnemies();
 				} else if (keyCode == KeyEvent.VK_SEMICOLON) {
 					g.placeTerrain(keyCode);
+				} else if (keyCode == KeyEvent.VK_PERIOD) {
+					g.placeTerrain(keyCode);
 				}
 			}
 

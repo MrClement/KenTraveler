@@ -292,6 +292,7 @@ public class Grid {
 
 	private void dealDamage(GridSpace target, Weapon weapon, Point targetLocation) {
 		ArrayList<LivingThing> livingThings = target.returnLivingThings();
+		Character c = (grid.get(getCharacterLocation())).returnCharacter();
 		if (livingThings == null || livingThings.size() == 0) {
 			return;
 		} else {
@@ -308,6 +309,9 @@ public class Grid {
 						target.remove(livingThing);
 						removeEnemy(targetLocation);
 						System.out.println("Killed that dude!");
+						c.addXp(500);
+						c.levelUp();
+						System.out.println(c.getLevel());
 						numKilled++;
 					} else {
 						livingThing.setHp(hp);

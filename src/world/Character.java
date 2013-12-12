@@ -21,7 +21,7 @@ public class Character extends LivingThing {
 	public Character(String name, int strength, int intelligence, int dexterity, boolean solid, Color c) {
 		super(name, strength, intelligence, dexterity, solid, c);
 		xp = 0;
-		level = 0;
+		level = 1;
 	}
 
 	public int getXp() {
@@ -31,7 +31,15 @@ public class Character extends LivingThing {
 	public void setXp(int xp) {
 		this.xp = xp;
 	}
+	
+	public void addXp(int xp) {
+		this.xp = this.xp + xp;
+	}
 
+	public int getLevel() {
+		return level;
+	}
+	
 	public Weapon getWeapon() {
 		return weapon;
 	}
@@ -55,7 +63,9 @@ public class Character extends LivingThing {
 	}
 
 	public void levelUp() {
-		if (!(xp < (750 * level) + (250 * level))) {
+		System.out.println(xp);
+		if (xp >= 1000 * level) {
+			setXp(0);
 			level++;
 			int points = getIntelligence();
 			updateMaxDexterity(points);

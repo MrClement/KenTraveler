@@ -228,7 +228,7 @@ public class Grid {
 		c.setMaxHp(20);
 		c.setHp(20);
 		c.setWeapon(f.constructMeleeWeapons(0, (LivingThing) c));
-		c.setWeapon(f.constructMagic(5, (LivingThing) c));
+		c.setWeapon(f.constructMagic(2, (LivingThing) c));
 		things.add(c);
 		GridSpace test = new GridSpace(things);
 		test.sortArrayOfThings();
@@ -288,6 +288,30 @@ public class Grid {
 			System.out.println("Caught useWeapon null pointer error.");
 		}
 
+	}
+	public void applyDot(){
+		Character c = (grid.get(getCharacterLocation())).returnCharacter();
+		for(int i=0; i<enemyLocations.size(); i++){
+			Point loc=enemyLocations.get(i);
+			GridSpace gs=grid.get(loc);
+			Enemy currentEnemy=grid.get(loc).returnEnemy();
+			int hp=currentEnemy.getHp();
+			hp-=currentEnemy.getDot();
+			System.out.println(hp);
+			if(hp<=0){
+				gs.remove(currentEnemy);
+				removeEnemy(loc);
+				System.out.println("Killed that dude!");
+				c.addXp(500);
+				c.levelUp();
+				System.out.println(c.getLevel());
+				numKilled++;
+				
+			}
+			else{
+				currentEnemy.setHp(hp);
+			}
+		}
 	}
 
 	private void dealDamage(GridSpace target, Weapon weapon, Point targetLocation) {

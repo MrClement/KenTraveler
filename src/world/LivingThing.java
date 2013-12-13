@@ -24,6 +24,8 @@ public class LivingThing extends Thing {
 	private int speed;
 	private int mana;
 	private boolean frozen;
+	private int dot;
+
 
 	public LivingThing(boolean b, Color c) {
 		super(b, c);
@@ -204,6 +206,13 @@ public class LivingThing extends Thing {
 
 	public void updateMaxHp(int increase) {
 		MaxHp += increase;
+	}
+	public int getDot() {
+		return dot;
+	}
+
+	public void setDot(int dot) {
+		this.dot = dot;
 	}
 
 }

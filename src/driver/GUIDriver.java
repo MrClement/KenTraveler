@@ -185,7 +185,7 @@ public class GUIDriver {
 					if (gravityTime > value) {
 						value += gravityRate;
 						g.moveCharacter(0, 1, lastKey);
-
+						g.applyDot();
 						for (int a = 0; a < 2; a++) {
 							g.moveRangedWeapon();
 						}

@@ -39,7 +39,7 @@ public class Forge {
 		}
 		else if(i==2){
 			Magic fire2=new Magic(true, Color.ORANGE, l, 20, 15, 1);
-			Damage fire2Dam=new Damage(20, 0, 0, 0, 0, 0, 0, 7, false, false, false);
+			Damage fire2Dam=new Damage(5, 0, 0, 0, 0, 0, 0, 5, false, false, false);
 			fire2.setDamage(fire2Dam);
 			return fire2;
 		}

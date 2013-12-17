@@ -289,7 +289,7 @@ public class GUIDriver {
 								g.setCharacterLocation(new Point(1, (int) oldLocation.getY() - 1));
 
 								Random r = new Random();
-								int numEnemies = r.nextInt(20) + 1;
+								int numEnemies = r.nextInt(stage) + 1;
 
 								for (int i = 0; i < numEnemies; i++) {
 									String name = "Yo Mama";

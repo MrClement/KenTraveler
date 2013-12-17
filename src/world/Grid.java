@@ -297,6 +297,7 @@ public class Grid {
 			Enemy currentEnemy=grid.get(loc).returnEnemy();
 			int hp=currentEnemy.getHp();
 			hp-=currentEnemy.getDot();
+			System.out.println(hp);
 			if(hp<=0){
 				gs.remove(currentEnemy);
 				removeEnemy(loc);
@@ -305,7 +306,6 @@ public class Grid {
 				c.levelUp();
 				System.out.println(c.getLevel());
 				numKilled++;
-				gs.sortArrayOfThings();
 				
 			}
 			else{
@@ -329,7 +329,6 @@ public class Grid {
 					if (weapon.getDamage().isFreeze()) {
 						livingThing.setFrozen(true);
 					}
-					livingThing.setDot(weapon.getDamage().getDot());
 					if (hp <= 0) {
 						target.remove(livingThing);
 						removeEnemy(targetLocation);

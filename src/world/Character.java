@@ -84,7 +84,6 @@ public class Character extends LivingThing {
 	}
 
 	public void levelUp() {
-		System.out.println(xp);
 		if (xp >= 1000 * level) {
 			setXp(0);
 			level++;

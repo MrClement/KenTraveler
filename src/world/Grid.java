@@ -306,7 +306,6 @@ public class Grid {
 				System.out.println("Killed that dude!");
 				c.addXp(500);
 				c.levelUp();
-				System.out.println(c.getLevel());
 				numKilled++;
 
 			} else {
@@ -336,7 +335,6 @@ public class Grid {
 						removeEnemy(targetLocation);
 						c.addXp(500);
 						c.levelUp();
-						System.out.println(c.getLevel());
 						numKilled++;
 					} else {
 						livingThing.setHp(hp);
@@ -435,7 +433,6 @@ public class Grid {
 		} else if (lastKey == KeyEvent.VK_RIGHT || lastKey == KeyEvent.VK_D) {
 			dir = 1;
 		}
-		System.out.println("Dir: " + dir);
 		if (dir != 0) {
 			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
 			GridSpace target = grid.get(side);

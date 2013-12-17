@@ -25,6 +25,7 @@ import world.Enemy;
 import world.Grid;
 import world.GridSpace;
 import world.LivingThing;
+import world.Magic;
 import world.RangedWeapon;
 import world.Terrain;
 import world.Thing;
@@ -145,17 +146,15 @@ public class GUIDriver {
 					} else {
 						System.out.println("Could not spawn a new enemy.");
 					}
-				} else if (keyCode == KeyEvent.VK_Q || keyCode == KeyEvent.VK_E) {
+				}else if (keyCode == KeyEvent.VK_Q || keyCode == KeyEvent.VK_E) {
 					g.retractWeapon(KeyEvent.VK_A);
 					g.retractWeapon(KeyEvent.VK_D);
 					if (g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon() instanceof RangedWeapon) {
-						g.getGrid().get(g.getCharacterLocation()).returnCharacter()
-								.setWeapon(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getCloseStore());
-					} else {
-						g.getGrid()
-								.get(g.getCharacterLocation())
-								.returnCharacter()
-								.setWeapon(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getRangedStore());
+						g.getGrid().get(g.getCharacterLocation()).returnCharacter().setWeapon((Magic)g.getGrid().get(g.getCharacterLocation()).returnCharacter().getMagicStore().get(0));
+					} else if (g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon() instanceof Magic) {
+						g.getGrid().get(g.getCharacterLocation()).returnCharacter().setWeapon(g.getGrid().get(g.getCharacterLocation()).returnCharacter().getCloseStore().get(0));
+					}else{
+						g.getGrid().get(g.getCharacterLocation()).returnCharacter().setWeapon((RangedWeapon)g.getGrid().get(g.getCharacterLocation()).returnCharacter().getRangedStore().get(0));
 					}
 				} else if (keyCode == KeyEvent.VK_SLASH) {
 					g.killAllEnemies();
@@ -334,17 +333,12 @@ public class GUIDriver {
 				g2d.drawString(String.format("Enemies killed: %s", g.getNumKilled()), 180, 20);
 				if (keepGoing) {
 					try {
-						if ((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof RangedWeapon) {
-							g2d.drawString("Current weapon: Bow", 640, 20);
-						} else if ((g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon()) instanceof Weapon) {
-							g2d.drawString("Current weapon: Sword", 640, 20);
-						}
+						g2d.drawString("Current weapon: " + g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon().toString(), 440, 20);
 					} catch (NullPointerException e) {
 						System.out.println("Caught null pointer error on HUD for weapon.");
 					} catch (ConcurrentModificationException c) {
 						System.out.println("Caught concurrent modification exception.");
-					}
-
+					}				
 					try {
 						Character c = g.getGrid().get(g.getCharacterLocation()).returnCharacter();
 						g2d.drawString("Current level: " + c.getLevel(), 840, 20);
@@ -357,7 +351,7 @@ public class GUIDriver {
 							}
 						}
 
-						g2d.drawString(healthString, 320, 20);
+						g2d.drawString("Health: " +healthString, 320, 20);
 
 					} catch (NullPointerException e) {
 						System.out.println("Caught that error");

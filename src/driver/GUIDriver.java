@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -287,6 +288,18 @@ public class GUIDriver {
 								gs.sortArrayOfThings();
 								grid.put(new Point(0, (int) oldLocation.getY()), gs);
 								g.setCharacterLocation(new Point(0, (int) oldLocation.getY()));
+								
+								Random r = new Random();
+								int numEnemies = r.nextInt(20) + 1;
+								
+								for(int i = 0; i < numEnemies; i++){
+								String name = "Yo Mama";
+								Color d = Color.ORANGE;
+								Point p = g.findValidEnemyLocation();
+								if (p != null) {
+									g.spawnNewEnemy(p, new Enemy(true, d, name, 10, 10, 10));
+								}
+								}
 							}
 						}
 					}

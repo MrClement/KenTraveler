@@ -83,37 +83,37 @@ public class Forge {
 	//5=throwing knives
 	public RangedWeapon constructRangedWeapons(int i, LivingThing l){
 		if(i==0){
-			RangedWeapon baseBow=new RangedWeapon(true, Color.BLUE, l, 15, 1);
+			RangedWeapon baseBow=new RangedWeapon(true, Color.YELLOW, l, 15, 1);
 			Damage baseBowDamage=new Damage(7, 0, 0, 0, 0, 0, 0, 0, false, false, false);
 			baseBow.setDamage(baseBowDamage);
 			return baseBow;
 		}
 		else if(i==1){
-			RangedWeapon longBow=new RangedWeapon(true, Color.BLUE, l, 30, 1);
+			RangedWeapon longBow=new RangedWeapon(true, Color.YELLOW, l, 30, 1);
 			Damage longBowDamage=new Damage(15, 0, 0, 0, 0, 0, 0, 0, false, false, false);
 			longBow.setDamage(longBowDamage);
 			return longBow;
 		}
 		else if(i==2){
-			RangedWeapon crossBow=new RangedWeapon(true, Color.BLUE, l, 20, 1);
+			RangedWeapon crossBow=new RangedWeapon(true, Color.YELLOW, l, 20, 1);
 			Damage crossBowDamage=new Damage(15, 0, 0, 0, 0, 0, 0, 0, false, false, false);
 			crossBow.setDamage(crossBowDamage);
 			return crossBow;
 		}
 		else if(i==3){
-			RangedWeapon crossBowPlus=new RangedWeapon(true, Color.BLUE, l, 30, 1);
+			RangedWeapon crossBowPlus=new RangedWeapon(true, Color.YELLOW, l, 30, 1);
 			Damage crossBowPlusDamage=new Damage(25, 0, 0, 0, 0, 0, 0, 0, false, false, false);
 			crossBowPlus.setDamage(crossBowPlusDamage);
 			return crossBowPlus;
 		}
 		else if(i==4){
-			RangedWeapon javelin=new RangedWeapon(true, Color.BLUE, l, 10, 1);
+			RangedWeapon javelin=new RangedWeapon(true, Color.YELLOW, l, 10, 1);
 			Damage javelinDamage=new Damage(20, 0, 0, 0, 0, 0, 0, 0, false, false, false);
 			javelin.setDamage(javelinDamage);
 			return javelin;
 		}
 		else if(i==5){
-			RangedWeapon throwingKnives=new RangedWeapon(true, Color.BLUE, l, 15, 1);
+			RangedWeapon throwingKnives=new RangedWeapon(true, Color.YELLOW, l, 15, 1);
 			Damage throwingKnivesDamage=new Damage(10, 0, 0, 0, 0, 0, 0, 0, false, false, false);
 			throwingKnives.setDamage(throwingKnivesDamage);
 			return throwingKnives;

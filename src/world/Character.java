@@ -12,9 +12,9 @@ public class Character extends LivingThing {
 	private int xp;
 	private int level;
 	private Weapon weapon;
-	private ArrayList <RangedWeapon> rangedStore = new ArrayList<RangedWeapon>();
-	private ArrayList <Magic> magicStore = new ArrayList<Magic>();
-	private ArrayList <Weapon> closeStore = new ArrayList<Weapon>();
+	private ArrayList<RangedWeapon> rangedStore = new ArrayList<RangedWeapon>();
+	private ArrayList<Magic> magicStore = new ArrayList<Magic>();
+	private ArrayList<Weapon> closeStore = new ArrayList<Weapon>();
 
 	public Character(boolean solid, Color c) {
 		super(solid, c);
@@ -33,7 +33,7 @@ public class Character extends LivingThing {
 	public void setXp(int xp) {
 		this.xp = xp;
 	}
-	
+
 	public void addXp(int xp) {
 		this.xp = this.xp + xp;
 	}
@@ -41,41 +41,41 @@ public class Character extends LivingThing {
 	public int getLevel() {
 		return level;
 	}
-	
+
 	public Weapon getWeapon() {
 		return weapon;
 	}
-	
-	public void setWeapon(Weapon wep){
+
+	public void setWeapon(Weapon wep) {
 		this.weapon = wep;
 	}
 
-	public ArrayList <RangedWeapon> getRangedStore() {
+	public ArrayList<RangedWeapon> getRangedStore() {
 		return rangedStore;
 	}
-	
-	public ArrayList <Magic> getMagicStore(){
+
+	public ArrayList<Magic> getMagicStore() {
 		return magicStore;
 	}
 
-	public ArrayList <Weapon> getCloseStore() {
+	public ArrayList<Weapon> getCloseStore() {
 		return closeStore;
 	}
 
 	public void addWeapon(Weapon weapon) {
 		this.weapon = weapon;
-		if (weapon instanceof RangedWeapon) {
-			if (!rangedStore.contains(weapon)){
+		if (weapon instanceof RangedWeapon && !(weapon instanceof Magic)) {
+			if (!rangedStore.contains(weapon)) {
 				this.rangedStore.add((RangedWeapon) weapon);
 				return;
 			}
-		} else if (weapon instanceof Magic){
-			if (!magicStore.contains(weapon)){
+		} else if (weapon instanceof Magic) {
+			if (!magicStore.contains(weapon)) {
 				this.magicStore.add((Magic) weapon);
 				return;
 			}
-		}else{
-			if (closeStore.contains(weapon)){
+		} else {
+			if (closeStore.contains(weapon)) {
 				this.closeStore.add(weapon);
 				return;
 			}

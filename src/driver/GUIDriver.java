@@ -149,7 +149,10 @@ public class GUIDriver {
 					g.retractWeapon(KeyEvent.VK_A);
 					g.retractWeapon(KeyEvent.VK_D);
 					Character c = g.getGrid().get(g.getCharacterLocation()).returnCharacter();
-					if (c.getWeapon() instanceof RangedWeapon) {
+					System.out.println(c.getMagicStore());
+					System.out.println(c.getRangedStore());
+					System.out.println(c.getCloseStore());
+					if (c.getWeapon() instanceof RangedWeapon && !(c.getWeapon() instanceof Magic)) {
 						c.setWeapon((Magic) c.getMagicStore().get(0));
 					} else if (c.getWeapon() instanceof Magic) {
 						c.setWeapon(c.getCloseStore().get(0));

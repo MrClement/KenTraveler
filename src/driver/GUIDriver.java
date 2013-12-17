@@ -287,18 +287,18 @@ public class GUIDriver {
 								GridSpace gs = new GridSpace(t);
 								gs.sortArrayOfThings();
 								grid.put(new Point(0, (int) oldLocation.getY()), gs);
-								g.setCharacterLocation(new Point(0, (int) oldLocation.getY()));
-								
+								g.setCharacterLocation(new Point(0, (int) oldLocation.getY() - 1));
+
 								Random r = new Random();
 								int numEnemies = r.nextInt(20) + 1;
-								
-								for(int i = 0; i < numEnemies; i++){
-								String name = "Yo Mama";
-								Color d = Color.ORANGE;
-								Point p = g.findValidEnemyLocation();
-								if (p != null) {
-									g.spawnNewEnemy(p, new Enemy(true, d, name, 10, 10, 10));
-								}
+
+								for (int i = 0; i < numEnemies; i++) {
+									String name = "Yo Mama";
+									Color d = Color.ORANGE;
+									Point p = g.findValidEnemyLocation();
+									if (p != null) {
+										g.spawnNewEnemy(p, new Enemy(true, d, name, 10, 10, 10));
+									}
 								}
 							}
 						}

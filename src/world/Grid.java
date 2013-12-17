@@ -331,10 +331,10 @@ public class Grid {
 					if (weapon.getDamage().isFreeze()) {
 						livingThing.setFrozen(true);
 					}
+					livingThing.setDot(weapon.getDamage().getDot());
 					if (hp <= 0) {
 						target.remove(livingThing);
 						removeEnemy(targetLocation);
-						System.out.println("Killed that dude!");
 						c.addXp(500);
 						c.levelUp();
 						System.out.println(c.getLevel());

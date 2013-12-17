@@ -289,17 +289,15 @@ public class Grid {
 		}
 
 	}
-
-	public void applyDot() {
+	public void applyDot(){
 		Character c = (grid.get(getCharacterLocation())).returnCharacter();
-		for (int i = 0; i < enemyLocations.size(); i++) {
-			Point loc = enemyLocations.get(i);
-			GridSpace gs = grid.get(loc);
-			Enemy currentEnemy = grid.get(loc).returnEnemy();
-			int hp = currentEnemy.getHp();
-			hp -= currentEnemy.getDot();
-			System.out.println(hp);
-			if (hp <= 0) {
+		for(int i=0; i<enemyLocations.size(); i++){
+			Point loc=enemyLocations.get(i);
+			GridSpace gs=grid.get(loc);
+			Enemy currentEnemy=grid.get(loc).returnEnemy();
+			int hp=currentEnemy.getHp();
+			hp-=currentEnemy.getDot();
+			if(hp<=0){
 				gs.remove(currentEnemy);
 				removeEnemy(loc);
 				System.out.println("Killed that dude!");
@@ -307,8 +305,10 @@ public class Grid {
 				c.levelUp();
 				System.out.println(c.getLevel());
 				numKilled++;
-
-			} else {
+				gs.sortArrayOfThings();
+				
+			}
+			else{
 				currentEnemy.setHp(hp);
 			}
 		}
@@ -329,6 +329,7 @@ public class Grid {
 					if (weapon.getDamage().isFreeze()) {
 						livingThing.setFrozen(true);
 					}
+					livingThing.setDot(weapon.getDamage().getDot());
 					if (hp <= 0) {
 						target.remove(livingThing);
 						removeEnemy(targetLocation);
@@ -447,14 +448,13 @@ public class Grid {
 		}
 
 	}
-
-	public void gameOver() {
+	public void gameOver(){
 		Random r = new Random();
 		for (int i = 0; i < 101; i++) {
 			for (int j = 0; j < 25; j++) {
 				Color c = new Color(r.nextInt(500));
 				GridSpace d = new GridSpace(new ArrayList<Thing>());
-				d.add(new Terrain(true, c));
+					d.add(new Terrain(true, c));
 				d.sortArrayOfThings();
 				grid.put(new Point(i, j), d);
 			}
@@ -464,108 +464,125 @@ public class Grid {
 		c.sortArrayOfThings();
 		grid.put(new Point(20, 10), c);
 		grid.put(new Point(20, 9), c);
-		for (int i = 19; i > 14; i--) {
+		for(int i = 19; i > 14; i--)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(i, 9), c);
 		}
-		for (int i = 9; i < 15; i++) {
+		for(int i = 9; i < 15; i++)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(14, i), c);
 		}
-		for (int i = 14; i < 21; i++) {
+		for(int i = 14; i < 21; i++)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(i, 15), c);
 		}
-		for (int i = 15; i > 13; i--) {
+		for(int i = 15; i > 13; i--)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(21, i), c);
 		}
-		for (int i = 21; i > 18; i--) {
+		for(int i = 21; i > 18; i--)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(i, 13), c);
 		}
-
+		
 		c.add(new Terrain(true, Color.WHITE));
 		c.sortArrayOfThings();
-		// A drawing
-		for (int i = 24; i < 30; i++) {
+		//A drawing
+		for(int i = 24; i < 30; i++)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(i, 9), c);
 		}
-		for (int i = 10; i < 16; i++) {
+		for(int i = 10; i < 16; i++)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(23, i), c);
 		}
-
-		for (int i = 10; i < 16; i++) {
+		
+		for(int i = 10; i < 16; i++)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(30, i), c);
 		}
-		for (int i = 23; i < 30; i++) {
+		for(int i = 23; i < 30; i++)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(i, 12), c);
 		}
-		// M Drawing
-		for (int i = 9; i < 16; i++) {
+		//M Drawing
+		for(int i = 9; i < 16; i++)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(32, i), c);
 		}
 		int xint = 31;
-		for (int i = 9; i < 13; i++) {
+		for(int i = 9; i < 13; i++)
+		{
 			xint++;
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(xint, i), c);
 		}
 		xint = 34;
-		for (int i = 12; i > 9; i--) {
+		for(int i = 12; i > 9; i--)
+		{
 			xint++;
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(xint, i), c);
 		}
-		for (int i = 9; i < 16; i++) {
+		for(int i = 9; i < 16; i++)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(38, i), c);
 		}
-
-		// Draw E
-
-		for (int i = 9; i < 16; i++) {
+		
+		//Draw E
+		
+		for(int i = 9; i < 16; i++)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(40, i), c);
 		}
-
-		for (int i = 40; i < 48; i++) {
+		
+		for(int i = 40; i < 48; i++)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(i, 9), c);
 		}
-
-		for (int i = 40; i < 48; i++) {
+		
+		for(int i = 40; i < 48; i++)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(i, 12), c);
 		}
-
-		for (int i = 40; i < 48; i++) {
+		
+		for(int i = 40; i < 48; i++)
+		{
 			c.add(new Terrain(true, Color.WHITE));
 			c.sortArrayOfThings();
 			grid.put(new Point(i, 15), c);
 		}
-
+		
 		int y = 15;
 		for (int x = 53; x < 60; x++) {
 			GridSpace d = new GridSpace(new ArrayList<Thing>());
@@ -688,6 +705,6 @@ public class Grid {
 			d.sortArrayOfThings();
 			grid.put(new Point(y + x - 12, x), d);
 		}
-
+		
 	}
 }

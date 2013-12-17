@@ -1,6 +1,7 @@
 package world;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  * @author jpoley15 Creates a new character, allows for stat implementation
@@ -11,8 +12,9 @@ public class Character extends LivingThing {
 	private int xp;
 	private int level;
 	private Weapon weapon;
-	private RangedWeapon rangedStore;
-	private Weapon closeStore;
+	private ArrayList <RangedWeapon> rangedStore = new ArrayList<RangedWeapon>();
+	private ArrayList <Magic> magicStore = new ArrayList<Magic>();
+	private ArrayList <Weapon> closeStore = new ArrayList<Weapon>();
 
 	public Character(boolean solid, Color c) {
 		super(solid, c);
@@ -43,23 +45,42 @@ public class Character extends LivingThing {
 	public Weapon getWeapon() {
 		return weapon;
 	}
-
-	public RangedWeapon getRangedStore() {
-		return rangedStore;
+	
+	public void setWeapon(Weapon wep){
+		this.weapon = wep;
 	}
 
-	public Weapon getCloseStore() {
+	public ArrayList <RangedWeapon> getRangedStore() {
+		return rangedStore;
+	}
+	
+	public ArrayList <Magic> getMagicStore(){
+		return magicStore;
+	}
+
+	public ArrayList <Weapon> getCloseStore() {
 		return closeStore;
 	}
 
-	public void setWeapon(Weapon weapon) {
+	public void addWeapon(Weapon weapon) {
 		this.weapon = weapon;
 		if (weapon instanceof RangedWeapon) {
-			this.rangedStore = (RangedWeapon) weapon;
-		} else {
-			this.closeStore = weapon;
+			if (!rangedStore.contains(weapon)){
+				this.rangedStore.add((RangedWeapon) weapon);
+				return;
+			}
+		} else if (weapon instanceof Magic){
+			if (!magicStore.contains(weapon)){
+				this.magicStore.add((Magic) weapon);
+				return;
+			}
+		}else{
+			if (closeStore.contains(weapon)){
+				this.closeStore.add(weapon);
+				return;
+			}
 		}
-
+		closeStore.add(weapon);
 	}
 
 	public void levelUp() {

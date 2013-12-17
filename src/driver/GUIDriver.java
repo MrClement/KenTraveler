@@ -288,8 +288,8 @@ public class GUIDriver {
 								t.add(c);
 								GridSpace gs = new GridSpace(t);
 								gs.sortArrayOfThings();
-								grid.put(new Point(0, (int) oldLocation.getY()), gs);
-								g.setCharacterLocation(new Point(0, (int) oldLocation.getY() - 1));
+								grid.put(new Point(1, (int) oldLocation.getY()-1), gs);
+								g.setCharacterLocation(new Point(1, (int) oldLocation.getY() - 1));
 
 								Random r = new Random();
 								int numEnemies = r.nextInt(20) + 1;

@@ -97,4 +97,17 @@ public class Weapon extends Thing {
 		oo.updateMana((int) remainingMana);
 	}
 
+	@Override
+	public String toString() {
+		if (this instanceof RangedWeapon) {
+			if (!(this instanceof Magic)) {
+				return "Bow";
+			} else {
+				return "Spell";
+			}
+		} else {
+			return "Sword";
+		}
+	}
+
 }

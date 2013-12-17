@@ -338,7 +338,7 @@ public class GUIDriver {
 					try {
 						g2d.drawString("Current weapon: "
 								+ g.getGrid().get(g.getCharacterLocation()).returnCharacter().getWeapon().toString(),
-								570, 20);
+								680, 20);
 					} catch (NullPointerException e) {
 						System.out.println("Caught null pointer error on HUD for weapon.");
 					} catch (ConcurrentModificationException c) {

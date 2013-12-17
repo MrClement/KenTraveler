@@ -435,6 +435,7 @@ public class Grid {
 		} else if (lastKey == KeyEvent.VK_RIGHT || lastKey == KeyEvent.VK_D) {
 			dir = 1;
 		}
+		System.out.println("Dir: " + dir);
 		if (dir != 0) {
 			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
 			GridSpace target = grid.get(side);

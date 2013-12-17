@@ -162,7 +162,7 @@ public class GUIDriver {
 				} else if (keyCode == KeyEvent.VK_SLASH) {
 					g.killAllEnemies();
 				} else if (keyCode == KeyEvent.VK_SEMICOLON) {
-					g.placeTerrain(keyCode);
+					g.placeTerrain(lastKey);
 				} else if (keyCode == KeyEvent.VK_PERIOD) {
 					g.placeTerrain(keyCode);
 				}
@@ -288,7 +288,7 @@ public class GUIDriver {
 								t.add(c);
 								GridSpace gs = new GridSpace(t);
 								gs.sortArrayOfThings();
-								grid.put(new Point(1, (int) oldLocation.getY()-1), gs);
+								grid.put(new Point(1, (int) oldLocation.getY() - 1), gs);
 								g.setCharacterLocation(new Point(1, (int) oldLocation.getY() - 1));
 
 								Random r = new Random();

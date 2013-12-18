@@ -134,11 +134,11 @@ public class Forge {
 		}
 		return null;
 	}
-	public Weapon constructMeleeWeapons(int i, int damage, LivingThing l){
+	public Weapon constructMeleeWeapons(int i, LivingThing l){
 		if(i==0){
 			String name = "Sword";
 			Weapon sword=new Weapon(true, Color.RED, l, name);
-			Damage swordDamage=new Damage(damage, 0, 0, 0, 0, 0, 0, 0, false, false, false);
+			Damage swordDamage=new Damage(5, 0, 0, 0, 0, 0, 0, 0, false, false, false);
 			sword.setDamage(swordDamage);
 			return sword;
 		}

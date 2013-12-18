@@ -78,7 +78,7 @@ public class World {
 		HashMap<Point, GridSpace> grid = g.getGrid();
 		ArrayList<Integer> a = new ArrayList<Integer>();
 		
-		for (int p = 0; p <= height; p = p + 3) {
+		for (int p = 0; p <= height; p = p + r.nextInt(3) + 1) {
 			a.add(23 - p);
 		}
 		int xpos = seed;

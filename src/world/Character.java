@@ -12,6 +12,8 @@ public class Character extends LivingThing {
 	private int xp;
 	private int level;
 	private Weapon weapon;
+	private int ammo;
+	private int money;
 	private ArrayList<RangedWeapon> rangedStore = new ArrayList<RangedWeapon>();
 	private ArrayList<Magic> magicStore = new ArrayList<Magic>();
 	private ArrayList<Weapon> closeStore = new ArrayList<Weapon>();
@@ -93,9 +95,34 @@ public class Character extends LivingThing {
 			updateMaxStrength(points);
 			updateMaxSpeed(0);
 			updateMaxMana(0);
-			updateMaxHp(10);
+			if (getMaxHp() < 100)
+				updateMaxHp(10);
 			setHp(getMaxHp());
 		}
+	}
+
+	public int getAmmo() {
+		return ammo;
+	}
+
+	public void setAmmo(int ammo) {
+		this.ammo = ammo;
+	}
+	
+	public void addAmmo(int ammo){
+		this.ammo += ammo;
+	}
+	
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+	
+	public void addMoney(int money){
+		this.money += money;
 	}
 
 }

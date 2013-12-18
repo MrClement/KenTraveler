@@ -359,6 +359,34 @@ public class GUIDriver {
 						System.out.println("Caught that error");
 						g2d.drawString("Health: Dead", 320, 20);
 					}
+					try{
+						//0=basic bow + arrows
+						//1=longbow + arrows
+						//2=basic crossbow + bolts
+						//3=finely crafted crossbow + bolts
+						//4=javelins
+						//5=throwing knive
+						g2d.drawString("WELCOME TO THE MARKET", 5, 270);
+						g2d.drawString("PRESS A NUMBER OR SYMBOL TO BUY A WEAPON FROM THE MERCHANT:", 5, 285);
+						g2d.drawString("1: Basic Bow", 5, 305);
+						g2d.drawString("2: Long Bow", 5, 320);
+						g2d.drawString("3: Cross Bow", 5, 335);
+						g2d.drawString("4: Cross Bow Plus", 5, 350);
+						g2d.drawString("5: Javelin", 5, 365);
+						g2d.drawString("6: Throwing Knives", 5, 380);
+						g2d.drawString("7: Gassify", 5, 395);		
+						g2d.drawString("!: Fire Magic 1", 200, 305);
+						g2d.drawString("@: Fire Magic 2", 200, 320);
+						g2d.drawString("#: Fire Magic 3", 200, 335);
+						g2d.drawString("$: Ice Magic 1", 200, 350);
+						g2d.drawString("%: Ice Magic 2", 200, 365);
+						g2d.drawString("^: Ice Magic 3", 200, 380);
+						g2d.drawString("&: Solidify", 200, 395);
+						
+						
+					}catch (Exception e){
+						System.out.println("Caught some error.");
+					}
 				}
 				// Blit image and flip...
 

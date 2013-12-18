@@ -9,8 +9,8 @@ public class RangedWeapon extends Weapon {
 
 	// ticks per cell
 
-	public RangedWeapon(boolean b, Color c, LivingThing l, int r, int s) {
-		super(b, c, l);
+	public RangedWeapon(boolean b, Color c, LivingThing l, int r, int s, String name) {
+		super(b, c, l, name);
 		range = r;
 		speed = s;
 		currentSpeed=0;

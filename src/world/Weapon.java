@@ -17,10 +17,12 @@ public class Weapon extends Thing {
 	private double speedMultiplier;
 	private double intelligenceMultiplier;
 	private double manaMultiplier;
+	private String name;
 
-	public Weapon(boolean b, Color c, LivingThing x) {
+	public Weapon(boolean b, Color c, LivingThing x, String name) {
 		super(b, c);
 		l = x;
+		this.name = name;
 	}
 
 	public LivingThing getL() {
@@ -45,6 +47,10 @@ public class Weapon extends Thing {
 
 	public void setLength(int length) {
 		this.length = length;
+	}
+	
+	public String getName(){
+		return name;
 	}
 
 	public void doDamage(LivingThing oo) {
@@ -95,19 +101,6 @@ public class Weapon extends Thing {
 		oo.updateDexterity((int) remainingIntelligence);
 		oo.updateSpeed((int) remainingSpeed);
 		oo.updateMana((int) remainingMana);
-	}
-
-	@Override
-	public String toString() {
-		if (this instanceof RangedWeapon) {
-			if (!(this instanceof Magic)) {
-				return "Bow";
-			} else {
-				return "Spell";
-			}
-		} else {
-			return "Sword";
-		}
 	}
 
 }

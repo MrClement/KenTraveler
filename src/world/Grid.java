@@ -280,7 +280,7 @@ public class Grid {
 				GridSpace target = grid.get(side);
 				RangedWeapon middleMan = (RangedWeapon) grid.get(charLoc).returnCharacter().getWeapon();
 				RangedWeapon newWeapon = new RangedWeapon(middleMan.getSolid(), middleMan.getColor(), middleMan.getL(),
-						middleMan.getRange(), middleMan.getSpeed());
+						middleMan.getRange(), middleMan.getSpeed(), middleMan.getName());
 				newWeapon.setDamage(middleMan.getDamage());
 				newWeapon.setCurrentSpeed(newWeapon.getSpeed() * dir);
 				target.add(newWeapon);

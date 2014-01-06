@@ -227,7 +227,7 @@ public class Grid {
 		Character c = new Character(true, Color.BLUE);
 		c.setMaxHp(20);
 		c.setHp(20);
-		c.addWeapon(f.constructMeleeWeapons(0, 10, (LivingThing) c));
+		c.addWeapon(f.constructMeleeWeapons(0, (LivingThing) c));
 		c.addWeapon(f.constructMagic(5, (LivingThing) c));
 		c.addWeapon(f.constructRangedWeapons(0, (LivingThing) c));
 		c.setWeapon(c.getCloseStore().get(0));
@@ -280,7 +280,7 @@ public class Grid {
 				GridSpace target = grid.get(side);
 				RangedWeapon middleMan = (RangedWeapon) grid.get(charLoc).returnCharacter().getWeapon();
 				RangedWeapon newWeapon = new RangedWeapon(middleMan.getSolid(), middleMan.getColor(), middleMan.getL(),
-						middleMan.getRange(), middleMan.getSpeed());
+						middleMan.getRange(), middleMan.getSpeed(), middleMan.getName());
 				newWeapon.setDamage(middleMan.getDamage());
 				newWeapon.setCurrentSpeed(newWeapon.getSpeed() * dir);
 				target.add(newWeapon);
@@ -402,19 +402,6 @@ public class Grid {
 		grid.put(point, enemiesSpace);
 		setEnemyLocation(point);
 
-	}
-	public void spawnNewBoss(Point point, Boss b){
-		ArrayList<Thing> boss = new ArrayList<Thing>();
-		boss.add(b);
-		GridSpace bossSpace = new GridSpace(boss);
-		GridSpace bossSpace1 = new GridSpace(boss);
-		bossSpace.sortArrayOfThings();
-		bossSpace1.sortArrayOfThings();
-		grid.put(point, bossSpace);
-		Point next = new Point();
-		next.setLocation(point.getX(), point.getY() + 1);
-		grid.put(next, bossSpace);
-		
 	}
 
 	public Point findValidEnemyLocation() {

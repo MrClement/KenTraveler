@@ -22,6 +22,7 @@ import javax.swing.JFrame;
 
 import world.Character;
 import world.Enemy;
+import world.Forge;
 import world.Grid;
 import world.GridSpace;
 import world.LivingThing;
@@ -108,6 +109,8 @@ public class GUIDriver {
 		app.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				Character c = g.getGrid().get(g.getCharacterLocation()).returnCharacter();
+				Forge f = new Forge();
 				int keyCode = e.getKeyCode();
 				if (keyCode == KeyEvent.VK_UP) {
 					g.retractWeapon(KeyEvent.VK_A);
@@ -138,23 +141,22 @@ public class GUIDriver {
 					g.useWeapon(lastKey);
 				} else if (keyCode == KeyEvent.VK_P) {
 					String name = "Yo Mama";
-					Color c = Color.ORANGE;
+					Color col = Color.ORANGE;
 					Point p = g.findValidEnemyLocation();
 					if (p != null) {
-						g.spawnNewEnemy(p, new Enemy(true, c, name, 10, 10, 10));
+						g.spawnNewEnemy(p, new Enemy(true, col, name, 10, 10, 10));
 					} else {
 						System.out.println("Could not spawn a new enemy.");
 					}
 				} else if (keyCode == KeyEvent.VK_Q || keyCode == KeyEvent.VK_E) {
 					g.retractWeapon(KeyEvent.VK_A);
 					g.retractWeapon(KeyEvent.VK_D);
-					Character c = g.getGrid().get(g.getCharacterLocation()).returnCharacter();
 					if (c.getWeapon() instanceof RangedWeapon && !(c.getWeapon() instanceof Magic)) {
-						c.setWeapon((Magic) c.getMagicStore().get(0));
+						c.setWeapon((Magic) c.getMagicStore().get(c.getMagicStore().size()-1));
 					} else if (c.getWeapon() instanceof Magic) {
-						c.setWeapon(c.getCloseStore().get(0));
+						c.setWeapon(c.getCloseStore().get(c.getCloseStore().size()-1));
 					} else {
-						c.setWeapon((RangedWeapon) c.getRangedStore().get(0));
+						c.setWeapon((RangedWeapon) c.getRangedStore().get(c.getRangedStore().size()-1));
 					}
 				} else if (keyCode == KeyEvent.VK_SLASH) {
 					g.killAllEnemies();
@@ -162,6 +164,49 @@ public class GUIDriver {
 					g.placeTerrain(lastKey);
 				} else if (keyCode == KeyEvent.VK_PERIOD) {
 					g.placeTerrain(keyCode);
+				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_1){
+					c.addWeapon(f.constructRangedWeapons(0, c));
+					c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_2){
+					c.addWeapon(f.constructRangedWeapons(1, c));
+					c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_3){
+					c.addWeapon(f.constructRangedWeapons(2, c));
+					c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_4){
+					c.addWeapon(f.constructRangedWeapons(3, c));
+					c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_5){
+					c.addWeapon(f.constructRangedWeapons(4, c));
+					c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_6){
+					c.addWeapon(f.constructRangedWeapons(5, c));
+					c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_7){
+					c.addWeapon(f.constructMagic(7, c));
+					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_1){
+					c.addWeapon(f.constructMagic(0, c));
+					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_2){
+					c.addWeapon(f.constructMagic(1, c));
+					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_3){
+					c.addWeapon(f.constructMagic(2, c));
+					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_4){
+					c.addWeapon(f.constructMagic(3, c));
+					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_5){
+					c.addWeapon(f.constructMagic(4, c));
+					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_6){
+					c.addWeapon(f.constructMagic(5, c));
+					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+				}
+				else if (e.isShiftDown() && keyCode == KeyEvent.VK_7){
+					c.addWeapon(f.constructMagic(6, c));
+					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
 				}
 			}
 

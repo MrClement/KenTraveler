@@ -228,8 +228,8 @@ public class Grid {
 		c.setMaxHp(20);
 		c.setHp(20);
 		c.addWeapon(f.constructMeleeWeapons(0, (LivingThing) c));
-		//c.addWeapon(f.constructMagic(5, (LivingThing) c));
-		//c.addWeapon(f.constructRangedWeapons(0, (LivingThing) c));
+		c.addWeapon(f.constructMagic(8, (LivingThing) c));
+		c.addWeapon(f.constructRangedWeapons(6, (LivingThing) c));
 		c.setWeapon(c.getCloseStore().get(0));
 		things.add(c);
 		GridSpace test = new GridSpace(things);

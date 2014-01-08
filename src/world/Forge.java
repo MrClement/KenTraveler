@@ -72,11 +72,10 @@ public class Forge {
 			Damage gassifyDamage = new Damage(0, 0, 0, 0, 0, 0, 0, 0, true, false, false);
 			gassify.setDamage(gassifyDamage);
 			return gassify;
-		}
-		if (i == 8) {
+		} else if (i == 8) {
 			String name = "Basic Fire Magic";
 			Magic basicFire = new Magic(true, Color.ORANGE, l, 5, 3, 1, name);
-			Damage basicFireDam = new Damage(3, 0, 0, 0, 0, 0, 0, 0, false, false, false);
+			Damage basicFireDam = new Damage(1, 0, 0, 0, 0, 0, 0, 0, false, false, false);
 			basicFire.setDamage(basicFireDam);
 			return basicFire;
 		}
@@ -126,7 +125,14 @@ public class Forge {
 			Damage throwingKnivesDamage = new Damage(4, 0, 0, 0, 0, 0, 0, 0, false, false, false);
 			throwingKnives.setDamage(throwingKnivesDamage);
 			return throwingKnives;
+		} else if (i == 6) {
+			String name = "Thrown Rock";
+			RangedWeapon baseBow = new RangedWeapon(true, Color.YELLOW, l, 15, 1, name);
+			Damage baseBowDamage = new Damage(1, 0, 0, 0, 0, 0, 0, 0, false, false, false);
+			baseBow.setDamage(baseBowDamage);
+			return baseBow;
 		}
+
 		return null;
 	}
 

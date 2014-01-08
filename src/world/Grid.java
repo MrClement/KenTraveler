@@ -396,14 +396,18 @@ public class Grid {
 	}
 
 	public void spawnNewEnemy(Point point, Enemy enemy) {
+		Point d = this.getCharacterLocation();
+		int money = grid.get(d).returnCharacter().getMoney();
+		if(money >= 5)
+		{
 		ArrayList<Thing> enemies = new ArrayList<Thing>();
 		enemies.add(enemy);
 		GridSpace enemiesSpace = new GridSpace(enemies);
 		enemiesSpace.sortArrayOfThings();
 		grid.put(point, enemiesSpace);
 		setEnemyLocation(point);
-		Point d = this.getCharacterLocation();
 		grid.get(d).returnCharacter().addMoney(-5);
+		}
 	}
 
 	public Point findValidEnemyLocation() {

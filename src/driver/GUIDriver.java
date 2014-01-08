@@ -143,8 +143,9 @@ public class GUIDriver {
 					String name = "Yo Mama";
 					Color col = Color.ORANGE;
 					Point p = g.findValidEnemyLocation();
-					if (p != null) {
+					if (p != null && c.getMoney() >= 5) {
 						g.spawnNewEnemy(p, new Enemy(true, col, name, 10, 10, 10));
+						c.addMoney(-5);
 					} else {
 						System.out.println("Could not spawn a new enemy.");
 					}

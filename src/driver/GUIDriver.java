@@ -143,8 +143,9 @@ public class GUIDriver {
 					String name = "Yo Mama";
 					Color col = Color.ORANGE;
 					Point p = g.findValidEnemyLocation();
-					if (p != null) {
+					if (p != null && c.getMoney() >= 5) {
 						g.spawnNewEnemy(p, new Enemy(true, col, name, 10, 10, 10));
+						c.addMoney(-5);
 					} else {
 						System.out.println("Could not spawn a new enemy.");
 					}
@@ -547,7 +548,7 @@ public class GUIDriver {
 						//4=javelins
 						//5=throwing knive
 						g2d.drawString("WELCOME TO THE MARKET", 5, 270);
-						g2d.drawString("PRESS A NUMBER OR SYMBOL TO BUY A WEAPON FROM THE MERCHANT:", 5, 285);
+						g2d.drawString("PRESS A NUMBER OR SYMBOL TO BUY A WEAPON FROM THE MERCHANT. YOUR CURRENT MONEY IS: $" + g.getGrid().get(g.getCharacterLocation()).returnCharacter().getMoney(), 5, 285);
 						g2d.drawString("1: Basic Bow ($100)", 5, 305);
 						g2d.drawString("2: Long Bow ($300)", 5, 320);
 						g2d.drawString("3: Cross Bow ($400)", 5, 335);

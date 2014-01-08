@@ -17,15 +17,22 @@ public class Character extends LivingThing {
 	private ArrayList<RangedWeapon> rangedStore = new ArrayList<RangedWeapon>();
 	private ArrayList<Magic> magicStore = new ArrayList<Magic>();
 	private ArrayList<Weapon> closeStore = new ArrayList<Weapon>();
+	private ArrayList<Boolean> boughtWeapons = new ArrayList<Boolean>();
 
 	public Character(boolean solid, Color c) {
 		super(solid, c);
+		for (int i = 0; i < 14; i++){
+			boughtWeapons.add(false);
+		}
 	}
 
 	public Character(String name, int strength, int intelligence, int dexterity, boolean solid, Color c) {
 		super(name, strength, intelligence, dexterity, solid, c);
 		xp = 0;
 		level = 1;
+		for (int i = 0; i < 14; i++){
+			boughtWeapons.add(false);
+		}
 	}
 
 	public int getXp() {
@@ -123,6 +130,14 @@ public class Character extends LivingThing {
 	
 	public void addMoney(int money){
 		this.money += money;
+	}
+	
+	public ArrayList<Boolean> getBoughtWeapons(){
+		return boughtWeapons;
+	}
+	
+	public void updateBoolean(int num){
+		boughtWeapons.set(num, true);
 	}
 
 }

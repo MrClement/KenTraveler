@@ -307,7 +307,7 @@ public class Grid {
 				c.addXp(500);
 				c.levelUp();
 				numKilled++;
-
+				c.addMoney(10);
 			} else {
 				currentEnemy.setHp(hp);
 			}
@@ -336,6 +336,7 @@ public class Grid {
 						c.addXp(500);
 						c.levelUp();
 						numKilled++;
+						c.addMoney(10);
 					} else {
 						livingThing.setHp(hp);
 					}
@@ -401,7 +402,8 @@ public class Grid {
 		enemiesSpace.sortArrayOfThings();
 		grid.put(point, enemiesSpace);
 		setEnemyLocation(point);
-
+		Point d = this.getCharacterLocation();
+		grid.get(d).returnCharacter().addMoney(-5);
 	}
 
 	public Point findValidEnemyLocation() {

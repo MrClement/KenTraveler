@@ -101,9 +101,9 @@ public class GUIDriver {
 		g = new Grid(0);
 
 		g.makeDefaultGrid();
-		Character casdfasdfasd = g.getGrid().get(g.getCharacterLocation()).returnCharacter();
-		System.out.println(casdfasdfasd.getRangedStore());
-		System.out.println(casdfasdfasd.getCloseStore());
+		Character blue = g.getGrid().get(g.getCharacterLocation()).returnCharacter();
+		System.out.println(blue.getRangedStore());
+		System.out.println(blue.getCloseStore());
 		stage = 1;
 
 		app.addKeyListener(new KeyAdapter() {
@@ -165,48 +165,183 @@ public class GUIDriver {
 				} else if (keyCode == KeyEvent.VK_PERIOD) {
 					g.placeTerrain(keyCode);
 				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_1){
-					c.addWeapon(f.constructRangedWeapons(0, c));
-					c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					if (c.getBoughtWeapons().get(0) == true){
+						c.addWeapon(f.constructRangedWeapons(0, c));
+						c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					}else{
+						if (c.getMoney() >= 100){
+							c.addWeapon(f.constructRangedWeapons(0, c));
+							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+							c.setMoney(-100);
+							c.updateBoolean(0);
+						}else{
+							System.out.println("You do not have enough money.");
+						}
+					}
 				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_2){
-					c.addWeapon(f.constructRangedWeapons(1, c));
-					c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					if (c.getBoughtWeapons().get(1) == true){
+						c.addWeapon(f.constructRangedWeapons(1, c));
+						c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					}else{
+						if (c.getMoney() >= 300){
+							c.addWeapon(f.constructRangedWeapons(1, c));
+							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+							c.setMoney(-300);
+							c.updateBoolean(1);
+						}else{
+							System.out.println("You do not have enough money.");
+						}	
+					}
 				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_3){
-					c.addWeapon(f.constructRangedWeapons(2, c));
-					c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					if (c.getBoughtWeapons().get(2) == true){
+						c.addWeapon(f.constructRangedWeapons(2, c));
+						c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					}else{
+						if (c.getMoney() >= 400){
+							c.addWeapon(f.constructRangedWeapons(2, c));
+							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+							c.setMoney(-400);
+							c.updateBoolean(2);
+						}else{
+							System.out.println("You do not have enough money.");
+						}
+					}
 				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_4){
-					c.addWeapon(f.constructRangedWeapons(3, c));
-					c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					if (c.getBoughtWeapons().get(3) == true){
+						c.addWeapon(f.constructRangedWeapons(3, c));
+						c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					}else{
+						if(c.getMoney() >= 1000){
+							c.addWeapon(f.constructRangedWeapons(3, c));
+							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+							c.setMoney(-1000);
+							c.updateBoolean(3);
+						}else{
+							System.out.println("You do not have enough money.");
+						}
+						
+					}
 				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_5){
-					c.addWeapon(f.constructRangedWeapons(4, c));
-					c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					if (c.getBoughtWeapons().get(4) == true){
+						c.addWeapon(f.constructRangedWeapons(4, c));
+						c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					}else{
+						if(c.getMoney() >= 500){
+							c.addWeapon(f.constructRangedWeapons(4, c));
+							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+							c.setMoney(-500);
+							c.updateBoolean(4);
+						}else{
+							System.out.println("You do not have enough money.");
+						}
+						
+					}
 				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_6){
-					c.addWeapon(f.constructRangedWeapons(5, c));
-					c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_7){
-					c.addWeapon(f.constructMagic(7, c));
-					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+					if (c.getBoughtWeapons().get(5) == true){
+						c.addWeapon(f.constructRangedWeapons(5, c));
+						c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					}else{
+						if(c.getMoney() >= 200){
+							c.addWeapon(f.constructRangedWeapons(5, c));
+							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+							c.setMoney(-200);
+							c.updateBoolean(5);
+						}else{
+							System.out.println("You do not have enough money.");
+						}
+						
+					}
 				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_1){
-					c.addWeapon(f.constructMagic(0, c));
-					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+					if (c.getBoughtWeapons().get(7) == true){
+						c.addWeapon(f.constructRangedWeapons(7, c));
+						c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					}else{
+						if(c.getMoney() >= 300){
+							c.addWeapon(f.constructRangedWeapons(7, c));
+							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+							c.setMoney(-300);
+							c.updateBoolean(7);
+						}else{
+							System.out.println("You do not have enough money.");
+						}
+						
+					}
 				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_2){
-					c.addWeapon(f.constructMagic(1, c));
-					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+					if (c.getBoughtWeapons().get(8) == true){
+						c.addWeapon(f.constructRangedWeapons(8, c));
+						c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					}else{
+						if(c.getMoney() >= 500){
+							c.addWeapon(f.constructRangedWeapons(8, c));
+							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+							c.setMoney(-500);
+							c.updateBoolean(8);
+						}else{
+							System.out.println("You do not have enough money.");
+						}
+						
+					}
 				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_3){
-					c.addWeapon(f.constructMagic(2, c));
-					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+					if (c.getBoughtWeapons().get(9) == true){
+						c.addWeapon(f.constructRangedWeapons(9, c));
+						c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					}else{
+						if(c.getMoney() >= 1000){
+							c.addWeapon(f.constructRangedWeapons(9, c));
+							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+							c.setMoney(-1000);
+							c.updateBoolean(9);
+						}else{
+							System.out.println("You do not have enough money.");
+						}
+						
+					}
 				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_4){
-					c.addWeapon(f.constructMagic(3, c));
-					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+					if (c.getBoughtWeapons().get(10) == true){
+						c.addWeapon(f.constructRangedWeapons(10, c));
+						c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					}else{
+						if(c.getMoney() >= 300){
+							c.addWeapon(f.constructRangedWeapons(10, c));
+							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+							c.setMoney(-300);
+							c.updateBoolean(10);
+						}else{
+							System.out.println("You do not have enough money.");
+						}
+						
+					}
 				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_5){
-					c.addWeapon(f.constructMagic(4, c));
-					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+					if (c.getBoughtWeapons().get(11) == true){
+						c.addWeapon(f.constructRangedWeapons(11, c));
+						c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					}else{
+						if(c.getMoney() >= 500){
+							c.addWeapon(f.constructRangedWeapons(11, c));
+							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+							c.setMoney(-500);
+							c.updateBoolean(11);
+						}else{
+							System.out.println("You do not have enough money.");
+						}
+						
+					}
 				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_6){
-					c.addWeapon(f.constructMagic(5, c));
-					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
-				}
-				else if (e.isShiftDown() && keyCode == KeyEvent.VK_7){
-					c.addWeapon(f.constructMagic(6, c));
-					c.setWeapon(c.getMagicStore().get(c.getMagicStore().size()-1));
+					if (c.getBoughtWeapons().get(12) == true){
+						c.addWeapon(f.constructRangedWeapons(12, c));
+						c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+					}else{
+						if(c.getMoney() >= 1000){
+							c.addWeapon(f.constructRangedWeapons(12, c));
+							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
+							c.setMoney(-1000);
+							c.updateBoolean(12);
+						}else{
+							System.out.println("You do not have enough money.");
+						}
+						
+					}
+				
 				}
 			}
 
@@ -413,20 +548,18 @@ public class GUIDriver {
 						//5=throwing knive
 						g2d.drawString("WELCOME TO THE MARKET", 5, 270);
 						g2d.drawString("PRESS A NUMBER OR SYMBOL TO BUY A WEAPON FROM THE MERCHANT:", 5, 285);
-						g2d.drawString("1: Basic Bow", 5, 305);
-						g2d.drawString("2: Long Bow", 5, 320);
-						g2d.drawString("3: Cross Bow", 5, 335);
-						g2d.drawString("4: Cross Bow Plus", 5, 350);
-						g2d.drawString("5: Javelin", 5, 365);
-						g2d.drawString("6: Throwing Knives", 5, 380);
-						g2d.drawString("7: Gassify", 5, 395);		
-						g2d.drawString("!: Fire Magic 1", 200, 305);
-						g2d.drawString("@: Fire Magic 2", 200, 320);
-						g2d.drawString("#: Fire Magic 3", 200, 335);
-						g2d.drawString("$: Ice Magic 1", 200, 350);
-						g2d.drawString("%: Ice Magic 2", 200, 365);
-						g2d.drawString("^: Ice Magic 3", 200, 380);
-						g2d.drawString("&: Solidify", 200, 395);
+						g2d.drawString("1: Basic Bow ($100)", 5, 305);
+						g2d.drawString("2: Long Bow ($300)", 5, 320);
+						g2d.drawString("3: Cross Bow ($400)", 5, 335);
+						g2d.drawString("4: Cross Bow Plus ($1000)", 5, 350);
+						g2d.drawString("5: Javelin ($500)", 5, 365);
+						g2d.drawString("6: Throwing Knives ($200)", 5, 380);	
+						g2d.drawString("!: Fire Magic 1 ($300)", 200, 305);
+						g2d.drawString("@: Fire Magic 2 ($500)", 200, 320);
+						g2d.drawString("#: Fire Magic 3 ($1000)", 200, 335);
+						g2d.drawString("$: Ice Magic 1 ($300)", 200, 350);
+						g2d.drawString("%: Ice Magic 2 ($500)", 200, 365);
+						g2d.drawString("^: Ice Magic 3 ($1000)", 200, 380);
 						
 						
 					}catch (Exception e){

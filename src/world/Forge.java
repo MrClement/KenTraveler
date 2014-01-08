@@ -73,6 +73,13 @@ public class Forge {
 			gassify.setDamage(gassifyDamage);
 			return gassify;
 		}
+		if (i == 8) {
+			String name = "Basic Fire Magic";
+			Magic basicFire = new Magic(true, Color.ORANGE, l, 5, 3, 1, name);
+			Damage basicFireDam = new Damage(3, 0, 0, 0, 0, 0, 0, 0, false, false, false);
+			basicFire.setDamage(basicFireDam);
+			return basicFire;
+		}
 		return null;
 	}
 

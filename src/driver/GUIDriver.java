@@ -109,6 +109,7 @@ public class GUIDriver {
 		app.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				SaveGameWriter w = new SaveGameWriter();
 				Character c = g.getGrid().get(g.getCharacterLocation()).returnCharacter();
 				Forge f = new Forge();
 				int keyCode = e.getKeyCode();
@@ -125,6 +126,9 @@ public class GUIDriver {
 						value = gravityRate + hangTime;
 
 					}
+					
+				} else if(keyCode == KeyEvent.VK_ESCAPE){
+					w.writeSaveGame(c);
 				} else if (keyCode == KeyEvent.VK_LEFT) {
 					g.moveCharacter(-1, 0, lastKey);
 					lastKey = KeyEvent.VK_LEFT;

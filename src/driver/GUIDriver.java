@@ -167,7 +167,7 @@ public class GUIDriver {
 					String name = "Yo Mama 3";
 					Color col = Color.pink;
 					Point p = g.findValidEnemyLocation();
-					if (p != null && c.getMoney() >= 10) {
+					if (p != null && c.getMoney() >= 20) {
 						g.spawnNewEnemy(p, new Enemy(true, col, name, 40, 40, 40));
 						c.addMoney(-20);
 					} else {
@@ -177,7 +177,7 @@ public class GUIDriver {
 					String name = "BOSS";
 					Color col = Color.RED;
 					Point p = g.findValidEnemyLocation();
-					if (p != null && c.getMoney() >= 10) {
+					if (p != null && c.getMoney() >= 50) {
 						g.spawnNewEnemy(p, new Enemy(true, col, name, 100, 100, 100));
 						c.addMoney(-50);
 					} else {

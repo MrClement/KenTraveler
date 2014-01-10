@@ -235,7 +235,7 @@ public class Grid {
 		GridSpace test = new GridSpace(things);
 		test.sortArrayOfThings();
 		ArrayList<Thing> enemies = new ArrayList<Thing>();
-		enemies.add(new Enemy(true, Color.ORANGE, "Jerome", 10, 10, 10));
+		enemies.add(new Enemy(true, Color.GRAY, "Jerome", 10, 10, 10));
 		grid.put(new Point(15, 21), test);
 		setCharacterLocation(new Point(15, 21));
 		things = new ArrayList<Thing>();

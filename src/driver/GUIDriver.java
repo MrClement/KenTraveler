@@ -141,7 +141,7 @@ public class GUIDriver {
 					g.useWeapon(lastKey);
 				} else if (keyCode == KeyEvent.VK_P) {
 					String name = "Yo Mama";
-					Color col = Color.ORANGE;
+					Color col = Color.GRAY;
 					Point p = g.findValidEnemyLocation();
 					if (p != null && c.getMoney() >= 5) {
 						g.spawnNewEnemy(p, new Enemy(true, col, name, 10, 10, 10));
@@ -173,7 +173,7 @@ public class GUIDriver {
 						if (c.getMoney() >= 100){
 							c.addWeapon(f.constructRangedWeapons(0, c));
 							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-							c.setMoney(-100);
+							c.addMoney(-100);
 							c.updateBoolean(0);
 						}else{
 							System.out.println("You do not have enough money.");
@@ -187,7 +187,7 @@ public class GUIDriver {
 						if (c.getMoney() >= 300){
 							c.addWeapon(f.constructRangedWeapons(1, c));
 							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-							c.setMoney(-300);
+							c.addMoney(-300);
 							c.updateBoolean(1);
 						}else{
 							System.out.println("You do not have enough money.");
@@ -201,7 +201,7 @@ public class GUIDriver {
 						if (c.getMoney() >= 400){
 							c.addWeapon(f.constructRangedWeapons(2, c));
 							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-							c.setMoney(-400);
+							c.addMoney(-400);
 							c.updateBoolean(2);
 						}else{
 							System.out.println("You do not have enough money.");
@@ -215,7 +215,7 @@ public class GUIDriver {
 						if(c.getMoney() >= 1000){
 							c.addWeapon(f.constructRangedWeapons(3, c));
 							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-							c.setMoney(-1000);
+							c.addMoney(-1000);
 							c.updateBoolean(3);
 						}else{
 							System.out.println("You do not have enough money.");
@@ -230,7 +230,7 @@ public class GUIDriver {
 						if(c.getMoney() >= 500){
 							c.addWeapon(f.constructRangedWeapons(4, c));
 							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-							c.setMoney(-500);
+							c.addMoney(-500);
 							c.updateBoolean(4);
 						}else{
 							System.out.println("You do not have enough money.");
@@ -245,7 +245,7 @@ public class GUIDriver {
 						if(c.getMoney() >= 200){
 							c.addWeapon(f.constructRangedWeapons(5, c));
 							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-							c.setMoney(-200);
+							c.addMoney(-200);
 							c.updateBoolean(5);
 						}else{
 							System.out.println("You do not have enough money.");
@@ -260,7 +260,7 @@ public class GUIDriver {
 						if(c.getMoney() >= 300){
 							c.addWeapon(f.constructRangedWeapons(7, c));
 							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-							c.setMoney(-300);
+							c.addMoney(-300);
 							c.updateBoolean(7);
 						}else{
 							System.out.println("You do not have enough money.");
@@ -275,7 +275,7 @@ public class GUIDriver {
 						if(c.getMoney() >= 500){
 							c.addWeapon(f.constructRangedWeapons(8, c));
 							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-							c.setMoney(-500);
+							c.addMoney(-500);
 							c.updateBoolean(8);
 						}else{
 							System.out.println("You do not have enough money.");
@@ -290,7 +290,7 @@ public class GUIDriver {
 						if(c.getMoney() >= 1000){
 							c.addWeapon(f.constructRangedWeapons(9, c));
 							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-							c.setMoney(-1000);
+							c.addMoney(-1000);
 							c.updateBoolean(9);
 						}else{
 							System.out.println("You do not have enough money.");
@@ -305,7 +305,7 @@ public class GUIDriver {
 						if(c.getMoney() >= 300){
 							c.addWeapon(f.constructRangedWeapons(10, c));
 							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-							c.setMoney(-300);
+							c.addMoney(-300);
 							c.updateBoolean(10);
 						}else{
 							System.out.println("You do not have enough money.");
@@ -320,7 +320,7 @@ public class GUIDriver {
 						if(c.getMoney() >= 500){
 							c.addWeapon(f.constructRangedWeapons(11, c));
 							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-							c.setMoney(-500);
+							c.addMoney(-500);
 							c.updateBoolean(11);
 						}else{
 							System.out.println("You do not have enough money.");
@@ -335,7 +335,7 @@ public class GUIDriver {
 						if(c.getMoney() >= 1000){
 							c.addWeapon(f.constructRangedWeapons(12, c));
 							c.setWeapon(c.getRangedStore().get(c.getRangedStore().size()-1));
-							c.setMoney(-1000);
+							c.addMoney(-1000);
 							c.updateBoolean(12);
 						}else{
 							System.out.println("You do not have enough money.");
@@ -474,7 +474,7 @@ public class GUIDriver {
 
 								for (int i = 0; i < numEnemies; i++) {
 									String name = "Yo Mama";
-									Color d = Color.ORANGE;
+									Color d = Color.GRAY;
 									Point p = g.findValidEnemyLocation();
 									if (p != null) {
 										g.spawnNewEnemy(p, new Enemy(true, d, name, 10, 10, 10));

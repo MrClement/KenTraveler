@@ -37,7 +37,7 @@ public class LivingThing extends Thing {
 		this.strength = strength;
 		this.intelligence = intelligence;
 		this.dexterity = dexterity;
-		hp = 20;
+		hp = 2 * strength;
 		mana = (intelligence * 5) + 1;
 		speed = (dexterity * 5) + 1;
 		frozen=false;

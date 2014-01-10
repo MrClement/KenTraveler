@@ -325,6 +325,7 @@ public class Grid {
 					return;
 				} else {
 					int hp = livingThing.getHp();
+					int enemyType = livingThing.getDexterity() / 10;
 					hp -= weapon.getDamage().getBaseHpDamage();
 					if (weapon.getDamage().isFreeze()) {
 						livingThing.setFrozen(true);
@@ -333,10 +334,10 @@ public class Grid {
 					if (hp <= 0) {
 						target.remove(livingThing);
 						removeEnemy(targetLocation);
-						c.addXp(500);
+						c.addXp(500 * enemyType);
 						c.levelUp();
 						numKilled++;
-						c.addMoney(10);
+						c.addMoney(10 * enemyType);
 					} else {
 						livingThing.setHp(hp);
 					}

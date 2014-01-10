@@ -153,6 +153,16 @@ public class GUIDriver {
 					} else {
 						System.out.println("Could not spawn a new enemy.");
 					}
+				} else if (keyCode == KeyEvent.VK_OPEN_BRACKET) {
+					String name = "Yo Mama 2";
+					Color col = Color.BLUE;
+					Point p = g.findValidEnemyLocation();
+					if (p != null && c.getMoney() >= 10) {
+						g.spawnNewEnemy(p, new Enemy(true, col, name, 20, 20, 20));
+						c.addMoney(-10);
+					} else {
+						System.out.println("Could not spawn a new enemy.");
+					}
 				} else if (keyCode == KeyEvent.VK_Q || keyCode == KeyEvent.VK_E) {
 					g.retractWeapon(KeyEvent.VK_A);
 					g.retractWeapon(KeyEvent.VK_D);

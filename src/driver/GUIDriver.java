@@ -155,11 +155,31 @@ public class GUIDriver {
 					}
 				} else if (keyCode == KeyEvent.VK_OPEN_BRACKET) {
 					String name = "Yo Mama 2";
-					Color col = Color.BLUE;
+					Color col = Color.MAGENTA;
 					Point p = g.findValidEnemyLocation();
 					if (p != null && c.getMoney() >= 10) {
 						g.spawnNewEnemy(p, new Enemy(true, col, name, 20, 20, 20));
 						c.addMoney(-10);
+					} else {
+						System.out.println("Could not spawn a new enemy.");
+					}
+				} else if (keyCode == KeyEvent.VK_CLOSE_BRACKET) {
+					String name = "Yo Mama 3";
+					Color col = Color.pink;
+					Point p = g.findValidEnemyLocation();
+					if (p != null && c.getMoney() >= 10) {
+						g.spawnNewEnemy(p, new Enemy(true, col, name, 40, 40, 40));
+						c.addMoney(-20);
+					} else {
+						System.out.println("Could not spawn a new enemy.");
+					}
+				} else if (keyCode == KeyEvent.VK_BACK_SLASH) {
+					String name = "BOSS";
+					Color col = Color.RED;
+					Point p = g.findValidEnemyLocation();
+					if (p != null && c.getMoney() >= 10) {
+						g.spawnNewEnemy(p, new Enemy(true, col, name, 100, 100, 100));
+						c.addMoney(-50);
 					} else {
 						System.out.println("Could not spawn a new enemy.");
 					}

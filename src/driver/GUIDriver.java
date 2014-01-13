@@ -129,6 +129,10 @@ public class GUIDriver {
 					
 				} else if(keyCode == KeyEvent.VK_ESCAPE){
 					w.writeSaveGame(c);
+				} else if(keyCode == KeyEvent.VK_DELETE){
+					g.getGrid().get(g.getCharacterLocation()).remove(c);
+					c=w.loadSaveGame();
+					g.getGrid().get(g.getCharacterLocation()).add(c);
 				} else if (keyCode == KeyEvent.VK_LEFT) {
 					g.moveCharacter(-1, 0, lastKey);
 					lastKey = KeyEvent.VK_LEFT;

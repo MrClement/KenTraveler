@@ -34,6 +34,18 @@ public class Character extends LivingThing {
 			boughtWeapons.add(false);
 		}
 	}
+	
+	public Character(int money, int level, int exp, int hp, int ammo, int mana, int maxHP, int str, int intelligence, int dex, int speed, String name){
+		super(name, str, intelligence, dex, true, Color.BLUE);
+		xp=exp;
+		this.level=level;
+		this.money=money;
+		this.setHp(hp);
+		this.ammo=ammo;
+		this.setMana(mana);
+		this.setMaxHp(maxHP);
+		
+	}
 
 	public int getXp() {
 		return xp;

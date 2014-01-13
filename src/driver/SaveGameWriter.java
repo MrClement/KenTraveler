@@ -1,9 +1,12 @@
 package driver;
 
+import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 import world.Character;
 
@@ -31,29 +34,29 @@ public class SaveGameWriter {
 		File f = new File("save.txt");
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(f));
-				out.write("Gold:" + gold);
+				out.write(gold);
 				out.newLine();
-				out.write("Level" + level);
+				out.write(level);
 				out.newLine();
-				out.write("Exp:" + exp);
+				out.write(exp);
 				out.newLine();
-				out.write("Hp:" + hp);
+				out.write(hp);
 				out.newLine();
-				out.write("Ammo:" + ammo);
+				out.write(ammo);
 				out.newLine();
-				out.write("Mana:" + mana);
+				out.write(mana);
 				out.newLine();
-				out.write("Max Hp:" + maxHP);
+				out.write(maxHP);
 				out.newLine();
-				out.write("Strength:" + str);
+				out.write(str);
 				out.newLine();
-				out.write("Intelligence:" + intelligence);
+				out.write(intelligence);
 				out.newLine();
-				out.write("Dexterity:" + dex);
+				out.write(dex);
 				out.newLine();
-				out.write("Speed:" + Speed);
+				out.write(Speed);
 				out.newLine();
-				out.write("Name:" + name);
+				out.write(name);
 		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -64,7 +67,28 @@ public class SaveGameWriter {
 
 	}
 
-	public void loadSaveGame() {
-
+	public Character loadSaveGame() {
+		try {
+			Scanner s = new Scanner(new File("save.txt"));
+			int gold=s.nextInt();
+			int level=s.nextInt();
+			int exp=s.nextInt();
+			int hp=s.nextInt();
+			int ammo=s.nextInt();
+			int mana=s.nextInt();
+			int maxHP=s.nextInt();
+			int str=s.nextInt();
+			int intelligence=s.nextInt();
+			int dex=s.nextInt();
+			int speed=s.nextInt();
+			String name=s.next();
+			Character c=new Character(gold, level, exp, hp, ammo, mana, maxHP, str, intelligence, dex, speed, name);
+			return c;
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new Character(true, Color.BLUE);
 	}
 }

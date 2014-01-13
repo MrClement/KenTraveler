@@ -143,6 +143,12 @@ public class Forge {
 			Damage swordDamage = new Damage(5, 0, 0, 0, 0, 0, 0, 0, false, false, false);
 			sword.setDamage(swordDamage);
 			return sword;
+		} else if (i == 1) {
+			String name = "Battle Axe";
+			Weapon battleAxe = new Weapon(true, Color.RED, l, name);
+			Damage battleAxeDamage = new Damage(50, 0, 0, 0, 0, 0, 0, 0, false, false, false);
+			battleAxe.setDamage(battleAxeDamage);
+			return battleAxe;
 		}
 		return null;
 	}

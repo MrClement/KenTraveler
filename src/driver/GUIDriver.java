@@ -199,6 +199,7 @@ public class GUIDriver {
 					g.placeTerrain(lastKey);
 				} else if (keyCode == KeyEvent.VK_PERIOD) {
 					g.placeTerrain(keyCode);
+					c.addMoney(3000);
 				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_1){
 					if (c.getBoughtWeapons().get(0) == true){
 						c.addWeapon(f.constructRangedWeapons(0, c));
@@ -285,6 +286,20 @@ public class GUIDriver {
 							System.out.println("You do not have enough money.");
 						}
 						
+					}
+				}else if (!e.isShiftDown() && keyCode == KeyEvent.VK_0){
+					if (c.getBoughtWeapons().get(0) == true){
+						c.addWeapon(f.constructMeleeWeapons(1, c));
+						c.setWeapon(c.getCloseStore().get(c.getCloseStore().size()-1));
+					}else{
+						if (c.getMoney() >= 2000){
+							c.addWeapon(f.constructMeleeWeapons(1, c));
+							c.setWeapon(c.getCloseStore().get(c.getCloseStore().size()-1));
+							c.addMoney(-2000);
+							c.updateBoolean(1);
+						}else{
+							System.out.println("You do not have enough money.");
+						}
 					}
 				}else if (e.isShiftDown() && keyCode == KeyEvent.VK_1){
 					if (c.getBoughtWeapons().get(7) == true){
@@ -599,7 +614,7 @@ public class GUIDriver {
 						g2d.drawString("[: Enemy 2 ($10)", 375, 320);
 						g2d.drawString("]: Enemy 3 ($20)", 375, 335);
 						g2d.drawString("\\: Boss ($50)", 375, 350);
-						
+						g2d.drawString("0: Battle Axe ($2000)", 375, 365);
 						
 					}catch (Exception e){
 						System.out.println("Caught some error.");

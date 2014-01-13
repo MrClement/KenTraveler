@@ -451,7 +451,12 @@ public class GUIDriver {
 										}
 									}
 								} else if (g.getCharacterLocation().getX() < g.getEnemyLocation().get(i).getX()) {
-									Point check = new Point((int) (p.getX() - 1), (int) (p.getY()));
+									Point check = new Point();
+									if(!(g.getCharacterLocation().getX()==0)){
+									check = new Point((int) (p.getX() - 1), (int) (p.getY()));
+									}
+									else {check = new Point((int) (p.getX()), (int)(p.getY()));
+									}
 									GridSpace more = g.getGrid().get(check);
 									if (more.hasSolid()) {
 										for (Terrain t : more.returnTerrain()) {
@@ -462,6 +467,7 @@ public class GUIDriver {
 												g.moveEnemy(0, -1, p);
 											}
 										}
+									}
 										for (LivingThing e : more.returnLivingThings()) {
 											if (e.getSolid() && !(e instanceof Character)) {
 												g.moveEnemy(0, -1, p);
@@ -471,10 +477,11 @@ public class GUIDriver {
 											}
 										}
 									}
-								}
+								
 
 								g.moveEnemy(0, 1, p);
 							}
+						}
 							if (gravityTime > 4 * gravityRate + hangTime) {
 								gravityTime = 0;
 								value = gravityRate + hangTime;
@@ -517,7 +524,7 @@ public class GUIDriver {
 							}
 						}
 					}
-				}
+				
 				if (totalTime > 1000) {
 
 					totalTime -= 1000;

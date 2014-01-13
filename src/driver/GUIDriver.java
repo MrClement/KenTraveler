@@ -595,6 +595,10 @@ public class GUIDriver {
 						g2d.drawString("$: Ice Magic 1 ($300)", 200, 350);
 						g2d.drawString("%: Ice Magic 2 ($500)", 200, 365);
 						g2d.drawString("^: Ice Magic 3 ($1000)", 200, 380);
+						g2d.drawString("P: Enemy 1 ($5)", 375, 305);
+						g2d.drawString("[: Enemy 2 ($10)", 375, 320);
+						g2d.drawString("]: Enemy 3 ($20)", 375, 335);
+						g2d.drawString("\": Boss ($50)", 375, 350);
 						
 						
 					}catch (Exception e){

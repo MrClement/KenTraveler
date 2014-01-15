@@ -21,7 +21,7 @@ public class Character extends LivingThing {
 
 	public Character(boolean solid, Color c) {
 		super(solid, c);
-		for (int i = 0; i < 14; i++){
+		for (int i = 0; i < 14; i++) {
 			boughtWeapons.add(false);
 		}
 	}
@@ -30,21 +30,22 @@ public class Character extends LivingThing {
 		super(name, strength, intelligence, dexterity, solid, c);
 		xp = 0;
 		level = 1;
-		for (int i = 0; i < 14; i++){
+		for (int i = 0; i < 14; i++) {
 			boughtWeapons.add(false);
 		}
 	}
-	
-	public Character(int money, int level, int exp, int hp, int ammo, int mana, int maxHP, int str, int intelligence, int dex, int speed, String name){
+
+	public Character(int money, int level, int exp, int hp, int ammo, int mana, int maxHP, int str, int intelligence,
+			int dex, int speed, String name) {
 		super(name, str, intelligence, dex, true, Color.BLUE);
-		xp=exp;
-		this.level=level;
-		this.money=money;
+		xp = exp;
+		this.level = level;
+		this.money = money;
 		this.setHp(hp);
-		this.ammo=ammo;
+		this.ammo = ammo;
 		this.setMana(mana);
 		this.setMaxHp(maxHP);
-		
+
 	}
 
 	public int getXp() {
@@ -127,11 +128,11 @@ public class Character extends LivingThing {
 	public void setAmmo(int ammo) {
 		this.ammo = ammo;
 	}
-	
-	public void addAmmo(int ammo){
+
+	public void addAmmo(int ammo) {
 		this.ammo += ammo;
 	}
-	
+
 	public int getMoney() {
 		return money;
 	}
@@ -139,17 +140,24 @@ public class Character extends LivingThing {
 	public void setMoney(int money) {
 		this.money = money;
 	}
-	
-	public void addMoney(int money){
+
+	public void addMoney(int money) {
 		this.money += money;
 	}
-	
-	public ArrayList<Boolean> getBoughtWeapons(){
+
+	public ArrayList<Boolean> getBoughtWeapons() {
 		return boughtWeapons;
 	}
-	
-	public void updateBoolean(int num){
+
+	public void updateBoolean(int num) {
 		boughtWeapons.set(num, true);
+	}
+
+	@Override
+	public String toString() {
+		return "Character [xp=" + xp + ", level=" + level + ", weapon=" + weapon + ", ammo=" + ammo + ", money="
+				+ money + ", rangedStore=" + rangedStore + ", magicStore=" + magicStore + ", closeStore=" + closeStore
+				+ ", boughtWeapons=" + boughtWeapons + "]";
 	}
 
 }

@@ -149,6 +149,10 @@ public class Character extends LivingThing {
 		return boughtWeapons;
 	}
 
+	public void setBoughtWeapons(ArrayList<Boolean> bw) {
+		boughtWeapons = bw;
+	}
+
 	public void updateBoolean(int num) {
 		boughtWeapons.set(num, true);
 	}

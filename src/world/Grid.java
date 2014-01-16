@@ -437,13 +437,28 @@ public class Grid {
 		if (dir != 0) {
 			Point side = new Point((int) (getCharacterLocation().getX() + dir), (int) getCharacterLocation().getY());
 			GridSpace target = grid.get(side);
-			target.add(new Terrain(true, Color.GREEN));
-			target.sortArrayOfThings();
+			if (target.returnTerrain().size() <= 0){
+				target.add(new Terrain(true, Color.GREEN));
+				target.sortArrayOfThings();
+			}else{
+				for (int i = 0; i < target.returnTerrain().size(); i++){
+					target.remove(target.returnTerrain().get(i));
+				}
+				target.sortArrayOfThings();
+			}
+			
 		} else if (up) {
 			Point side = new Point((int) (getCharacterLocation().getX()), (int) (getCharacterLocation().getY() - 1));
 			GridSpace target = grid.get(side);
-			target.add(new Terrain(true, Color.GREEN));
-			target.sortArrayOfThings();
+			if (target.returnTerrain().size() <= 0){
+				target.add(new Terrain(true, Color.GREEN));
+				target.sortArrayOfThings();
+			}else{
+				for (int i = 0; i < target.returnTerrain().size(); i++){
+					target.remove(target.returnTerrain().get(i));
+				}
+				target.sortArrayOfThings();
+			}
 		}
 
 	}

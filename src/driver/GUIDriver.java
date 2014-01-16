@@ -514,36 +514,41 @@ public class GUIDriver {
 						}
 
 						// clear back buffer...
-						if (g.getCharacterLocation().getX() >= 100) {
-							HashMap<Point, GridSpace> grid = g.getGrid();
-							Point oldLocation = g.getCharacterLocation();
-							Character c = grid.get(oldLocation).returnCharacter();
-							c.setHp(c.getMaxHp());
-							World w = new World();
-							int killed = g.getNumKilled();
-							g = w.drawWorld(1, killed);
-							stage++;
-							grid = g.getGrid();
-							g.setNumKilled(killed);
-							ArrayList<Thing> t = new ArrayList<Thing>();
-							t.add(c);
-							GridSpace gs = new GridSpace(t);
-							gs.sortArrayOfThings();
-							grid.put(new Point(1, (int) oldLocation.getY() - 1), gs);
-							g.setCharacterLocation(new Point(1, (int) oldLocation.getY() - 1));
+						try{
+							if (g.getCharacterLocation().getX() >= 100) {
+								HashMap<Point, GridSpace> grid = g.getGrid();
+								Point oldLocation = g.getCharacterLocation();
+								Character c = grid.get(oldLocation).returnCharacter();
+								c.setHp(c.getMaxHp());
+								World w = new World();
+								int killed = g.getNumKilled();
+								g = w.drawWorld(1, killed);
+								stage++;
+								grid = g.getGrid();
+								g.setNumKilled(killed);
+								ArrayList<Thing> t = new ArrayList<Thing>();
+								t.add(c);
+								GridSpace gs = new GridSpace(t);
+								gs.sortArrayOfThings();
+								grid.put(new Point(1, (int) oldLocation.getY() - 1), gs);
+								g.setCharacterLocation(new Point(1, (int) oldLocation.getY() - 1));
 
-							Random r = new Random();
-							int numEnemies = r.nextInt(stage) + 1;
+								Random r = new Random();
+								int numEnemies = r.nextInt(stage) + 1;
 
-							for (int i = 0; i < numEnemies; i++) {
-								String name = "Yo Mama";
-								Color d = Color.GRAY;
-								Point p = g.findValidEnemyLocation();
-								if (p != null) {
-									g.spawnNewEnemy(p, new Enemy(true, d, name, 10, 10, 10));
+								for (int i = 0; i < numEnemies; i++) {
+									String name = "Yo Mama";
+									Color d = Color.GRAY;
+									Point p = g.findValidEnemyLocation();
+									if (p != null) {
+										g.spawnNewEnemy(p, new Enemy(true, d, name, 10, 10, 10));
+									}
 								}
 							}
+						}catch(Exception e){
+							System.out.println("Caught some error.");
 						}
+
 					}
 				}
 

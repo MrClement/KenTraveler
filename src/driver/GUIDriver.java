@@ -296,7 +296,7 @@ public class GUIDriver {
 
 					}
 				} else if (!e.isShiftDown() && keyCode == KeyEvent.VK_0) {
-					if (c.getBoughtWeapons().get(0) == true) {
+					if (c.getBoughtWeapons().get(6) == true) {
 						c.addWeapon(f.constructMeleeWeapons(1, c));
 						c.setWeapon(c.getCloseStore().get(c.getCloseStore().size() - 1));
 					} else {
@@ -304,7 +304,7 @@ public class GUIDriver {
 							c.addWeapon(f.constructMeleeWeapons(1, c));
 							c.setWeapon(c.getCloseStore().get(c.getCloseStore().size() - 1));
 							c.addMoney(-2000);
-							c.updateBoolean(1);
+							c.updateBoolean(6);
 						} else {
 							System.out.println("You do not have enough money.");
 						}
